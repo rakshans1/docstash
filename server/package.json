@@ -4,7 +4,9 @@
   "description": "server for docstash",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "babel-node index.js",
+    "db": "mongod --dbpath ../data"
   },
   "repository": {
     "type": "git",
@@ -19,5 +21,18 @@
   "bugs": {
     "url": "https://github.com/rakshans1/docstash/issues"
   },
-  "homepage": "https://github.com/rakshans1/docstash#readme"
+  "homepage": "https://github.com/rakshans1/docstash#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "jwt-simple": "^0.5.0",
+    "mongoose": "^4.5.8",
+    "morgan": "^1.7.0",
+    "passport": "^0.3.2",
+    "passport-jwt": "^2.1.0",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.11.4"
+  }
 }

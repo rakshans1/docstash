@@ -1,0 +1,49 @@
+.recent-heading{
+  margin-top: 30px;
+  color: lighten($gray-light, 20);
+  font-weight: 600;
+  padding: 0;
+  font-size: 0.8em;
+}
+.recent-activity{
+  position: relative;
+  font-size: 0.8em;
+  .flaticon{
+    padding-right: 25px;
+    position: absolute;
+    left: -20px;
+  }
+  [class^="flaticon-"]:before, [class*=" flaticon-"]:before, [class^="flaticon-"]:after, [class*=" flaticon-"]:after {
+    font-size: 1.8em;
+  }
+}
+.recent-activity-event{
+  text-align: left;
+  margin-left: 30px;
+  margin-bottom: 0;
+  font-weight: 600;
+  color: $gray;
+}
+.recent-activity-filename{
+  text-align: left;
+  margin-left: 30px;
+  margin-bottom: 0;
+  font-weight: 600;
+  color: darken($secondary,10%);
+}
+.rececnt-activity-time{
+  text-align: left;
+  margin-left: 30px;
+  font-weight: 500;
+  color: darken($gray-lighter,30%);
+}
+
+.edit{
+  color: $edit;
+}
+.delete{
+  color: $delete;
+}
+.added{
+  color: $added;
+}

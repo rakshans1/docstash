@@ -1,0 +1,54 @@
+.sidebar{
+  position: relative;
+  border-right: 1px solid darken($light, 10);
+  background-color: $light;
+  height: 100vh;
+  .active{
+    color: darken($secondary, 10);
+  }
+  a{
+    color: darken($gray-light, 10);
+    text-decoration: none;
+    font-weight: 600;
+    margin-left: 5px;
+    font-size: 0.8em;
+  }
+  .sidebar-text{
+    color: lighten($gray-light, 20);
+    font-weight: 600;
+    text-align: left;
+    margin: 30px 0 10px 30px;
+    font-size: 0.8em;
+  }
+  [class^="flaticon-"]:before, [class*=" flaticon-"]:before, [class^="flaticon-"]:after, [class*=" flaticon-"]:after {
+    font-size: 1em;
+  }
+  ul{
+    margin: 10px 0;
+  }
+  li{
+    margin: 5px 10px;
+    text-align: left;
+  }
+  .usage{
+    position: absolute;
+    width: 80%;
+    top: 30em;
+    .usage-use{
+      color: $secondary;
+      font-weight: 600;
+      padding: 0;
+      font-size: 0.8em;
+    }
+    .usage-capacity{
+      color: $main;
+      font-weight: 700;
+      font-size: 0.8em;
+    }
+  }
+}
+@media (max-width: 544px){
+  .sidebar{
+    display: none;
+  }
+}
