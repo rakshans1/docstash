@@ -19,7 +19,7 @@ class HomePage extends React.Component {
         <div className="col-sm-12">
           <h1>Secure Cloud Storage</h1>
           <p>Register now and start using our service.</p>
-          <a href=""><button className="signup-btn">SIGN UP</button></a>
+          <Link to={'signup'}><button className="signup-btn">SIGN UP</button></Link>
           <img className="hp-img" src={require('../../assets/img/main.png')} alt="" />
         </div>
       </div>

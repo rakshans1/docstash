@@ -47,3 +47,10 @@
 .added{
   color: $added;
 }
+
+
+@media (max-width: 544px){
+  .recent{
+    display: none;
+  }
+}

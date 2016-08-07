@@ -3,15 +3,23 @@
   border-right: 1px solid darken($light, 10);
   background-color: $light;
   height: 100vh;
+  [class^="flaticon-"]:before, [class*=" flaticon-"]:before, [class^="flaticon-"]:after, [class*=" flaticon-"]:after {
+    font-size: 1em;
+  }
+}
   .active{
     color: darken($secondary, 10);
   }
-  a{
+  .sidebar-a{
     color: darken($gray-light, 10);
     text-decoration: none;
     font-weight: 600;
     margin-left: 5px;
     font-size: 0.8em;
+    &:hover{
+      text-decoration: none;
+      color: $secondary;
+    }
   }
   .sidebar-text{
     color: lighten($gray-light, 20);
@@ -20,13 +28,11 @@
     margin: 30px 0 10px 30px;
     font-size: 0.8em;
   }
-  [class^="flaticon-"]:before, [class*=" flaticon-"]:before, [class^="flaticon-"]:after, [class*=" flaticon-"]:after {
-    font-size: 1em;
-  }
-  ul{
+
+  .sidebar-ul{
     margin: 10px 0;
   }
-  li{
+  .sideba-li{
     margin: 5px 10px;
     text-align: left;
   }
@@ -46,9 +52,14 @@
       font-size: 0.8em;
     }
   }
-}
+
 @media (max-width: 544px){
   .sidebar{
+    display: none;
+  }
+}
+@media (min-width: 544px){
+  .side-nav{
     display: none;
   }
 }
