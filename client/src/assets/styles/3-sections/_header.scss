@@ -3,6 +3,35 @@
   width: 40px;
   float: left;
 }
+.arrow-down {
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 5px solid $gray-light;
+}
+.logout{
+  border: none;
+  padding: none;
+  margin: none;
+  background-color: $white;
+}
+.logout {
+  user-select: none;
+  display: inline-block;
+  position: relative;
+  border: none;
+  background: $white;
+  color: $secondary;
+  height: 40px;
+  width: 100%;
+  padding: 0px 10px;
+  cursor: pointer;
+  white-space: nowrap;
+  &:hover{
+    background: $gray-lighter;
+  }
+}
 .navbar-brand{
   color: $main !important;
   font-size: 2em;
@@ -52,8 +81,8 @@ nav{
 .avatar-drop{
   position: absolute;
   // float: right;
-  bottom: 15px;
-  left: 75px;
+  bottom:20px;
+  right: 0px;
   color: $gray-light;
 }
 @media (max-width: 544px){

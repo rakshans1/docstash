@@ -35,7 +35,9 @@
   "dependencies": {
     "axios": "^0.13.1",
     "babel-polyfill": "^6.13.0",
+    "babel-preset-stage-1": "^6.13.0",
     "classnames": "^2.2.5",
+    "jquery": "^3.1.0",
     "lodash": "^4.14.1",
     "nprogress": "^0.2.0",
     "react": "^15.3.0",

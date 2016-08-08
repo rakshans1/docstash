@@ -10,10 +10,20 @@ import './assets/styles/main.sass';
 import './assets/icon/flaticon.css';
 import '../node_modules/nprogress/nprogress.css';
 import '../node_modules/toastr/build/toastr.min.css';
+import '../node_modules/jquery/dist/jquery.min';
 import { syncHistoryWithStore } from 'react-router-redux';
+import { AUTH_USER_SUCCESS } from './constants/actionTypes';
+
 import App from './components/App';
 
 const store = configureStore();
+
+const token = localStorage.getItem('token');
+// If we have a token, consider the user to be signed in
+if (token) {
+  // we need to update application state
+  store.dispatch({ type: AUTH_USER_SUCCESS });
+}
 
 render(
   <Provider store={store}>

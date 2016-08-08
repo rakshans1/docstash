@@ -1,0 +1,6 @@
+export const BEGIN_AJAX_CALL = 'BEGIN_AJAX_CALL';
+export const AJAX_CALL_ERROR = 'AJAX_CALL_ERROR';
+export const AUTH_USER_SUCCESS = 'AUTH_USER_SUCCESS';
+export const UNAUTH_USER_SUCCESS = 'UNAUTH_USER_SUCCESS';
+export const AUTH_ERROR = 'AUTH_ERROR';
+export const FETCH_ERROR = 'FETCH_ERROR';

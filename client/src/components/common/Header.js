@@ -1,0 +1,66 @@
+import React, {PropTypes} from 'react';
+import {Link, IndexLink} from 'react-router';
+
+class Header extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return(
+      <div>
+      <nav className="navbar navbar-light">
+        <img src={require('../../assets/img/logo.png')} className="brand-img" alt=""/>
+        <IndexLink className="navbar-brand brand" to="/">DocStash</IndexLink>
+        <form className="form-inline pull-xs-center">
+          <div className="form-group search">
+              <i className="fa fa-search search-icon" />
+              <input type="text" className="form-control search-input" />
+            </div>
+        </form>
+        <div className="avatar">
+          <img className="avatar-image" src={require('../../assets/img/avatar-1.svg')} alt=""/>
+          <i className="arrow-down avatar-drop" aria-hidden="true" />
+          <ul className="dropdowns">
+            <li><a href="#">Setting</a></li>
+            <li><Link to="/signout">Logout</Link></li>
+          </ul>
+        </div>
+      </nav>
+
+      <div className="col-sm-12">
+        <div className="side-nav" >
+          <div id="menuToggle">
+
+            <input type="checkbox" />
+
+
+            <span/>
+            <span/>
+            <span/>
+
+            <ul id="menu">
+
+              <p className="sidebar-text">MAIN MENU</p>
+              <ul className="nav nav-sidebar sidebar-ul">
+                <li className="sidebar-li"><i className="active flaticon-folder-2"/><a className="sidebar-a active" href="/">Library</a></li>
+                <li className="sidebar-li"><i className="flaticon-square"/><a className="sidebar-a" href="recent.html">Recent</a></li>
+              </ul>
+              <p className="sidebar-text">FILTER BY</p>
+              <ul className="nav nav-sidebar sidebar-ul">
+                <li className="sidebar-li"><i className="flaticon-interface"/><a  className="sidebar-a" href="documents.html">Documents</a></li>
+                <li className="sidebar-li"><i className="flaticon-multimedia"/><a  className="sidebar-a"href="videos.html">Videos</a></li>
+                <li className="sidebar-li"><i className="flaticon-music"/><a  className="sidebar-a" href="music.html">Music</a></li>
+                <li className="sidebar-li"><i className="flaticon-photo"/><a className="sidebar-a" href="images.html">Images</a></li>
+              </ul>
+
+
+
+            </ul>
+          </div>
+        </div>
+      </div>
+      </div>
+    );
+  }
+}
+export default Header;

@@ -7,57 +7,39 @@ import {bindActionCreators} from 'redux';
 import * as authActions from '../../actions/authActions';
 import toastr from 'toastr';
 
-class CreateAccountScreen extends React.Component {
+class LoginScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       email: '',
       password: null,
-      confirmPassword: '',
-      forbiddenWords: ["password", "user", "username"]
     };
     this.handlePasswordInput = this.handlePasswordInput.bind(this);
-    this.handleConfirmPasswordInput = this.handleConfirmPasswordInput.bind(this);
     this.handleEmailInput = this.handleEmailInput.bind(this);
-    this.isConfirmedPassword = this.isConfirmedPassword.bind(this);
     this.validateEmail = this.validateEmail.bind(this);
     this.saveAndContinue = this.saveAndContinue.bind(this);
   }
 
   handlePasswordInput(event) {
-    if(!_.isEmpty(this.state.confirmPassword)) {
-      this.refs.passwordConfirm.isValid();
-    }
-    this.refs.passwordConfirm.hideError();
     this.setState({
       password: event.target.value
-    });
-  }
-
-
-  handleConfirmPasswordInput(event) {
-    this.setState({
-      confirmPassword: event.target.value
     });
   }
 
   saveAndContinue(e) {
     e.preventDefault();
 
-    let canProceed = this.validateEmail(this.state.email)
-      && this.refs.password.isValid()
-      && this.refs.passwordConfirm.isValid();
+    let canProceed = this.validateEmail(this.state.email);
 
       if(canProceed) {
         let data = {
           email: this.state.email,
           password: this.state.password,
         };
-        this.props.actions.signupUser(data.email, data.password);
+        this.props.actions.signinUser(data.email, data.password);
       } else {
         this.refs.email.isValid();
         this.refs.password.isValid();
-        this.refs.passwordConfirm.isValid();
       }
   }
   renderAlert() {
@@ -90,7 +72,7 @@ class CreateAccountScreen extends React.Component {
       <div className="create_account_screen">
 
         <div className="create_account_form">
-          <h1>Create account</h1>
+          <h1>LOGIN</h1>
           {this.renderAlert()}
             <form onSubmit={this.saveAndContinue}>
                   <Input
@@ -108,30 +90,14 @@ class CreateAccountScreen extends React.Component {
                   text="Password"
                   type="password"
                   ref="password"
-                  validator="true"
-                  minCharacters="8"
-                  requireCapitals="1"
-                  requireNumbers="1"
-                  forbiddenWords={this.state.forbiddenWords}
                   value={this.state.password}
                   emptyMessage="Password is invalid"
                   onChange={this.handlePasswordInput}
                 />
-
-                <Input
-                  text="Confirm password"
-                  ref="passwordConfirm"
-                  type="password"
-                  validate={this.isConfirmedPassword}
-                  value={this.state.confirmPassword}
-                  onChange={this.handleConfirmPasswordInput}
-                  emptyMessage="Please confirm your password"
-                  errorMessage="Passwords don't match"
-                />
                 <button
                   type="submit"
                   className="button button_wide">
-                  CREATE ACCOUNT
+                  LOGIN
                 </button>
             </form>
         </div>
@@ -140,7 +106,7 @@ class CreateAccountScreen extends React.Component {
   }
 }
 
-CreateAccountScreen.propTypes = {
+LoginScreen.propTypes = {
   validateEmail: PropTypes.bool,
   minCharacters: PropTypes.string,
   forbiddenWords: PropTypes.array,
@@ -158,4 +124,4 @@ function mapDispatchToProp(dispatch) {
     actions: bindActionCreators(authActions, dispatch)
   };
 }
-export default connect(mapStateToProps, mapDispatchToProp)(CreateAccountScreen);
+export default connect(mapStateToProps, mapDispatchToProp)(LoginScreen);
