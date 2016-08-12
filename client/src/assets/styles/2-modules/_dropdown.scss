@@ -1,17 +1,17 @@
-.arrow-down{
-
-}
 .dropdowns {
     display: none;
     position: absolute;
+    top: 55px;
     right: 1px;
     background: $white;
     border: 1px solid $gray-lighter;
     border-radius: 5px;
     padding: 0;
+    z-index: 1;
   li{
     list-style: none;
     padding: 5px 20px;
+    background-color: $white;
     &:hover{
       background-color: $gray-lighter;
     }
@@ -23,8 +23,6 @@
 .avatar:hover > ul{
   display:inherit;
 }
-.dropdown {
-    min-width:170px;
-    display:list-item;
-    position: relative;
+.dropdowns:hover {
+  display: block;
 }

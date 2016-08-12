@@ -13,6 +13,7 @@ class Header extends React.Component {
         <IndexLink className="navbar-brand brand" to="/">DocStash</IndexLink>
         <form className="form-inline pull-xs-center">
           <div className="form-group search">
+              <img src={require('../../assets/icon/search.svg')} className="search-icon" alt="" />
               <i className="fa fa-search search-icon" />
               <input type="text" className="form-control search-input" />
             </div>

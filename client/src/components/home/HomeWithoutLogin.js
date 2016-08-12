@@ -21,17 +21,17 @@ const HomeWithoutLogin = () => {
         <div className="col-sm-12">
           <h2 className="hp-features">Features</h2>
           <div className="row">
-          <div className="col-sm-4">
+          <div className="col-md-4 col-xs-12">
             <img className="img-fluid hp-img-f" src={require('../../assets/img/home/4.png')} alt="" />
             <h3 className="hp-head">Pro Version</h3>
             <p className="hp-p">Get more space when needed with pro</p>
           </div>
-          <div className="col-sm-4">
+          <div className="col-md-4 col-xs-12">
             <img className="img-fluid hp-img-f" src={require('../../assets/img/home/2.png')} alt="" />
             <h3 className="hp-head">Cloud Backup</h3>
             <p className="hp-p">Upload from any browser</p>
           </div>
-          <div className="col-sm-4">
+          <div className="col-md-4 col-xs-12">
             <img className="img-fluid hp-img-f" src={require('../../assets/img/home/3.png')} alt="" />
             <h3 className="hp-head">Access Everywhere</h3>
             <p className="hp-p">Move everything to cloud seamlessly</p>

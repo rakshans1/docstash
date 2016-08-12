@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as authActions from '../../actions/authActions';
 import toastr from 'toastr';
+import classNames from 'classnames';
 
 class LoginScreen extends React.Component {
   constructor(props) {
@@ -13,6 +14,7 @@ class LoginScreen extends React.Component {
     this.state = {
       email: '',
       password: null,
+      owl_arm_visible: false
     };
     this.handlePasswordInput = this.handlePasswordInput.bind(this);
     this.handleEmailInput = this.handleEmailInput.bind(this);
@@ -22,7 +24,8 @@ class LoginScreen extends React.Component {
 
   handlePasswordInput(event) {
     this.setState({
-      password: event.target.value
+      password: event.target.value,
+      owl_arm_visible: true
     });
   }
 
@@ -54,7 +57,8 @@ class LoginScreen extends React.Component {
 
   handleEmailInput(event) {
     this.setState({
-      email: event.target.value
+      email: event.target.value,
+      owl_arm_visible: false
     });
   }
 
@@ -68,13 +72,47 @@ class LoginScreen extends React.Component {
   }
 
   render() {
+    let owl = classNames({
+      owl: true,
+      'password': this.state.owl_arm_visible
+    });
+    let hand = classNames({
+      hand: true,
+      'password': this.state.owl_arm_visible
+    });
+    let hand_r = classNames({
+      hand: true,
+      'hand-r': true,
+      'password': this.state.owl_arm_visible
+    });
+    let arms = classNames({
+      arms: true,
+      'password': this.state.owl_arm_visible
+    });
+    let arm = classNames({
+      arm: true,
+      'password': this.state.owl_arm_visible
+    });
+    let arm_r = classNames({
+      arm: true,
+      'arm-r': true,
+      'password': this.state.owl_arm_visible
+    });
     return(
       <div className="create_account_screen">
 
         <div className="create_account_form">
-          <h1>LOGIN</h1>
+          <div className={owl}>
+              <div className={hand} />
+              <div className={hand_r} />
+              <div className={arms} >
+                  <div className={arm} />
+                  <div className={arm_r} />
+              </div>
+          </div>
+          {/* <h1>LOGIN</h1> */}
           {this.renderAlert()}
-            <form onSubmit={this.saveAndContinue}>
+            <form className="form" onSubmit={this.saveAndContinue}>
                   <Input
                   text="Email Address"
                   ref="email"
@@ -113,7 +151,8 @@ LoginScreen.propTypes = {
   requireNumbers: PropTypes.string,
   requireCapitals: PropTypes.string,
   errorMessage: PropTypes.string,
-  actions: PropTypes.object.isRequired
+  actions: PropTypes.object.isRequired,
+  owl_arm_visible: PropTypes.bool
 };
 
 function mapStateToProps(state) {
