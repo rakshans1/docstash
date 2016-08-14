@@ -42,6 +42,7 @@
     "react-dom": "^15.3.0",
     "react-notification-system": "^0.2.7",
     "react-redux": "^4.4.5",
+    "react-redux-spinner": "^0.4.0",
     "react-router": "^2.6.1",
     "react-router-redux": "^4.0.5",
     "redux": "^3.5.2",

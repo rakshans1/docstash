@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux';
 import {routerReducer} from 'react-router-redux';
-import ajaxCallsInProgress from './ajaxStatusReducer';
+import pendingTasks from './ajaxStatusReducer';
 import authReducer from './authReducer';
 import notification from './notification';
 
@@ -8,6 +8,7 @@ import notification from './notification';
 const rootReducer = combineReducers({
   routing: routerReducer,
   auth: authReducer,
+  pendingTasks,
   notification: notification
 });
 

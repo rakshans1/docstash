@@ -1,3 +1,3 @@
 export default  {
-  ajaxCallsInProgress: 0
+  pendingTask: 0
 };
