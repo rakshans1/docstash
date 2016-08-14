@@ -5,7 +5,6 @@ import Icon from './Icon';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as authActions from '../../actions/authActions';
-import toastr from 'toastr';
 import classNames from 'classnames';
 
 class LoginScreen extends React.Component {
@@ -44,11 +43,6 @@ class LoginScreen extends React.Component {
         this.refs.email.isValid();
         this.refs.password.isValid();
       }
-  }
-  renderAlert() {
-    if (this.props.errorMessage) {
-      return toastr.error(this.props.errorMessage);
-    }
   }
 
   isConfirmedPassword(event) {
@@ -110,8 +104,6 @@ class LoginScreen extends React.Component {
                   <div className={arm_r} />
               </div>
           </div>
-          {/* <h1>LOGIN</h1> */}
-          {this.renderAlert()}
             <form className="form" onSubmit={this.saveAndContinue}>
                   <Input
                   text="Email Address"

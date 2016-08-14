@@ -1,24 +1,22 @@
-import express from 'express';
-import path from 'path';
-import open from 'open';
-import compression from 'compression';
+import browserSync from 'browser-sync';
+import historyApiFallback from 'connect-history-api-fallback';
 
 /*eslint-disable no-console */
+console.log('Opening production build...');
 
-const port = 3000;
-const app = express();
+// Run Browsersync
+browserSync({
+  port: 3000,
+  ui: {
+    port: 3001
+  },
+  server: {
+    baseDir: 'dist'
+  },
 
-app.use(compression());
-app.use(express.static('dist'));
+  files: [
+    'src/*.html'
+  ],
 
-app.get('*', function(req, res) {
-  res.sendFile(path.join(__dirname, '../dist/index.html'));
-});
-
-app.listen(port, function(err) {
-  if (err) {
-    console.log(err);
-  } else {
-    open(`http://localhost:${port}`);
-  }
+  middleware: [historyApiFallback()]
 });

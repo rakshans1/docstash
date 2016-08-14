@@ -1,9 +1,10 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 import * as types from '../constants/actionTypes';
+import {addNotification} from './notificationActions';
 
-
-const ROOT_URL = 'http://localhost:3001';
+// const ROOT_URL = 'http://localhost:3001';
+const ROOT_URL = 'http://docstash-server.herokuapp.com';
 
 export function authSucess() {
   return {
@@ -20,7 +21,7 @@ export function signinUser(email, password) {
         browserHistory.push('/');
       })
       .catch(() => {
-        dispatch(authError('Bad Login Info'));
+        dispatch(addNotification('Bad Login Info', 'error'));
       });
   };
 }
@@ -33,15 +34,8 @@ export function signupUser( email, password ) {
         browserHistory.push('/');
       })
       .catch(response =>  {
-        dispatch(authError(response.response.data.error));
+        dispatch(addNotification(response.response.data.error, 'error'));
       });
-  };
-}
-
-export function authError(error) {
-  return {
-    type: types.AUTH_ERROR,
-    payload: error
   };
 }
 
