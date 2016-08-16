@@ -1,7 +1,7 @@
 // This component handles the App template used on every page.
 import React, {PropTypes} from 'react';
 import NotificationContainer from '../containers/Notification';
-import {Spinner} from 'react-redux-spinner';
+import Spinner from './common/Spinner';
 
 class App extends React.Component {
   constructor(props) {

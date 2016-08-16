@@ -9,6 +9,7 @@ import routes from './routes';
 require('./assets/favicon.png');
 import './assets/styles/main.sass';
 import './assets/icon/flaticon.css';
+import '../node_modules/nprogress/nprogress.css';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { AUTH_USER_SUCCESS } from './constants/actionTypes';
 
