@@ -88,6 +88,7 @@
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.1",
+    "webpack-dashboard": "0.0.1",
     "webpack-dev-middleware": "^1.6.1",
     "webpack-dev-server": "^1.14.1",
     "webpack-hot-middleware": "^2.12.2",
