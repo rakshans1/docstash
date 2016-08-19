@@ -6,12 +6,16 @@ const router = require('./router');
 const mongoose = require('mongoose');
 const secret = require('./config/secret');
 
+//remove if not cool
+const esm = require('express-status-monitor');
+
 mongoose.connect(secret.database, function(err){
   if(err) console.log(err);
   else console.log("Connected to DB");
 });
 
 const app = express();
+app.use(esm());
 app.use(morgan('dev'));
 app.use(bodyParser.json({ type: '*/*' }));
 app.use(cors());

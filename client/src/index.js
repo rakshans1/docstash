@@ -13,7 +13,6 @@ import '../node_modules/nprogress/nprogress.css';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { AUTH_USER_SUCCESS } from './constants/actionTypes';
 
-import App from './components/App';
 
 const store = configureStore();
 const history = syncHistoryWithStore(browserHistory, store);
