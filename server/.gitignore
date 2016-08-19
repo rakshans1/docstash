@@ -2,3 +2,4 @@
 bundle.js
 npm-debug.log
 /config/secret.js
+/dist

@@ -1,6 +1,5 @@
 //Copy of webpack.config.prod to run with webpack-cli
 import webpack from 'webpack';
-import path from 'path';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import WebpackMd5Hash from 'webpack-md5-hash';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
@@ -20,13 +19,13 @@ export default {
   output: {
     path: __dirname + '/dist', // Note: Physical files are only output by the production build task `npm run build`.
     publicPath: '/',
-    filename: '[name].[chunkhash].js'
+    filename: 'static/js/[name].[chunkhash].js'
   },
   plugins: [
     new WebpackMd5Hash(),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.DefinePlugin(GLOBALS),
-    new ExtractTextPlugin('[name].[contenthash].css'),
+    new ExtractTextPlugin('static/css/[name].[contenthash].css'),
     new HtmlWebpackPlugin({
       template: 'src/index.html',
       minify: {
@@ -44,19 +43,77 @@ export default {
       inject: true,
     }),
     new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.UglifyJsPlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        screw_ie8: true,
+        warnings: false
+      },
+      mangle: {
+        screw_ie8: true
+      },
+      output: {
+        comments: false,
+        screw_ie8: true
+      }
+    }),
     new Visualizer()
   ],
   module: {
     loaders: [
-      {test: /\.js$/, exclude: /node_modules/, loaders: ['babel']},
-      {test: /(\.css|\.sass)$/, loader: ExtractTextPlugin.extract('css?sourceMap!sass?sourceMap')},
-      {test: /\.eot(\?v=\d+.\d+.\d+)?$/, loader: 'url?name=[name].[ext]'},
-      {test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url?limit=10000&mimetype=application/font-woff&name=[name].[ext]"},
-      {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/octet-stream'},
-      {test: /\.svg(\?v=\d+.\d+.\d+)?$/, loader: 'url?limit=10000&mimetype=image/svg+xml&name=[name].[ext]'},
-      {test: /\.(jpe?g|png|gif)$/i, loader: 'file?name=[name].[ext]'},
-      {test: /\.ico$/, loader: 'file?name=[name].[ext]'}
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loaders: ['babel']
+      },
+      {
+        test: /(\.css|\.sass)$/,
+        loader: ExtractTextPlugin.extract('css?sourceMap!sass?sourceMap'),
+      },
+      {
+        test: /\.eot(\?v=\d+.\d+.\d+)?$/,
+        loader: 'url',
+        query: {
+          name: 'static/font/[name].[hash:8].[ext]'
+        }
+      },
+      {
+        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: 'url',
+        query: {
+          limit: 10000,
+          mimetype: 'application/font-woff',
+          name: 'static/font/[name].[hash:8].[ext]'
+        }
+      },
+      {
+        test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url',
+        query: {
+          limit: 10000,
+          mimetype: 'application/octet-stream',
+          name: 'static/font/[name].[hash:8].[ext]'
+        }
+      },
+      {
+        test: /\.svg(\?v=\d+.\d+.\d+)?$/,
+        loader: 'url',
+        query: {
+          limit: 10000,
+          mimetype: 'image/svg+xml',
+          name: 'static/media/[name].[hash:8].[ext]'
+        }
+      },
+      {
+        test: /\.(jpe?g|png|gif)$/i,
+        loader: 'file',
+        query: {
+          name: 'static/media/[name].[hash:8].[ext]'
+        }
+      },
+      {
+        test: /\.ico$/,
+        loader: 'file?name=[name].[ext]'
+      }
     ]
   }
 };

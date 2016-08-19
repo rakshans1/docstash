@@ -1,7 +1,6 @@
-const User = require('../models/user');
-const jwt = require('jwt-simple');
-const secret = require('../config/secret');
-
+import User from '../models/user';
+import jwt from 'jwt-simple';
+import secret from '../config/secret';
 
 function tokenForUser(user) {
   const timestamp = new Date().getTime();
@@ -9,11 +8,11 @@ function tokenForUser(user) {
   //                              subject           issued at time
 }
 
-exports.signin = (req, res, next) => {
+export const signin = (req, res, next) => {
   res.send({ token: tokenForUser(req.user) });
 }
 
-exports.signup = (req, res, next) => {
+export const signup = (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
 

@@ -1,7 +1,5 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-const bcrypt = require('bcrypt-nodejs');
-
+import mongoose, {Schema} from 'mongoose';
+import bcrypt from 'bcrypt-nodejs';
 
 const userSchema = new Schema({
   email: { type: String, unique: true, lowercase: true },
@@ -9,7 +7,7 @@ const userSchema = new Schema({
 });
 
 userSchema.pre('save', function(next) {
-  console.log(this);
+  // console.log(this);
   const user = this;
 
   bcrypt.genSalt(10, function(err, salt) {
@@ -27,7 +25,7 @@ userSchema.pre('save', function(next) {
 
 
 userSchema.methods.comparePassword = function(candidatePassword, callback) {
-  console.log(this);
+  // console.log(this);
   bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
     if (err) return callback(err);
 
@@ -37,4 +35,4 @@ userSchema.methods.comparePassword = function(candidatePassword, callback) {
 
 const model = mongoose.model('user', userSchema);
 
-module.exports = model;
+export default  model;
