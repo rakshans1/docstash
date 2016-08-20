@@ -10,7 +10,7 @@ class Header extends React.Component {
       <div>
       <nav className="navbar navbar-light">
         <img src={require('../../assets/img/logo.png')} className="brand-img" alt=""/>
-        <IndexLink className="navbar-brand brand" to="/">DocStash</IndexLink>
+        <IndexLink className="navbar-brand brand" to="/">Docstash</IndexLink>
         <form className="form-inline pull-xs-center">
           <div className="form-group search">
               <img src={require('../../assets/icon/search.svg')} className="search-icon" alt="" />

@@ -11,6 +11,7 @@ class CreateAccountScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      name: '',
       email: '',
       password: null,
       confirmPassword: '',
@@ -20,8 +21,10 @@ class CreateAccountScreen extends React.Component {
     this.handlePasswordInput = this.handlePasswordInput.bind(this);
     this.handleConfirmPasswordInput = this.handleConfirmPasswordInput.bind(this);
     this.handleEmailInput = this.handleEmailInput.bind(this);
+    this.handleNameInput = this.handleNameInput.bind(this);
     this.isConfirmedPassword = this.isConfirmedPassword.bind(this);
     this.validateEmail = this.validateEmail.bind(this);
+    this.validateName = this.validateName.bind(this);
     this.saveAndContinue = this.saveAndContinue.bind(this);
   }
 
@@ -47,16 +50,19 @@ class CreateAccountScreen extends React.Component {
     e.preventDefault();
 
     let canProceed = this.validateEmail(this.state.email)
+      && this.refs.name.isValid()
       && this.refs.password.isValid()
       && this.refs.passwordConfirm.isValid();
 
       if(canProceed) {
         let data = {
+          name: this.state.name,
           email: this.state.email,
           password: this.state.password,
         };
-        this.props.actions.signupUser(data.email, data.password);
+        this.props.actions.signupUser(data.name, data.email, data.password);
       } else {
+        this.refs.name.isValid();
         this.refs.email.isValid();
         this.refs.password.isValid();
         this.refs.passwordConfirm.isValid();
@@ -64,7 +70,7 @@ class CreateAccountScreen extends React.Component {
   }
 
   isConfirmedPassword(event) {
-    return (event == this.state.password);
+    return (event === this.state.password);
   }
 
   handleEmailInput(event) {
@@ -73,15 +79,25 @@ class CreateAccountScreen extends React.Component {
       owl_arm_visible: false
     });
   }
-
-  validateEmail(event) {
-    let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(event);
+  handleNameInput(event) {
+    this.setState({
+      name: event.target.value,
+      owl_arm_visible: false
+    });
   }
 
   isEmpty(value) {
     return !_.isEmpty(value);
   }
+
+  validateEmail(event) {
+    let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(event);
+  }
+  validateName(event) {
+    return !_.isEmpty(event);
+  }
+
 
   render() {
     let owl = classNames({
@@ -123,6 +139,16 @@ class CreateAccountScreen extends React.Component {
                 </div>
             </div>
             <form className="form" onSubmit={this.saveAndContinue}>
+                    <Input
+                    text="Name"
+                    ref="name"
+                    type="text"
+                    validate={this.validateName}
+                    value={this.state.name}
+                    onChange={this.handleNameInput}
+                    emptyMessage="Name can't be empty"
+                    errorVisible={this.state.showNameError}
+                  />
                   <Input
                   text="Email Address"
                   ref="email"

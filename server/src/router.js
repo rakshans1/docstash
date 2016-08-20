@@ -1,4 +1,4 @@
-/* eslint-disable import/default no-unused-vars */
+/* eslint-disable import/default */
 import passport from 'passport';
 import {signin, signup} from './controllers/auth';
 import passportConfig from './services/passport';
@@ -8,7 +8,8 @@ const requireSignIn = passport.authenticate('local', {session: false });
 
 export default function(app) {
     app.get('/', requireAuth, (req, res) => {
-      res.send('hi');
+      // console.log(req.user);
+      res.send('hi ' + req.user.name);
     });
     app.post('/signin', requireSignIn, signin);
     app.post('/signup', signup);

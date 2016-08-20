@@ -4,8 +4,8 @@ import * as types from '../constants/actionTypes';
 import {addNotification} from './notificationActions';
 import {beginAjaxCall, ajaxCallError} from './ajaxstatusActions';
 
-// const ROOT_URL = 'http://localhost:3001';
-const ROOT_URL = 'http://docstash-server.herokuapp.com';
+const ROOT_URL = 'http://localhost:3001';
+// const ROOT_URL = 'http://docstash-server.herokuapp.com';
 
 export function authSucess() {
   return {
@@ -28,10 +28,10 @@ export function signinUser(email, password) {
       });
   };
 }
-export function signupUser( email, password ) {
+export function signupUser(name,  email, password ) {
   return function(dispatch) {
     dispatch(beginAjaxCall());
-    axios.post(`${ROOT_URL}/signup`,{email, password})
+    axios.post(`${ROOT_URL}/signup`,{name, email, password})
       .then(response => {
         dispatch(authSucess());
         localStorage.setItem('token', response.data.token);
