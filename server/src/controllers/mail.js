@@ -3,8 +3,8 @@ import ejs from 'ejs';
 import fs from 'fs';
 
 export default (name, email) => {
-const template = fs.readFileSync(__dirname + '/../views/mail.ejs', 'utf-8');
-const compiledTemplate = ejs.compile(template, name);
+const template = fs.readFileSync(__dirname + '/../views/mail.html', 'utf-8');
+const compiledTemplate = ejs.render(template);
 
 const transporter = nodemailer.createTransport({
 	service: 'Gmail',
@@ -16,17 +16,15 @@ const transporter = nodemailer.createTransport({
 
 const mailOptions = {
 	from: 'Docstash <docstashcare@gmail.com>',
-	to: email,
+	to: 'shetty.raxx555@gmail.com',
 	subject: 'Welcome to Docstash',
-	// text: 'hi',
 	html: compiledTemplate
 };
-
 transporter.sendMail(mailOptions, (err, info) => {
 	if (err) {
-		throw err;
+		console.log(err);
 	}
-	// console.log('Message sent: ' + info.response);
+	console.log('Message sent: ' + info.response);
 });
 
 }

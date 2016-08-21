@@ -49,6 +49,7 @@ export const signup = (req, res, next) => {
     //   // res.json(user);
     //   res.json({ token: tokenForUser(user)});
     // });
+    console.log('sending mail');
     mailer(name, email);
   });
 }
