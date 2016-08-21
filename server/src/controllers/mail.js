@@ -4,7 +4,7 @@ import fs from 'fs';
 
 export default (name, email) => {
 const template = fs.readFileSync(__dirname + '/../views/mail.html', 'utf-8');
-const compiledTemplate = ejs.render(template);
+const compiledTemplate = ejs.render(template, {name: name});
 
 const transporter = nodemailer.createTransport({
 	service: 'Gmail',
@@ -16,7 +16,7 @@ const transporter = nodemailer.createTransport({
 
 const mailOptions = {
 	from: 'Docstash <docstashcare@gmail.com>',
-	to: 'shetty.raxx555@gmail.com',
+	to: email,
 	subject: 'Welcome to Docstash',
 	html: compiledTemplate
 };

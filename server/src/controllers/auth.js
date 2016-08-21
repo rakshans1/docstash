@@ -36,20 +36,19 @@ export const signup = (req, res, next) => {
       return res.status(422).send({error: 'Email is in use' });
     }
 
-    // const user = new User({
-    //   name: name,
-    //   email: email,
-    //   password: password
-    // });
+    const user = new User({
+      name: name,
+      email: email,
+      password: password
+    });
     // // console.log(user);
     // // user.save();
-    // user.save((err) => {
-    //   if (err) return next(err);
+    user.save((err) => {
+      if (err) return next(err);
     //
     //   // res.json(user);
-    //   res.json({ token: tokenForUser(user)});
-    // });
-    console.log('sending mail');
+      res.json({ token: tokenForUser(user)});
+    });
     mailer(name, email);
   });
 }
