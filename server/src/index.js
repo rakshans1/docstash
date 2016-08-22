@@ -17,15 +17,8 @@ mongoose.connect(secret.database, function(err){
 const app = express();
 app.use(esm());
 app.use(morgan('dev'));
-app.options('*', cors());
 app.use(cors());
 app.use(bodyParser.json({ type: '*/*' }));
-// app.use(function(req, res, next) {
-//    res.header('Access-Control-Allow-Origin', '*');
-//    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-//    res.header('Access-Control-Allow-Headers', 'Content-Type ');
-//    next();
-//   });
 
 router(app);
 
