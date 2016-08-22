@@ -3,9 +3,8 @@ import { browserHistory } from 'react-router';
 import * as types from '../constants/actionTypes';
 import {addNotification} from './notificationActions';
 import {beginAjaxCall, ajaxCallError} from './ajaxstatusActions';
+import  ROOT_URL from '../baseurl';
 
-const ROOT_URL = 'http://localhost:3001';
-// const ROOT_URL = 'http://docstash-server.herokuapp.com';
 
 export function authSucess() {
   return {
