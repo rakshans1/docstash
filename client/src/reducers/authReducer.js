@@ -18,6 +18,7 @@ export default function(state = { authenticated: false }, action) {
     //     message: action.payload,
     //   });
       // return { ...state, message: action.payload };
+    default:
+        return state;
   }
-  return state;
 }

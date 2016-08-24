@@ -36,11 +36,11 @@ export const signup = (req, res, next) => {
       return res.status(422).send({error: 'Email is in use' });
     }
 
-    const user = new User({
-      name: name,
-      email: email,
-      password: password
-    });
+    const user = new User();
+    user.name = name;
+    user.email = email;
+    user.password = password;
+    user.picture = user.gravatar(email);
     // // console.log(user);
     // // user.save();
     user.save((err) => {

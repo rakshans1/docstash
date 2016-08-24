@@ -1,10 +1,12 @@
 import mongoose, {Schema} from 'mongoose';
 import bcrypt from 'bcrypt-nodejs';
+import crypto from 'crypto';
 
 const userSchema = new Schema({
   name: String,
   email: { type: String, unique: true, lowercase: true },
-  password: String
+  password: String,
+  picture: {type: String, default: ''}
 });
 
 userSchema.pre('save', function(next) {
@@ -32,6 +34,13 @@ userSchema.methods.comparePassword = function(candidatePassword, callback) {
 
     callback(null, isMatch);
   });
+}
+
+userSchema.methods.gravatar = (email) => {
+  const size = 100;
+  if (!email) return 'https://gravatar.com/avatar/?s=' +size + '&d=retro';
+  const md5 = crypto.createHash('md5').update(email).digest('hex');
+  return 'https://gravatar.com/avatar/' + md5 + '?s=' +size+'&d=retro';
 }
 
 const model = mongoose.model('user', userSchema);

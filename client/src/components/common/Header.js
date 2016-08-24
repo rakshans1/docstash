@@ -1,11 +1,19 @@
 import React, {PropTypes} from 'react';
 import {Link, IndexLink} from 'react-router';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as userActions from '../../actions/userActions';
 
 class Header extends React.Component {
   constructor(props) {
     super(props);
   }
+  componentWillMount() {
+    this.props.actions.userInfo();
+  }
+
   render() {
+    let picture = this.props.user.picture;
     return(
       <div>
       <nav className="navbar navbar-light">
@@ -19,8 +27,8 @@ class Header extends React.Component {
             </div>
         </form>
         <div className="avatar">
-          <img className="avatar-image" src={require('../../assets/img/avatar-1.svg')} alt=""/>
-          <i className="arrow-down avatar-drop" aria-hidden="true" />
+          <img className="avatar-image" src={picture} alt=""/>
+          {/* <i className="arrow-down avatar-drop" aria-hidden="true" /> */}
           <ul className="dropdowns">
             <li><a href="#">Setting</a></li>
             <li><Link to="/signout">Logout</Link></li>
@@ -64,4 +72,21 @@ class Header extends React.Component {
     );
   }
 }
-export default Header;
+Header.defaultProps = {
+  user: {
+    picture: ''
+  }
+}
+Header.propTypes = {
+  user: PropTypes.object.isRequired,
+  actions: PropTypes.object.isRequired,
+};
+function mapStateToProps(state) {
+  return{ user: state.user };
+}
+function mapDispatchToProp(dispatch) {
+  return {
+    actions: bindActionCreators(userActions, dispatch)
+  };
+}
+export default connect(mapStateToProps, mapDispatchToProp)(Header);

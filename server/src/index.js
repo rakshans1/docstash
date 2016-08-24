@@ -9,6 +9,7 @@ import secret from './config/secret';
 //remove if not cool
 import esm from 'express-status-monitor';
 
+mongoose.Promise = global.Promise;
 mongoose.connect(secret.database, function(err){
   if(err) console.log(err);
   else console.log("Connected to DB");

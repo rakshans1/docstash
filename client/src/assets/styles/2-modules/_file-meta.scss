@@ -50,10 +50,9 @@
 }
 .filename{
   i{
-    color: darken($gray-lighter, 20);
+    color: darken($gray-lighter, 40%);
   }
-  color: darken($gray-lighter, 45 );
-  font-weight: 600;
+  color: darken($gray-lighter, 70% );
   padding: 0px 0 0 0;
   margin: 8px 0 0 30px;
   font-size: 0.8em;
