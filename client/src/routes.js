@@ -18,7 +18,7 @@ export default (
     <Route path="signup" component={LoggedInRedirect(Signup)} />
     <Route path="login" component={LoggedInRedirect(Signin)} />
     <Route path="signout" component={LoggedInRedirect(Signout)} />
-    <Route path="/auth" component={SocialLogin} />
+    <Route path="/auth" component={LoggedInRedirect(SocialLogin)} />
     <Route path="main" component={RequireAuth(Main)} />
   </Route>
 

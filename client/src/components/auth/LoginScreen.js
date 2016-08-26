@@ -19,6 +19,7 @@ class LoginScreen extends React.Component {
     this.handleEmailInput = this.handleEmailInput.bind(this);
     this.validateEmail = this.validateEmail.bind(this);
     this.saveAndContinue = this.saveAndContinue.bind(this);
+    this.resetPassword = this.resetPassword.bind(this);
   }
 
   handlePasswordInput(event) {
@@ -44,9 +45,21 @@ class LoginScreen extends React.Component {
         this.refs.password.isValid();
       }
   }
-
+  resetPassword(e) {
+    e.preventDefault();
+    let canProceed = this.validateEmail(this.state.email);
+    if(canProceed) {
+      let data = {
+        email: this.state.email,
+      };
+      this.props.actions.resetPassword(data.email);
+    } else {
+      this.refs.email.isValid();
+      this.refs.password.isValid();
+    }
+  }
   isConfirmedPassword(event) {
-    return (event == this.state.password);
+    return (event === this.state.password);
   }
 
   handleEmailInput(event) {
@@ -124,6 +137,7 @@ class LoginScreen extends React.Component {
                   emptyMessage="Password is invalid"
                   onChange={this.handlePasswordInput}
                 />
+                <a onClick={this.resetPassword} className="login_a">Forgot Password..???</a>
                 <button
                   type="submit"
                   className="button button_wide">

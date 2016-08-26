@@ -13,7 +13,6 @@ const facebookCallback = passport.authenticate('facebook', {session: false, scop
 export default function(app) {
     //GET REQUEST
     app.get('/', requireAuth, (req, res) => {
-      // console.log(req.user);
       res.send('hi ' + req.user.name);
     });
 
@@ -30,8 +29,9 @@ export default function(app) {
     //Auth Controllers
     app.post('/signin', requireSignIn, auth.signin);
     app.post('/signup', auth.signup);
+    app.post('/resetpassword', auth.resetPassword);
     app.get('/auth/google', google, auth.googleSignIn);
     app.get('/auth/google/callback', googleCallback, auth.googleSignInCallback);
-    app.get('/auth/facebook/', facebook , auth.facebookSignIn);
+    app.get('/auth/facebook', facebook , auth.facebookSignIn);
     app.get('/auth/facebook/callback', facebookCallback, auth.facebookSignInCallback);
 }

@@ -18,9 +18,9 @@ export function signinUser(email, password) {
     dispatch(beginAjaxCall());
     axios.post(`${ROOT_URL}/signin`,{email, password})
       .then(response => {
+        localStorage.setItem('token', response.data.token);
         dispatch(authSucess());
         dispatch(userInfo());
-        localStorage.setItem('token', response.data.token);
         browserHistory.push('/');
       })
       .catch(() => {
@@ -58,4 +58,19 @@ export function googleLogin(token) {
       dispatch(userInfo(token));
       browserHistory.push('/');
     };
+}
+
+export function resetPassword(email) {
+  return function(dispatch) {
+    dispatch(beginAjaxCall());
+    axios.post(`${ROOT_URL}/resetpassword`, {email})
+      .then(response => {
+        dispatch(addNotification('New Password is sent through Email', 'success'));
+        dispatch(ajaxCallError());
+      })
+      .catch(response => {
+        dispatch(ajaxCallError());
+        dispatch(addNotification(response.response.data.error, 'error'));
+      });
+  };
 }

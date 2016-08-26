@@ -1,7 +1,7 @@
 import User from '../models/user';
-import mailer from './mail';
+import * as mailer from './mail';
 import secret from '../config/secret'
-
+import randomstring from 'randomstring';
 
 function validateEmail(email) {
     let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -44,7 +44,7 @@ export const signup = (req, res, next) => {
     //   // res.json(user);
       res.json({ token: User.tokenForUser(user)});
     });
-    mailer(name, email);
+    mailer.newUserEmail(name, email);
   });
 }
 
@@ -74,4 +74,24 @@ export const facebookSignInCallback = (req, res, next) => {
     const token = User.tokenForUser(req.user);
     return res.redirect( secret.client + '/auth?code=' + token);
   }
+}
+
+export const resetPassword = (req, res, next) => {
+  const email = req.body.email;
+  User.findOne({email: email}, (err, existingUser) => {
+    if (err) {
+      res.status(422).send({error: 'No user Found' });
+      return  next(err);
+    }
+    if (existingUser) {
+      const name = existingUser.name;
+      const password = randomstring.generate({length: 8,charset: 'alphabetic'});
+      existingUser.password = password;
+      existingUser.save((err) => {
+        if (err) return next(err);
+        res.status(200).send("password Reset Complete");
+      });
+      mailer.resetPasswordEmail(name, email, password);
+    }
+  });
 }
