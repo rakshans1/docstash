@@ -20,6 +20,18 @@ app.use(esm());
 app.use(morgan('dev'));
 app.use(cors());
 app.use(bodyParser.json({ type: '*/*' }));
+app.use((req, res, next) => {
+   res.header('Access-Control-Allow-Origin', '*');
+   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+   res.header('Access-Control-Allow-Headers', 'X-Requested-With,Origin,Content-Type, Authorization');
+   if ('OPTIONS' === req.method) {
+        res.send(200);
+    }
+    else {
+        next();
+    }
+ });
+app.disable('x-powered-by');
 
 router(app);
 

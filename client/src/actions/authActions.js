@@ -3,6 +3,7 @@ import { browserHistory } from 'react-router';
 import * as types from '../constants/actionTypes';
 import {addNotification} from './notificationActions';
 import {beginAjaxCall, ajaxCallError} from './ajaxstatusActions';
+import {userInfo} from './userActions';
 import  ROOT_URL from '../baseurl';
 
 
@@ -18,6 +19,7 @@ export function signinUser(email, password) {
     axios.post(`${ROOT_URL}/signin`,{email, password})
       .then(response => {
         dispatch(authSucess());
+        dispatch(userInfo());
         localStorage.setItem('token', response.data.token);
         browserHistory.push('/');
       })
@@ -32,8 +34,9 @@ export function signupUser(name,  email, password ) {
     dispatch(beginAjaxCall());
     axios.post(`${ROOT_URL}/signup`,{name, email, password})
       .then(response => {
-        dispatch(authSucess());
         localStorage.setItem('token', response.data.token);
+        dispatch(authSucess());
+        dispatch(userInfo(response.data.token));
         browserHistory.push('/');
       })
       .catch(response =>  {
@@ -46,4 +49,13 @@ export function signupUser(name,  email, password ) {
 export function signoutUser() {
   localStorage.removeItem('token');
   return { type: types.UNAUTH_USER_SUCCESS };
+}
+
+export function googleLogin(token) {
+    return function(dispatch) {
+      localStorage.setItem('token', token);
+      dispatch(authSucess());
+      dispatch(userInfo(token));
+      browserHistory.push('/');
+    };
 }

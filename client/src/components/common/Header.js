@@ -1,17 +1,11 @@
 import React, {PropTypes} from 'react';
 import {Link, IndexLink} from 'react-router';
 import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import * as userActions from '../../actions/userActions';
 
 class Header extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  componentWillMount() {
-    this.props.actions.userInfo();
-  }
-
+  // constructor(props) {
+  //   super(props);
+  // }
   render() {
     let picture = this.props.user.picture;
     return(
@@ -79,14 +73,8 @@ Header.defaultProps = {
 }
 Header.propTypes = {
   user: PropTypes.object.isRequired,
-  actions: PropTypes.object.isRequired,
 };
 function mapStateToProps(state) {
   return{ user: state.user };
 }
-function mapDispatchToProp(dispatch) {
-  return {
-    actions: bindActionCreators(userActions, dispatch)
-  };
-}
-export default connect(mapStateToProps, mapDispatchToProp)(Header);
+export default connect(mapStateToProps)(Header);

@@ -9,7 +9,7 @@ class Signout extends React.Component {
   }
 
   render() {
-    return <div>Sorry to see you go...</div>;
+    return false;
   }
 }
 Signout.propTypes = {

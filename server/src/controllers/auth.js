@@ -1,20 +1,15 @@
 import User from '../models/user';
-import jwt from 'jwt-simple';
-import secret from '../config/secret';
 import mailer from './mail';
+import secret from '../config/secret'
 
-function tokenForUser(user) {
-  const timestamp = new Date().getTime();
-  return jwt.encode({ sub: user._id, iat: timestamp }, secret.secret);
-  //                              subject           issued at time
-}
+
 function validateEmail(email) {
     let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
   }
 
 export const signin = (req, res, next) => {
-  res.send({ token: tokenForUser(req.user) });
+  res.send({ token: User.tokenForUser(req.user) });
 }
 
 export const signup = (req, res, next) => {
@@ -47,8 +42,36 @@ export const signup = (req, res, next) => {
       if (err) return next(err);
     //
     //   // res.json(user);
-      res.json({ token: tokenForUser(user)});
+      res.json({ token: User.tokenForUser(user)});
     });
     mailer(name, email);
   });
+}
+
+export const googleSignIn = (req, res, next) => {
+  const passport = req._passport.instance;
+  passport.authenticate('google', {scope: 'https://www.googleapis.com/auth/userinfo.email'}, (err, user, info) => {
+  })(req, res, next);
+}
+
+export const googleSignInCallback = (req, res, next) => {
+  if(req.user.token) {
+  return res.redirect(secret.client + '/auth?code=' + req.user.token);
+  } else {
+    const token = User.tokenForUser(req.user);
+    return res.redirect( secret.client + '/auth?code=' + token);
+  }
+}
+
+export const facebookSignIn = (req, res, next ) => {
+  res.send('Facebook Login Successful');
+}
+
+export const facebookSignInCallback = (req, res, next) => {
+  if(req.user.token) {
+  return res.redirect(secret.client + '/auth?code=' + req.user.token);
+  } else {
+    const token = User.tokenForUser(req.user);
+    return res.redirect( secret.client + '/auth?code=' + token);
+  }
 }

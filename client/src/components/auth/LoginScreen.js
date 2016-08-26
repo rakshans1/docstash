@@ -1,11 +1,11 @@
 import React, {PropTypes} from 'react';
 import Input from './Input';
 import _ from 'lodash';
-import Icon from './Icon';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as authActions from '../../actions/authActions';
 import classNames from 'classnames';
+import ROOT_URL from '../../baseurl';
 
 class LoginScreen extends React.Component {
   constructor(props) {
@@ -130,6 +130,19 @@ class LoginScreen extends React.Component {
                   LOGIN
                 </button>
             </form>
+            <h5 className="or">OR</h5>
+            <div className="row">
+            <button className="btn-social" >
+                  <a href={`${ROOT_URL}/auth/google`}>
+                    <img className="social-img" src={require('../../assets/img/google.svg')}/>
+                  </a>
+              </button>
+            <button className="btn-social">
+                  <a href={`${ROOT_URL}/auth/facebook`}>
+                    <img className="social-img" src={require('../../assets/img/facebook.svg')}/>
+                  </a>
+            </button>
+            </div>
         </div>
       </div>
     );

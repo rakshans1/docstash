@@ -3,6 +3,8 @@ import User from '../models/user';
 import secret from '../config/secret';
 import {Strategy, ExtractJwt} from 'passport-jwt';
 import LocalStrategy from 'passport-local';
+import GoogleStrategy from 'passport-google-oauth';
+import FacebookStrategy from 'passport-facebook';
 
 const JwtStrategy = Strategy;
 
@@ -43,5 +45,73 @@ const jwtLogin = new JwtStrategy(jwtOptions, (payload, done) => {
   });
 });
 
+const googleLogin = new GoogleStrategy.OAuth2Strategy({
+  clientID: secret.google.clientID,
+  clientSecret: secret.google.clientSecret,
+	callbackURL: secret.google.callbackURL
+},
+ (accessToken, refreshToken, profile, done) =>{
+  process.nextTick( () =>{
+    User.findOne({email: profile.emails[0].value}, (err, user) => {
+      if (err) {
+        return done(err);
+      } if (user) {
+        return done(null, user);
+      } else {
+        const user = new User();
+        user.name =  profile.name.givenName +' '+ profile.name.familyName;
+        user.email =  profile.emails[0].value;
+        user.picture = profile.photos[0].value;
+        user.google_profile_id = profile.id;
+        user.access_token = accessToken;
+        user.token = User.tokenForUser(user);
+        user.save((err) => {
+          if (err) {
+            done(err);
+          }
+          return done(null, user);
+        });
+      }
+    })
+  })
+});
+
+const fbLogin = new FacebookStrategy.Strategy({
+  clientID: secret.facebook.FACEBOOK_APP_ID,
+  clientSecret: secret.facebook.FACEBOOK_SECRET_KEY,
+  callbackURL: secret.facebook.FACEBOOK_CALLBACK_URL,
+  profileFields: ['id','emails','name']
+},
+ (accessToken, refreshToken, profile, done) => {
+   process.nextTick(() => {
+     User.findOne({email: profile.emails[0].value}, (err, usr) => {
+       if (err) {
+         return done(err);
+       }
+       if (usr) {
+         return done(null, usr);
+       } else {
+         const profilePic = ` https://graph.facebook.com/${profile.id}/picture?type=large`;
+         const user = new User();
+         user.name = profile.name.givenName +' '+ profile.name.familyName;
+         user.email = profile.emails[0].value;
+         user.picture = profilePic;
+         user.facebook_profile_id = profile.id;
+         user.access_token = accessToken;
+         user.token = User.tokenForUser(user);
+         user.save((err) => {
+           if (err) {
+             done(err);
+           }
+           return done(null, user);
+         });
+       }
+     });
+   });
+
+ });
+
 passport.use(jwtLogin);
 passport.use(localLogin);
+passport.use(googleLogin);
+passport.use(fbLogin);

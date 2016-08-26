@@ -74,9 +74,10 @@ nav{
   position: relative;
 }
 .avatar-image{
-  width: 45px;
+  width: 3em;
+  height: 3em;
   margin: 5px 20px;
-  border-radius: 50px;
+  border-radius: 100%;
   border: 1px solid lighten($secondary, 30%);
   background: $light;
   &:hover{
@@ -118,11 +119,7 @@ nav{
     padding: 15px 20px;
   }
   .avatar-image{
-    width: 45px;
-    margin: 5px 20px;
-    border-radius: 50px;
     border: 1px solid lighten($secondary, 30%);
-    background: $light;
     &:hover{
       border: none;
       box-shadow: 0px 0px 1px 3px lighten($gray-light, 30%);

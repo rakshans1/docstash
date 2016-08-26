@@ -1,11 +1,11 @@
 import React, {PropTypes} from 'react';
 import Input from './Input';
 import _ from 'lodash';
-import Icon from './Icon';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as authActions from '../../actions/authActions';
 import classNames from 'classnames';
+import  ROOT_URL from '../../baseurl';
 
 class CreateAccountScreen extends React.Component {
   constructor(props) {
@@ -26,6 +26,7 @@ class CreateAccountScreen extends React.Component {
     this.validateEmail = this.validateEmail.bind(this);
     this.validateName = this.validateName.bind(this);
     this.saveAndContinue = this.saveAndContinue.bind(this);
+    this.googleLogin = this.googleLogin.bind(this);
   }
 
   handlePasswordInput(event) {
@@ -67,6 +68,10 @@ class CreateAccountScreen extends React.Component {
         this.refs.password.isValid();
         this.refs.passwordConfirm.isValid();
       }
+  }
+  googleLogin(googleUser) {
+    // console.log(googleUser);
+    this.props.actions.googleLogin();
   }
 
   isConfirmedPassword(event) {
@@ -190,6 +195,19 @@ class CreateAccountScreen extends React.Component {
                   CREATE ACCOUNT
                 </button>
             </form>
+            <h5 className="or">OR</h5>
+            <div className="row">
+            <button className="btn-social" >
+                  <a href={`${ROOT_URL}/auth/google`}>
+                    <img className="social-img" src={require('../../assets/img/google.svg')}/>
+                  </a>
+              </button>
+            <button className="btn-social">
+                  <a href={`${ROOT_URL}/auth/facebook`}>
+                    <img className="social-img" src={require('../../assets/img/facebook.svg')}/>
+                  </a>
+            </button>
+            </div>
         </div>
       </div>
     );

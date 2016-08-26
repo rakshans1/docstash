@@ -1,3 +1,32 @@
+.btn-social {
+  transition: all 0.2s ease-in-out;
+  display: inline-block;
+  background: none;
+  border:none;
+  color: #ffffff;
+  background: #40b4de;
+  margin: 10px 35px;
+  cursor: pointer;
+  width: 50px;
+  padding: 0;
+  .social-img{
+    width: 50px;
+  }
+}
+.btn-social:hover,
+.button:focus {
+  background: $white;
+}
+.btn-social:active,
+.btn-social.active {
+  box-shadow: none;
+  background: none;
+}
+.or{
+  margin: 0.3em  0 0  0;
+  font-size: 2em;
+  color: $white;
+}
 .owl {
   width: 211px;
   height: 108px;
@@ -417,7 +446,7 @@
   display: block;
   position: relative;
   width: 100%;
-  margin: 20px 0 0 0;
+  margin: 0px 0 0 0;
   height: 50px;
   font-size: 13px;
 }
@@ -461,7 +490,7 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  margin: 80px 0 200px 0;
+  margin: 0px 0 200px 0;
   min-height: 400px;
 }
 .application_wrapper .create_account_screen .create_account_form > h1 {

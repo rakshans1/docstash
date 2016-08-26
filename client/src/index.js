@@ -12,6 +12,7 @@ import './assets/icon/flaticon.css';
 import '../node_modules/nprogress/nprogress.css';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { AUTH_USER_SUCCESS } from './constants/actionTypes';
+import {userInfo} from './actions/userActions';
 
 
 const store = configureStore();
@@ -22,6 +23,7 @@ const token = localStorage.getItem('token');
 if (token) {
   // we need to update application state
   store.dispatch({ type: AUTH_USER_SUCCESS });
+  store.dispatch(userInfo(token));
 }
 
 render(

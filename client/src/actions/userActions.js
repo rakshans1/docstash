@@ -5,7 +5,7 @@ import  ROOT_URL, {token} from '../baseurl';
 
 
 
-export function userInfo() {
+export function userInfo(token) {
   return function(dispatch){
     dispatch(beginAjaxCall());
     axios.get(`${ROOT_URL}/user`, {
