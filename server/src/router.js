@@ -3,6 +3,8 @@ import passport from 'passport';
 import * as auth from './controllers/auth';
 import passportConfig from './services/passport';
 
+import * as shortner from './controllers/shortner';
+
 const requireAuth = passport.authenticate('jwt', {session: false });
 const requireSignIn = passport.authenticate('local', {session: false });
 const google = passport.authenticate('google', {scope: ['email']});
@@ -11,11 +13,13 @@ const facebook = passport.authenticate('facebook', {session: false, scope: ['ema
 const facebookCallback = passport.authenticate('facebook', {session: false, scope: [] });
 
 export default function(app) {
-    //GET REQUEST
+    //Home Controllers
     app.get('/', requireAuth, (req, res) => {
       res.send('hi ' + req.user.name);
     });
 
+
+    //User info Controllers
     app.get('/user', requireAuth, (req, res) => {
       const user = {
         name: req.user.name,
@@ -34,4 +38,8 @@ export default function(app) {
     app.get('/auth/google/callback', googleCallback, auth.googleSignInCallback);
     app.get('/auth/facebook', facebook , auth.facebookSignIn);
     app.get('/auth/facebook/callback', facebookCallback, auth.facebookSignInCallback);
+
+    //Shortner Controllers
+    app.post('/short', shortner.post);
+    app.get('/short/:hash', shortner.get);
 }

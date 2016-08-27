@@ -10,16 +10,17 @@ import SocialLogin from './components/auth/SocialLogin';
 import RequireAuth from './components/auth/RequireAuth';
 import LoggedInRedirect from './components/auth/LoggedInRedirect';
 import Main from './components/main/Main';
-
+import Shortner from './components/main/sidebar/Shortner';
 
 export default (
   <Route path="/" component={App}>
-    <IndexRoute component={HomePage} />
+    <Route component={HomePage} >
+      <IndexRoute component={Main}/>
+      <Route path="/short" component={Shortner} />
+    </Route>
     <Route path="signup" component={LoggedInRedirect(Signup)} />
     <Route path="login" component={LoggedInRedirect(Signin)} />
     <Route path="signout" component={LoggedInRedirect(Signout)} />
     <Route path="/auth" component={LoggedInRedirect(SocialLogin)} />
-    <Route path="main" component={RequireAuth(Main)} />
   </Route>
-
 );

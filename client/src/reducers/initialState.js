@@ -4,5 +4,6 @@ export default  {
     name: '',
     email: '',
     picture: '',
-  }
+  },
+  shortner: ''
 };

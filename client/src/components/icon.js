@@ -3,6 +3,9 @@ import React, {PropTypes} from 'react';
 class Icon extends React.Component {
   render() {
     switch(this.props.type) {
+      
+
+      //Auth Icons
       case 'circle_error':
       return (
         <svg viewBox="0 0 20 20">
@@ -40,6 +43,8 @@ class Icon extends React.Component {
             "/>
           </svg>
         );
+      default:
+          return false;
     }
   }
 }

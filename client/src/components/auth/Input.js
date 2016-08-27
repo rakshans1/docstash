@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 import _ from 'lodash';
-import Icon from './Icon';
+import Icon from '.././icon';
 import InputError from './InputErrors';
 import PasswordValidator from './PasswordValidator';
 

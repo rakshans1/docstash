@@ -1,6 +1,6 @@
     /*
     Flaticon icon font: Flaticon
-    Creation date: 03/08/2016 08:50
+    Creation date: 27/08/2016 17:10
     */
 
     @font-face {
@@ -40,22 +40,24 @@
 .flaticon-file:before { content: "\f101"; }
 .flaticon-file-1:before { content: "\f102"; }
 .flaticon-folder:before { content: "\f103"; }
-.flaticon-folder-1:before { content: "\f104"; }
-.flaticon-folder-2:before { content: "\f105"; }
-.flaticon-interface:before { content: "\f106"; }
+.flaticon-folder-2:before { content: "\f104"; }
+.flaticon-interface:before { content: "\f105"; }
+.flaticon-link:before { content: "\f106"; }
 .flaticon-multimedia:before { content: "\f107"; }
 .flaticon-music:before { content: "\f108"; }
 .flaticon-photo:before { content: "\f109"; }
 .flaticon-square:before { content: "\f10a"; }
+.flaticon-torrent:before { content: "\f10b"; }
     
     $font-Flaticon-draw: "\f100";
     $font-Flaticon-file: "\f101";
     $font-Flaticon-file-1: "\f102";
     $font-Flaticon-folder: "\f103";
-    $font-Flaticon-folder-1: "\f104";
-    $font-Flaticon-folder-2: "\f105";
-    $font-Flaticon-interface: "\f106";
+    $font-Flaticon-folder-2: "\f104";
+    $font-Flaticon-interface: "\f105";
+    $font-Flaticon-link: "\f106";
     $font-Flaticon-multimedia: "\f107";
     $font-Flaticon-music: "\f108";
     $font-Flaticon-photo: "\f109";
     $font-Flaticon-square: "\f10a";
+    $font-Flaticon-torrent: "\f10b";

@@ -20,7 +20,7 @@ class HomePage extends React.Component {
     return (
       <div>
         <Header/>
-        <Home/>
+        <Home props={this.props}/>
       </div>
     );
   }
