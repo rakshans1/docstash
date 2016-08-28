@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
 import App from './components/App';
+import NotFound from './components/common/NotFound';
 import HomePage from './components/home/HomePage';
 import Signup from './components/auth/Signup';
 import Signin from './components/auth/Signin';
@@ -22,5 +23,6 @@ export default (
     <Route path="login" component={LoggedInRedirect(Signin)} />
     <Route path="signout" component={LoggedInRedirect(Signout)} />
     <Route path="/auth" component={LoggedInRedirect(SocialLogin)} />
+    <Route path="*" component={NotFound}/>
   </Route>
 );

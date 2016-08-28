@@ -52,7 +52,7 @@ class Shortner extends React.Component {
   }
   render() {
     return(
-      <div className="col-sm-8 main">
+      <div className="col-sm-8">
         <h1 className="text-sm-center shortner_h1">Docstash Link Shortner</h1>
         <div className="row">
           <div className="col-sm-2"/>

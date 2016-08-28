@@ -6,16 +6,6 @@ class Main extends React.Component{
   }
   render() {
     return(
-      <div className="col-sm-8 main">
-
-          <div className="breadcrum-div">
-            <ol className="breadcrumb">
-              <li className="breadcrumb-item ">Library</li>
-              <i className="fa fa-angle-down breadcrum-dropdown" aria-hidden="true"></i>
-
-            </ol>
-        </div>
-
           <div className="container-fluid library">
             <h2>Folders</h2>
             <div className="row">
@@ -136,7 +126,6 @@ class Main extends React.Component{
 
 
           </div>
-        </div>
     );
   }
 }
