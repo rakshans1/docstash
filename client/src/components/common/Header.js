@@ -45,15 +45,19 @@ class Header extends React.Component {
 
               <p className="sidebar-text">MAIN MENU</p>
               <ul className="nav nav-sidebar sidebar-ul">
-                <li className="sidebar-li"><i className="active flaticon-folder-2"/><a className="sidebar-a active" href="/">Library</a></li>
-                <li className="sidebar-li"><i className="flaticon-square"/><a className="sidebar-a" href="recent.html">Recent</a></li>
+                <li className="sidebar-li"><i className="active flaticon-folder-2"/><Link className="sidebar-a" activeClassName="active" to="/">Library</Link></li>
+                <li className="sidebar-li"><i className="flaticon-square"/><Link className="sidebar-a" activeClassName="active" to="recent.html">Recent</Link></li>
               </ul>
               <p className="sidebar-text">FILTER BY</p>
               <ul className="nav nav-sidebar sidebar-ul">
-                <li className="sidebar-li"><i className="flaticon-interface"/><a  className="sidebar-a" href="documents.html">Documents</a></li>
-                <li className="sidebar-li"><i className="flaticon-multimedia"/><a  className="sidebar-a"href="videos.html">Videos</a></li>
-                <li className="sidebar-li"><i className="flaticon-music"/><a  className="sidebar-a" href="music.html">Music</a></li>
-                <li className="sidebar-li"><i className="flaticon-photo"/><a className="sidebar-a" href="images.html">Images</a></li>
+                <li className="sidebar-li"><Link className="sidebar-a" activeClassName="active" to="documents"><i className="flaticon-interface"/> Documents</Link></li>
+                <li className="sidebar-li"><Link className="sidebar-a" activeClassName="active" to="videos"><i className="flaticon-multimedia"/> Videos</Link></li>
+                <li className="sidebar-li"><Link className="sidebar-a" activeClassName="active" to="music"><i className="flaticon-music"/> Music</Link></li>
+                <li className="sidebar-li"><Link className="sidebar-a"  activeClassName="active" to="images"><i className="flaticon-photo"/> Images</Link></li>
+              </ul>
+              <p className="sidebar-text">Extra</p>
+              <ul className="nav nav-sidebar sidebar-ul">
+                <li className="sidebar-li"><Link to="/short" className="sidebar-a" activeClassName="active"><i className="flaticon-link"/> Shortner</Link></li>
               </ul>
 
 

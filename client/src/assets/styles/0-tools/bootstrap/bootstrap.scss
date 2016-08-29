@@ -14,35 +14,35 @@
 @import "code";
 @import "grid";
 @import "tables";
-@import "forms";
-@import "buttons";
+@import "forms"; // I Disabled
+// @import "buttons"; // I Disabled
 
 // Components
-@import "animation";
-@import "dropdown";
-@import "button-group";
-@import "input-group";
-@import "custom-forms";
+// @import "animation"; // I Disabled
+// @import "dropdown";  // I Disabled
+// @import "button-group"; // I Disabled
+// @import "input-group"; // I Disabled
+// @import "custom-forms"; // I Disabled
 @import "nav";
 @import "navbar";
 @import "card";
 @import "breadcrumb";
-@import "pagination";
-@import "pager";
+// @import "pagination"; // I Disabled
+// @import "pager"; // I Disabled
 @import "labels";
-@import "jumbotron";
-@import "alert";
+// @import "jumbotron"; // I Disabled
+// @import "alert"; // I Disabled
 @import "progress";
 @import "media";
 @import "list-group";
 @import "responsive-embed";
-@import "close";
+// @import "close"; // I Disabled
 
 // Components w/ JavaScript
-@import "modal";
-@import "tooltip";
-@import "popover";
-@import "carousel";
+// @import "modal"; // I Disabled
+// @import "tooltip";  // I Disabled
+// @import "popover";  // I Disabled
+// @import "carousel";  // I Disabled
 
 // Utility classes
 @import "utilities";

@@ -1,8 +1,10 @@
 .sidebar{
   position: relative;
   border-right: 1px solid darken($light, 10);
-  background-color: $light;
+  background-color: $white;
   height: 100vh;
+  z-index: 5;
+  box-shadow: 0px 6px 15px 0px rgba(0, 0, 0, 0.2);
   [class^="flaticon-"]:before, [class*=" flaticon-"]:before, [class^="flaticon-"]:after, [class*=" flaticon-"]:after {
     font-size: 1.4em;
     font-weight: 500;
@@ -30,6 +32,9 @@
     }
     &:focus{
       text-decoration: none;
+    }
+    &.active{
+      color: darken($secondary, 10);
     }
   }
   .sidebar-text{

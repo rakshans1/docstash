@@ -14,7 +14,7 @@ class Home extends React.Component  {
       <div className="row">
         <Sidebar/>
         <div className="col-sm-8 main">
-        <Breadcrumb/>
+        <Breadcrumb props={props}/>
         {props.children}
         </div>
         <Recent/>

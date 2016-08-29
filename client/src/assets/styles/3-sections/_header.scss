@@ -43,6 +43,8 @@ nav{
 }
 .navbar{
   padding: 5px 20px;
+  z-index: 10;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
 }
 .search{
   position: relative;
@@ -109,7 +111,7 @@ nav{
   .form-inline{
     display: block;
     position: absolute;
-    top: 60px;
+    top: 65px;
     right: 30px;
   }
   nav{
@@ -117,6 +119,7 @@ nav{
   }
   .navbar{
     padding: 15px 20px;
+    box-shadow: none;
   }
   .avatar-image{
     border: 1px solid lighten($secondary, 30%);
@@ -208,6 +211,7 @@ nav{
 }
 #menu
 {
+  z-index: 16;
   position: absolute;
   width: 300px;
   margin: -100px 0 0 -50px;
