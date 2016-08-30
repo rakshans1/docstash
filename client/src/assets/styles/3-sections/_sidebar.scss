@@ -17,7 +17,20 @@
     color: darken($secondary, 10);
   }
 }
-
+  .sidebar-btn{
+    margin: 30px 0 0 20px;
+    background-color: $white;
+    border: 1px solid $secondary;
+    border-radius: 45px;
+    color: $main;
+    padding: 5px 30px;
+    font-size: 1em;
+    position: relative;
+  }
+  .upload-icon{
+    top: 4px;
+    left: 5px !important;
+  }
   .sidebar-a{
     color: darken($gray-light, 10);
     text-decoration: none;
@@ -32,6 +45,7 @@
     }
     &:focus{
       text-decoration: none;
+      color: darken($gray-light, 10);
     }
     &.active{
       color: darken($secondary, 10);

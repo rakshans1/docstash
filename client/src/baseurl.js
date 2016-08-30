@@ -1,8 +1,9 @@
-if (process.env.NODE_ENV === 'production') {
-  var ROOT_URL = 'http://docstash-server.herokuapp.com';
-}else {
-  ROOT_URL= 'http://localhost:3001';
+function node() {
+  if (process.env.NODE_ENV === 'production') {
+    return true;
+  }else {
+    return false
+  }
 }
+const ROOT_URL = node() ? 'http://docstash-server.herokuapp.com' : 'http://localhost:3001';
 export default ROOT_URL;
-
-export const token = localStorage.getItem('token');

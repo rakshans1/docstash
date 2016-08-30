@@ -7,7 +7,7 @@ import * as authActions from '../../actions/authActions';
 import classNames from 'classnames';
 import  ROOT_URL from '../../baseurl';
 
-class CreateAccountScreen extends React.Component {
+export class CreateAccountScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

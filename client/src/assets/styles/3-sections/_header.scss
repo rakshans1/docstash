@@ -2,6 +2,10 @@
   margin-top: 5px;
   width: 40px;
   float: left;
+  color: $white;
+}
+.docstash{
+  fill: $main;
 }
 .arrow-down {
   // width: 0;
@@ -44,7 +48,9 @@ nav{
 .navbar{
   padding: 5px 20px;
   z-index: 10;
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+}
+.nav-shadow{
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
 }
 .search{
   position: relative;

@@ -1,7 +1,16 @@
-$main: #007ee5
+// $main: #007ee5
+// $main: #558C89
+// $main: #C63D0F
+// $main: #7D1935
+$main: #e09b1d
+
+
+
 $secondary: lighten( $main, 20% )
 $light: lighten( $main, 54% )
-$green: #6cd885
+$green: lighten(desaturate(adjust-hue($main, -73.0980), 41.9355), 18.6275)
+
+$progress-gradient: darken(saturate(adjust-hue($main, 0.2858), 0), 31.9608)
 
 $white:                     #ffffff !default
 $gray-dark:              #373a3c !default
@@ -15,9 +24,16 @@ $gray-lightest:         #f7f7f9 !default
 //file operations
 $delete: #d9534f !default
 $edit:     #5bc0de !default
-$added: darken($main, 10)
+$added: darken(#007ee5, 10)
 
 
 //bb8
 // $bb8: #CD7640
-$bb8: #007ee5
+$bb8: $main
+
+
+$brand-primary:             $main !default
+$brand-success:             #5cb85c !default
+$brand-info:                #5bc0de !default
+$brand-warning:             #f0ad4e !default
+$brand-danger:              #d9534f !default

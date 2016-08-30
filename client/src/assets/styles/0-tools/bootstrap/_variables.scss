@@ -21,27 +21,8 @@
 //
 // Variable format should follow the `$component-modifier-state-property` order.
 
-//MY vars
-$main: #007ee5;
-$secondary: lighten( $main, 20% );
-$light: lighten( $main, 54% );
-$white: #ffffff;
 
-// Colors
-//
-// Grayscale and brand colors for use across Bootstrap.
 
-$gray-dark:                 #373a3c !default;
-$gray:                      #55595c !default;
-$gray-light:                #818a91 !default;
-$gray-lighter:              #eceeef !default;
-$gray-lightest:             #f7f7f9 !default;
-
-$brand-primary:             #007ee5 !default;
-$brand-success:             #5cb85c !default;
-$brand-info:                #5bc0de !default;
-$brand-warning:             #f0ad4e !default;
-$brand-danger:              #d9534f !default;
 
 
 // Options

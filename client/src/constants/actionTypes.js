@@ -4,5 +4,7 @@ export const BEGIN_AJAX_CALL = 'BEGIN_AJAX_CALL',
                       UNAUTH_USER_SUCCESS = 'UNAUTH_USER_SUCCESS',
                       FETCH_ERROR = 'FETCH_ERROR',
                       ADD_NOTIFICATION = 'ADD_NOTIFICATION',
+                      SHOW_MODAL = 'SHOW_MODAL',
+                      HIDE_MODAL = 'HIDE_MODAL',
                       USERS_INFO_SUCCESS = 'USERS_INFO_SUCCESS',
                       ADD_SHORTNER_SUCCESS = "ADD_SHORTNER_SUCCESS";

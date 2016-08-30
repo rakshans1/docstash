@@ -1,7 +1,7 @@
 import axios from 'axios';
 import * as types from '../constants/actionTypes';
 import {beginAjaxCall, ajaxCallError} from './ajaxstatusActions';
-import  ROOT_URL, {token} from '../baseurl';
+import  ROOT_URL from '../baseurl';
 
 
 

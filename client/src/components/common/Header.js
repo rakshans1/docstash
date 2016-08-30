@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react';
 import {Link, IndexLink} from 'react-router';
 import {connect} from 'react-redux';
+import Icon from '../icon'
 
 class Header extends React.Component {
   // constructor(props) {
@@ -10,8 +11,8 @@ class Header extends React.Component {
     let picture = this.props.user.picture;
     return(
       <div>
-      <nav className="navbar navbar-light">
-        <img src={require('../../assets/img/logo.png')} className="brand-img" alt=""/>
+      <nav className="navbar nav-shadow navbar-light">
+        <div className="brand-img"><Icon type="logo"/></div>
         <IndexLink className="navbar-brand brand" to="/">Docstash</IndexLink>
         <form className="form-inline pull-xs-center">
           <div className="form-group search">
@@ -45,19 +46,19 @@ class Header extends React.Component {
 
               <p className="sidebar-text">MAIN MENU</p>
               <ul className="nav nav-sidebar sidebar-ul">
-                <li className="sidebar-li"><i className="active flaticon-folder-2"/><Link className="sidebar-a" activeClassName="active" to="/">Library</Link></li>
-                <li className="sidebar-li"><i className="flaticon-square"/><Link className="sidebar-a" activeClassName="active" to="recent.html">Recent</Link></li>
+                <li className="sidebar-li"><i className="active flaticon-folder-2"/><Link className="sidebar-a"  to="/">Library</Link></li>
+                <li className="sidebar-li"><i className="flaticon-square"/><Link className="sidebar-a"  to="recent.html">Recent</Link></li>
               </ul>
               <p className="sidebar-text">FILTER BY</p>
               <ul className="nav nav-sidebar sidebar-ul">
-                <li className="sidebar-li"><Link className="sidebar-a" activeClassName="active" to="documents"><i className="flaticon-interface"/> Documents</Link></li>
-                <li className="sidebar-li"><Link className="sidebar-a" activeClassName="active" to="videos"><i className="flaticon-multimedia"/> Videos</Link></li>
-                <li className="sidebar-li"><Link className="sidebar-a" activeClassName="active" to="music"><i className="flaticon-music"/> Music</Link></li>
-                <li className="sidebar-li"><Link className="sidebar-a"  activeClassName="active" to="images"><i className="flaticon-photo"/> Images</Link></li>
+                <li className="sidebar-li"><Link className="sidebar-a"  to="documents"><i className="flaticon-interface"/> Documents</Link></li>
+                <li className="sidebar-li"><Link className="sidebar-a"  to="videos"><i className="flaticon-multimedia"/> Videos</Link></li>
+                <li className="sidebar-li"><Link className="sidebar-a"  to="music"><i className="flaticon-music"/> Music</Link></li>
+                <li className="sidebar-li"><Link className="sidebar-a"   to="images"><i className="flaticon-photo"/> Images</Link></li>
               </ul>
               <p className="sidebar-text">Extra</p>
               <ul className="nav nav-sidebar sidebar-ul">
-                <li className="sidebar-li"><Link to="/short" className="sidebar-a" activeClassName="active"><i className="flaticon-link"/> Shortner</Link></li>
+                <li className="sidebar-li"><Link to="/short" className="sidebar-a" ><i className="flaticon-link"/> Shortner</Link></li>
               </ul>
 
 

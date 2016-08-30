@@ -1,6 +1,6 @@
 .homepage{
   background-color: rgba(0,126,229,1);
-  background: linear-gradient(135deg, rgba(0,126,229,1) 0%, rgba(108,216,133,1) 88%, rgba(108,216,133,1) 100%);
+  background: linear-gradient(135deg, $main 0%, $green 88%, $green 100%);
   .navbar-brand{
     color: $white!important;
   }
@@ -30,7 +30,7 @@
     margin: 10px 45%;
     background-color: $green;
     border-radius: 45px;
-    border: none;
+    border: 1px solid darken($green, 20%);
     color: $white;
     padding: 10px 30px;
     font-size: 0.8em;

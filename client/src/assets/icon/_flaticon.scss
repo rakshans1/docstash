@@ -1,6 +1,6 @@
     /*
     Flaticon icon font: Flaticon
-    Creation date: 27/08/2016 17:10
+    Creation date: 30/08/2016 14:08
     */
 
     @font-face {
@@ -48,6 +48,7 @@
 .flaticon-photo:before { content: "\f109"; }
 .flaticon-square:before { content: "\f10a"; }
 .flaticon-torrent:before { content: "\f10b"; }
+.flaticon-upload:before { content: "\f10c"; }
     
     $font-Flaticon-draw: "\f100";
     $font-Flaticon-file: "\f101";
@@ -61,3 +62,4 @@
     $font-Flaticon-photo: "\f109";
     $font-Flaticon-square: "\f10a";
     $font-Flaticon-torrent: "\f10b";
+    $font-Flaticon-upload: "\f10c";

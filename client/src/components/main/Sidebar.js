@@ -1,14 +1,27 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import {IndexLink, Link} from 'react-router';
-import Icon from '../icon';
+import { connect } from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as modalActions from '../../actions/modalActions';
 
 class Sidebar extends React.Component{
   constructor(props){
     super(props);
+    this.state = {
+      showModal: false
+    };
+    this.handleClick = this.handleClick.bind(this);
+  }
+  handleClick() {
+    if (!this.props.modal) {
+      return this.props.actions.showModal();
+    }
+    this.props.actions.hideModal();
   }
   render() {
     return(
       <div className="col-sm-2 sidebar">
+      <button className="sidebar-btn" onClick={this.handleClick}> Upload</button>
       <p className="sidebar-text">MAIN MENU</p>
       <ul className="nav nav-sidebar sidebar-ul">
         <li className="sidebar-li"><IndexLink className="sidebar-a" activeClassName="active" to="/"><i className="flaticon-folder-2"/>Library</IndexLink></li>
@@ -34,4 +47,16 @@ class Sidebar extends React.Component{
     );
   }
 }
-export default Sidebar;
+Sidebar.propTypes = {
+  modal: PropTypes.bool,
+  actions: PropTypes.object.isRequired,
+};
+function mapStateToProps(state) {
+  return{ modal: state.modal };
+}
+function mapDispatchToProp(dispatch) {
+  return {
+    actions: bindActionCreators(modalActions, dispatch)
+  };
+}
+export default connect(mapStateToProps, mapDispatchToProp)(Sidebar);

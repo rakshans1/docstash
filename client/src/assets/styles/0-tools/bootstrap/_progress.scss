@@ -35,7 +35,7 @@
   content: attr(value);
 }
 .progress[value]::-webkit-progress-value {
-  background-image:   linear-gradient(to right, rgba(0,126,229,1) 0%, rgba(109,7,180,1) 99%, rgba(110,6,179,1) 100%);
+  background-image:   linear-gradient(to right, $main 0%, $progress-gradient 99%, darken($progress-gradient, 100%) 100%);
   border-top-left-radius: 2rem; //$border-radius i changed
   border-bottom-left-radius: 2rem; //$border-radius i changed
   border-bottom-right-radius: 2rem; //$border-radius i changed

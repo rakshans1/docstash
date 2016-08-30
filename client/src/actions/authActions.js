@@ -6,7 +6,6 @@ import {beginAjaxCall, ajaxCallError} from './ajaxstatusActions';
 import {userInfo} from './userActions';
 import  ROOT_URL from '../baseurl';
 
-
 export function authSucess() {
   return {
     type: types.AUTH_USER_SUCCESS
