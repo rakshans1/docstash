@@ -11,6 +11,7 @@ class Sidebar extends React.Component{
       showModal: false
     };
     this.handleClick = this.handleClick.bind(this);
+    console.log(this.props.location);
   }
   handleClick() {
     if (!this.props.modal) {
@@ -30,7 +31,7 @@ class Sidebar extends React.Component{
       <p className="sidebar-text">FILTER BY</p>
       <ul className="nav nav-sidebar sidebar-ul">
         <li className="sidebar-li"><a  className="sidebar-a" href="documents.html"><i className="flaticon-interface"/>Documents</a></li>
-        <li className="sidebar-li"><a  className="sidebar-a"href="videos.html"><i className="flaticon-multimedia"/>Videos</a></li>
+        <li className="sidebar-li"><a  className="sidebar-a" href="videos.html"><i className="flaticon-multimedia"/>Videos</a></li>
         <li className="sidebar-li"><a  className="sidebar-a" href="music.html"><i className="flaticon-music"/>Music</a></li>
         <li className="sidebar-li"><a className="sidebar-a" href="images.html"><i className="flaticon-photo"/>Images</a></li>
       </ul>

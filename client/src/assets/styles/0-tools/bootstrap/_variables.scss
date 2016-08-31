@@ -82,7 +82,7 @@ $body-color:                 $gray-dark !default;
 $link-color:                 $brand-primary !default;
 $link-decoration:            none !default;
 $link-hover-color:           darken($link-color, 15%) !default;
-$link-hover-decoration:      underline !default;
+$link-hover-decoration:      none !default;
 
 
 // Grid breakpoints
@@ -124,14 +124,7 @@ $grid-columns:               12 !default;
 $grid-gutter-width:          1.875rem !default; // 30px
 
 
-// Typography
-//
-// Font, line-height, and color for body text, headings, and more.
 
-$font-family-sans-serif:     "Helvetica Neue", Helvetica, Arial, sans-serif !default;
-$font-family-serif:          Georgia, "Times New Roman", Times, serif !default;
-$font-family-monospace:      Menlo, Monaco, Consolas, "Courier New", monospace !default;
-$font-family-base:           $font-family-sans-serif !default;
 
 // Pixel value used to responsively scale all typography. Applied to the `<html>` element.
 $font-size-root:             16px !default;
@@ -284,8 +277,8 @@ $input-border-radius:            $border-radius !default;
 $input-border-radius-lg:         $border-radius-lg !default;
 $input-border-radius-sm:         $border-radius-sm !default;
 
-$input-border-focus:             #66afe9 !default;
-$input-box-shadow-focus:         rgba(102,175,233,.6) !default;
+$input-border-focus:             darken($secondary, 10%) !default;
+$input-box-shadow-focus:     lighten($secondary, 10%) !default;
 
 $input-color-placeholder:        #999 !default;
 

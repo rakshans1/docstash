@@ -5,6 +5,7 @@ export default {
   domain: process.env.DOMAIN || 'http://localhost:3001',
   port: process.env.PORT || 3001,
   secret: "Rakshan*&^",
+  emailPass: "docstash123456",
   google: {
     clientID: '890396309082-adjjpv7socoicge1tvpij9d82upl0hpm.apps.googleusercontent.com',
     clientSecret: 'h6WkT7qC-q3DGzDwCtdr-_J0',

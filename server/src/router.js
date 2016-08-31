@@ -41,5 +41,5 @@ export default function(app) {
 
     //Shortner Controllers
     app.post('/short', shortner.post);
-    app.get('/short/:hash', shortner.get);
+    app.get('/s/:hash', shortner.get);
 }

@@ -19,9 +19,9 @@ export default (
       <IndexRoute component={Main}/>
       <Route path="/short" component={Shortner} />
     </Route>
-    <Route path="signup" component={LoggedInRedirect(Signup)} />
-    <Route path="login" component={LoggedInRedirect(Signin)} />
-    <Route path="signout" component={LoggedInRedirect(Signout)} />
+    <Route path="/signup" component={LoggedInRedirect(Signup)} />
+    <Route path="/login" component={LoggedInRedirect(Signin)} />
+    <Route path="/signout" component={LoggedInRedirect(Signout)} />
     <Route path="/auth" component={LoggedInRedirect(SocialLogin)} />
     <Route path="*" component={NotFound}/>
   </Route>

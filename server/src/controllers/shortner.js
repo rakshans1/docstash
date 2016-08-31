@@ -22,7 +22,7 @@ export  const post =  (req, res, next) => {
     }
     const uniqueID = randomstring.generate({length: 8,charset: 'alphabetic'});
     const shortner = new Shortner();
-    shortner.shortUrl = `${secret.domain}/short/${uniqueID}`;
+    shortner.shortUrl = `${secret.domain}/s/${uniqueID}`;
     shortner.url = url;
 
     shortner.save((err) => {
@@ -34,7 +34,7 @@ export  const post =  (req, res, next) => {
 
 export const get = (req, res, next) => {
   const hash = req.params.hash;
-  const url  = `${secret.domain}/short/${hash}`;
+  const url  = `${secret.domain}/s/${hash}`;
   Shortner.findOne({shortUrl: url}, (err, existingUrl) => {
     if (err) return  next(err);
 

@@ -2,12 +2,13 @@
 import  nodemailer from 'nodemailer';
 import ejs from 'ejs';
 import fs from 'fs';
+import secret from '../config/secret';
 
 const transporter = nodemailer.createTransport({
 	service: 'Gmail',
 	auth: {
 		user: 'docstashcare@gmail.com',
-		pass: 'docstash123456'
+		pass: secret.emailPass
 	}
 });
 const transpoter = (mailOptions) => {
