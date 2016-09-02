@@ -7,7 +7,7 @@ class Breadcrumb extends React.Component {
     this.renderBreadcrumb = this.renderBreadcrumb.bind(this);
   }
   renderBreadcrumb() {
-    const location = this.props.props.location.pathname;
+    const location = this.props.location.pathname;
     switch(location) {
       case '/':
         return(

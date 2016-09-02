@@ -8,22 +8,22 @@ class Home extends React.Component  {
     super(props);
   }
   render() {
-    const props = this.props.props;
+    // const props = this.props.props;
     return(
       <div className="container-fluid">
       <div className="row">
-        <Sidebar/>
+        <Sidebar {...this.props}/>
         <div className="col-sm-8 main">
-        <Breadcrumb props={props}/>
-        {props.children}
+        <Breadcrumb {...this.props}/>
+        {this.props.children}
         </div>
-        <Recent/>
+        <Recent {...this.props}/>
       </div>
       </div>
     );
   }
 }
 Home.propTypes = {
-  props: PropTypes.object.isRequired,
+  children: PropTypes.object,
 };
 export default Home;

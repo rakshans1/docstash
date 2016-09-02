@@ -19,8 +19,8 @@ class HomePage extends React.Component {
     }
     return (
       <div>
-        <Header/>
-        <Home props={this.props}/>
+        <Header {...this.props}/>
+        <Home {...this.props}/>
       </div>
     );
   }

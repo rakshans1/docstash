@@ -2,6 +2,7 @@ import React, {PropTypes} from 'react';
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as modalActions from '../../actions/modalActions';
+import Upload from './Upload';
 
 class Modal extends React.Component {
   constructor(props) {
@@ -25,9 +26,11 @@ class Modal extends React.Component {
       return null;
     }
     return(
-      <div className="modal_overlay" ref="overlay" onClick={this.handleOverlayClick}>
+      <div>
+        <div className="modal_overlay" ref="overlay" onClick={this.handleOverlayClick}>
+        </div>
         <div className="modal" ref="content">
-
+          <Upload />
         </div>
       </div>
     );

@@ -144,7 +144,7 @@ nav{
   top: -4px;
   left: 5px;
 
-  z-index: 1;
+  // z-index: 1;
 
   -webkit-user-select: none;
   user-select: none;
@@ -162,7 +162,7 @@ nav{
   cursor: pointer;
 
   opacity: 0; /* hide this */
-  z-index: 2; /* and place it over the hamburger */
+  z-index: 100; /* and place it over the hamburger */
 
   -webkit-touch-callout: none;
 }
@@ -179,7 +179,7 @@ nav{
   background: $gray-light;
   border-radius: 3px;
 
-  z-index: 1;
+  z-index: 99;
 
   transform-origin: 4px 0px;
 
@@ -219,7 +219,7 @@ nav{
 {
   z-index: 16;
   position: absolute;
-  width: 300px;
+  // width: 300px;
   margin: -100px 0 0 -50px;
   padding: 50px;
   padding-top: 125px;

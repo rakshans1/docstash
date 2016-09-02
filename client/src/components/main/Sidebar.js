@@ -11,7 +11,6 @@ class Sidebar extends React.Component{
       showModal: false
     };
     this.handleClick = this.handleClick.bind(this);
-    console.log(this.props.location);
   }
   handleClick() {
     if (!this.props.modal) {
