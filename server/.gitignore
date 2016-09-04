@@ -1,5 +1,5 @@
 /node_modules
 bundle.js
 npm-debug.log
-/config/secret.js
+/src/config/
 /dist

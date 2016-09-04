@@ -1,9 +1,11 @@
 /* eslint-disable import/default */
+/* eslint-disable no-unused-vars */
 import passport from 'passport';
 import * as auth from './controllers/auth';
 import passportConfig from './services/passport';
 
 import * as shortner from './controllers/shortner';
+import torrents from './controllers/torrent';
 
 const requireAuth = passport.authenticate('jwt', {session: false });
 const requireSignIn = passport.authenticate('local', {session: false });
@@ -42,4 +44,27 @@ export default function(app) {
     //Shortner Controllers
     app.post('/short', shortner.post);
     app.get('/s/:hash', shortner.get);
+
+    //Torrent Controllers
+    api('torrents', torrents);
+
+    function api(name, module) {
+      Object.keys(module).forEach((key) => {
+        const fn = module[key];
+        if (typeof fn !== "function") return;
+        //dont call modules with request/response,
+        //instead call with 'body' and 'callback(err, data)'
+        const endpoint = '/api/' + name + '/' + key;
+        console.log("POST %s -> %s.%s", endpoint, name, key);
+        app.post(endpoint, (req, res) => {
+          fn(req.body, (err, data) => {
+            if(err) {
+              res.status(400).send(err);
+            } else {
+              res.send(data || "OK");
+            }
+          });
+        });
+      });
+    }
 }

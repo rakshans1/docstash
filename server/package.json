@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/rakshans1/docstash#readme",
   "dependencies": {
+    "async": "^2.0.1",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.15.2",
     "cors": "^2.7.1",
@@ -33,15 +34,23 @@
     "express": "^4.14.0",
     "express-status-monitor": "0.0.9",
     "jwt-simple": "^0.5.0",
+    "mega": "^0.2.0",
     "mongoose": "^4.5.8",
     "morgan": "^1.7.0",
     "nodemailer": "^2.5.0",
+    "parse-torrent": "^5.8.1",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.1",
     "passport-google-oauth": "^1.0.0",
     "passport-jwt": "^2.1.0",
     "passport-local": "^1.0.0",
-    "randomstring": "^1.1.5"
+    "randomstring": "^1.1.5",
+    "request": "^2.74.0",
+    "rimraf": "^2.5.4",
+    "ssh2": "^0.5.1",
+    "torrent-stream": "^1.0.3",
+    "ws": "^1.1.1",
+    "zip-stream": "^1.1.0"
   },
   "devDependencies": {
     "babel-cli": "^6.11.4",

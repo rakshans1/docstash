@@ -50,7 +50,7 @@
     'no-label-var': 'warn',
     'no-labels': ['warn', { allowLoop: false, allowSwitch: false }],
     'no-lone-blocks': 'warn',
-    'no-loop-func': 'warn',
+    # 'no-loop-func': 'warn',
     'no-mixed-operators': ['warn', {
       groups: [
         ['&', '|', '^', '~', '<<', '>>', '>>>'],
@@ -77,6 +77,7 @@
       'LabeledStatement',
       'WithStatement',
     ],
+    'no-console': 0,
     'no-return-assign': 'warn',
     'no-script-url': 'warn',
     'no-self-assign': 'warn',
