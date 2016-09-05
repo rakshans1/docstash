@@ -1,117 +1,121 @@
 import torrents from '../controllers/torrent';
-import stream from 'stream';
-import through from '../util/through';
+var stream = require("stream");
+var through = require('../util/through');
 
-
-//this controls the size of download buffer,
+//in effect, this controls the size of the download buffer,
 //it gets cleared as the upload progresses (prevents buffering the entire download in memory)
-
-const MIN_PIECE_SIZE = 50*1024*1024; // ~50MB
+var MIN_PIECE_SIZE = 50*1024*1024;//~50Mb
 
 function File(f, index, torrent) {
-  let file = this;
-  file.$f = f;
-  const pieceSize = torrent.$engine.torrent.pieceLength;
-  file.$pieceSize = Math.ceil(MIN_PIECE_SIZE/pieceSize) * pieceSize;
+	var file = this;
+	file.$f = f;
+	var pieceSize = torrent.$engine.torrent.pieceLength;
+	file.$pieceSize = Math.ceil(MIN_PIECE_SIZE/pieceSize)*pieceSize;
 
-  file.i = index;
-  file.downloading = false;
-  file.name = f.name;
-  file.path = f.path;
-  file.length = f.length;
+	file.i = index;
+	file.downloading = false;
+	file.name = f.name;
+	file.path = f.path;
+	file.length = f.length;
 }
 
 File.prototype = {
-  createReadStream: function() {
-    const file = this;
+	createReadStream: function() {
+		var file = this;
 
-    //already createReadStream
-    if(file.$r) return file.$r;
+		//already created
+		if(file.$r)
+			return file.$r;
 
-    //start download
-    file.downloadError = undefined;
-    file.cancelled = undefined;
-    file.downloading = true;
-    file.downloadLength = 0;
-    torrents.emit("update");
+		//start download
+		file.downloadError = undefined;
+		file.cancelled = undefined;
+		file.downloading = true;
+		file.downloadLength = 0;
+		torrents.emit("update");
 
-    let piece = 0;
-    let piecing = false;
-    let waiting = false;
-    const r = file.$r = new stream.Readable();
+		var piece = 0;
+		var piecing = false;
+		var waiting = false;
+		var r = file.$r = new stream.Readable();
 
-    const read = r._read = function() {
-      //completed early
-      if (file.cancelled) return;
+		var read = r._read = function() {
 
-      //download one piece at a time
-      if (piecing) {
-        waiting = true;
-        return;
-      }
-      piecing = true;
-      waiting = false;
+			//completed early
+			if(file.cancelled)
+				return;
 
-      const s = piece * file.$pieceSize;
-      const e = Math.min(s + file.$pieceSize, file.length);
+			//download one piece at a time
+			if(piecing) {
+				waiting = true;
+				return;
+			}
+			piecing = true;
+			waiting = false;
 
-      //EOF completed successfully
-      if (s >= file.length) return file.$completed();
+			var s = piece * file.$pieceSize;
+			var e = Math.min(s + file.$pieceSize, file.length);
 
-      //pull the next piece
-      const download = file.$d = file.$f.createReadStream({
-        start: s,
-        end: e -1
-      });
+			//EOF completed successfully
+			if(s >= file.length)
+				return file.$complete();
 
-      //extract chunk, place in this file
-      const monitor = through(function transform(b) {
-        file.downloadLength += b.length;
-        torrents.emit("update");
-        r.push(b);
-      }, function(flush) {
-        //next piece
-        piece++;
-        piecing = false;
-        if(waiting) {
-          read();
-        }
-        flush();
-      });
-      download.pipe(monitor);
-    };
-    return r;
-  },
-  cancel: function() {
-    const file = this;
-    //not open
-    if (!file.$r || file.cancelled) {
-      return null;
-    }
+			//pull the next piece
+			var download = file.$d = file.$f.createReadStream({
+				start: s,
+				end: e - 1
+			});
 
-    //attempt to close current download
-    if (file.$d) {
-      file.$d.destroy();
-    }
+			//extract chunk, place in this file
+			var monitor = through(function transform(b) {
+				file.downloadLength += b.length;
+				torrents.emit("update");
+				r.push(b);
+			}, function(flush) {
+				//next piece
+				piece++;
+				piecing = false;
+				if(waiting)
+					read();
+				flush();
+			});
 
-    //close!
-    file.cancelled = true;
-    file.$completed("cancelled");
-    file.$r = null;
-    return true;
-  },
-  $complete: function(err) {
-    const file = this;
-    if (!file.downloading) return;
-    file.downloading = false;
-    torrents.emit("update");
-    if (!file.$r) return;
-    if (err) {
-      file.$r.emit("error", err);
-    } else {
-      file.$r.push(null); //EOF
-    }
-  }
+			download.pipe(monitor);
+		};
+
+		return r;
+	},
+	cancel: function() {
+		var file = this;
+		//not open
+		if(!file.$r || file.cancelled)
+			return null;
+
+		//attempt to close current download
+		if(file.$d)
+			file.$d.destroy();
+
+		//close!
+		file.cancelled = true;
+		file.$complete("cancelled");
+		file.$r = null;
+		return true;
+	},
+	$complete: function(err) {
+		var file = this;
+		if(!file.downloading)
+			return;
+		file.downloading = false;
+		torrents.emit("update");
+		if(!file.$r)
+			return;
+
+		if(err)
+      return;
+      // file.$r.emit('error', new Error('whoops!'));
+		else
+			file.$r.push(null);//EOF
+	}
 };
 
-export default File
+module.exports = File;

@@ -6,6 +6,10 @@ import passportConfig from './services/passport';
 
 import * as shortner from './controllers/shortner';
 import torrents from './controllers/torrent';
+import search from './controllers/search';
+import backend from './services/backend';
+import ws from './services/ws';
+import secret from './config/secret'
 
 const requireAuth = passport.authenticate('jwt', {session: false });
 const requireSignIn = passport.authenticate('local', {session: false });
@@ -45,8 +49,15 @@ export default function(app) {
     app.post('/short', shortner.post);
     app.get('/s/:hash', shortner.get);
 
+
+    //hook http to  websocket
+    // ws.install(app);
+
     //Torrent Controllers
     api('torrents', torrents);
+
+    //Torrent Search Controllers
+    api('search', search);
 
     function api(name, module) {
       Object.keys(module).forEach((key) => {
@@ -66,5 +77,33 @@ export default function(app) {
           });
         });
       });
+    } //api function end
+
+
+    let storedFiles = {};
+
+
+    const update = function(newFiles) {
+      //optionnaly update stored files
+      if (newFiles) storedFiles = newFiles;
+      //broadcast state
+      ws.broadcast({
+        config: secret,
+        providers: search.providers,
+        torrents: torrents.list,
+        filesDownloading: torrents.filesDownloading,
+        uploads: storedFiles
+      });
+    };
+    search.on("update", update);
+    torrents.on("update", update);
+
+    //periodically scan for new stored files
+    function list() {
+      backend.list(function(err, files) {
+        if(!err) update(files);
+      });
     }
-}
+    setInterval(list, 15*60*1000);
+
+} //main function end

@@ -6,6 +6,9 @@ import morgan from 'morgan';
 import router from './router';
 import mongoose from 'mongoose';
 import secret from './config/secret';
+import http from 'http';
+// eslint-disable-next-line
+import ws from './services/ws';
 
 //remove if not cool
 import esm from 'express-status-monitor';
@@ -48,8 +51,15 @@ app.use((req, res, next) => {
  });
 app.disable('x-powered-by');
 
+
+
+const  server = http.createServer(app);
+//hook http to  websocket
+ws.install(server);
 router(app);
 
-app.listen(secret.port);
+
+
+server.listen(secret.port);
 
 export default app; // for testing

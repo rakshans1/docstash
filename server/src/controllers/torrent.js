@@ -12,14 +12,16 @@ import secret from '../config/secret';
 
 
 import File from '../services/files';
+// eslint-disable-next-line
 import backend from '../services/backend';
+
 
 const torrents = new events.EventEmitter();
 export default torrents;
 
 torrents.filesDownloading = 0;
 
-let list = torrents.list = [];
+let list = torrents.list = [ ];
 
 
 //==============
@@ -31,15 +33,14 @@ setInterval(() => {
   for (let i = 0; i < list.length;  i++) {
     let t = list[i];
 
-    if (!t.engine)
-      continue;
+    if (!t.$engine) continue;
 
     //check torrent speed
-    const swarm = t.$engine.swarm;
+    let swarm = t.$engine.swarm;
 
     let status = {
       down:     swarm.downloaded,
-      downps: swarm.downloadedSpeed(),
+      downps: swarm.downloadSpeed(),
       up:         swarm.uploaded,
       upps:      swarm.uploadSpeed()
     } ;
@@ -75,7 +76,7 @@ setInterval(() => {
 //==============
 
 const TMP_DIR =  path.resolve(secret.TMP_DIR);
-const TS_DIR = path.join(TMP_DIR, "torrent-stream");
+const TS_DIR = path.join(TMP_DIR, "torrent");
 
 //=============
 //helpers
@@ -86,11 +87,11 @@ const findTorrent = (hash) => {
     if (t.hash === hash) return t;
   }
   return null;
-}
+};
 
 const findFile = (torrent, path) => {
   for (let i = 0; i < torrent.files.length; i++) {
-    const f = torrent.files[i];
+    let f = torrent.files[i];
     if (f.path === path) return f;
   }
   return null;
@@ -133,7 +134,7 @@ setTimeout(() => {
     const buff = fs.readFileSync(path.join(TS_DIR, f));
     load(parse(buff), (err) => {
       if (!err) console.log("Restored torrent", f);
-    })
+    });
   });
 });
 
@@ -142,7 +143,6 @@ setTimeout(() => {
 
 
 torrents.load = (data, next) => {
-  debugger;
   if (data.magnet) {
     load(parse(data.magnet), next);
   } else if (data.torrent) {
@@ -196,7 +196,7 @@ torrents.open = (data, next) => {
     torrent.files = engine.files.map((f, i) => {
       return new File(f, i, torrent);
     });
-    torrent.opening = false;
+    torrent.openning = false;
     torrent.open = true;
     torrents.emit("update");
   });
@@ -218,7 +218,7 @@ torrents.close = (data, next)=> {
     torrent.files = null;
     torrent.open = false;
     torrent.$engine = null;
-    torrent.emit("update");
+    torrents.emit("update");
     next(null);
   });
 };
@@ -227,7 +227,7 @@ torrents.remove = (data, next) => {
   const torrent = findTorrent(data.hash);
   if (!torrent) return next("Torrent Missing");
   if (torrent.$engine) return next("Torrent still open");
-  const i = list.indexof(torrent);
+  const i = list.indexOf(torrent);
   list.splice(i, 1);
   torrents.emit("update");
 
@@ -262,7 +262,7 @@ torrents.downloadFile = (data, next) => {
   }, (err) => {
     file.uploading = false;
     //receive result from backend
-    if (err && err !== 'cancelled') {
+    if (err && err !== "cancelled") {
       file.downloadError = "Backend Error";
       torrents.emit("update");
       return console.error("Backend Error: %s" , err);
@@ -315,7 +315,7 @@ torrents.zipAll = (data, next) => {
   });
 
   torrent.zipping = true;
-  torrent.emit("update");
+  torrents.emit("update");
 
   //callback to front end since upload take sometime
   //user receive updates via websockets

@@ -1,58 +1,65 @@
-//this is a generic backend
-//when required it chooses from list of defined
-//backend based on present envirenment variables
+//backend is a generic backend
+//when 'required' it chooses from a list of defined
+//backends based on present environment variables
 
 import secret from '../config/secret';
 import fs from 'fs';
 
 //list all backends
-const backends = fs.readdirSync(__dirname+"/backends").filter((js) => {
-  return js !==  (/\.js$/).test(js);
+var backends = fs.readdirSync(__dirname+"/backends").filter(function(js) {
+	return js !== "_template.js" && (/\.js$/).test(js);
 });
-
 //exit helper
 function exit(msg) {
-  console.log(msg);
+	console.log(msg);
+	process.exit(1);
 }
 
+var matched = false;
 
-let matched = false;
+//load the *first* viable backend
+backends.forEach(function(name) {
 
-//load this first viable backend
-backends.forEach((name) => {
-  name = name.substr(0, name.lastIndexOf('.')) || name;
-  if (matched) return;
-  var backend = require("./backends/"+name);
-  const vars = backend.vars;
+	if(matched)
+		return;//break
 
-  if (!backend.init) exit("Backend " + name + " missing 'vars' array");
-  const config = secret[name];
-  const vals = vars.map((v) => {
-    const val = config[v];
+	var backend = require("./backends/"+name);
 
-    if (!val) backend = null;
-    return val;
-  });
+	var vars = backend.vars;
 
-  if (!backend) return; //continue
+	if(!backend.init)
+		exit("Backend " + name + " missing 'vars' array");
 
-  //backend has been chosen by env vars,
+// eslint-disable-next-line
+	var vals = vars.map(function(v) {
+		var val = secret.ssh[v]; //change here when using another backend
+		if(!val)
+			backend = null;
+		return val;
+	});
+
+	if(!backend)
+		return;//continue
+
+	//backend has been chosen by env vars,
 	//now check its validity
-  backend.name = name;
 
-  if (!backend.init) exit("Backend " + name + " missing 'init(env vars...)' function");
-  backend.init(vals);
+	backend.name = name;
 
-  if(typeof backend.upload !== "function")
+	if(!backend.init)
+		exit("Backend " + name + " missing 'init(env vars...)' function");
+	backend.init();
+
+	if(typeof backend.upload !== "function")
 		exit("Backend " + name + " missing 'upload(torrent file, callback)' function");
 
-	if(typeof backend.remove !== "function")
-		exit("Backend " + name + " missing 'remove(path, callback)' function");
+	// if(typeof backend.remove !== "function")
+	// 	exit("Backend " + name + " missing 'remove(path, callback)' function");
 
 	if(typeof backend.list !== "function")
 		exit("Backend " + name + " missing 'list(callback)' function");
 
-  //backend ready!
+	//backend ready!
 	module.exports = backend;
 	matched = true;
 });
