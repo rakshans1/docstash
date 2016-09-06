@@ -1,19 +1,18 @@
 import React, {PropTypes} from 'react';
-import {Link} from 'react-router';
 import { connect } from 'react-redux';
 import HomeWithoutLogin from './HomeWithoutLogin';
 import Header from '../common/Header';
 import Home from './Home';
 
 class HomePage extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
   pageshow() {
     if(!this.props.authenticated) {
       return (
         <div>
-        <HomeWithoutLogin/>
+        <HomeWithoutLogin {...this.props}/>
         </div>
       );
     }
@@ -34,7 +33,7 @@ class HomePage extends React.Component {
 }
 
 HomePage.propTypes ={
-  authenticated: PropTypes.bool.isRequired
+  authenticated: PropTypes.bool
 };
 
 function mapStateToProps(state) {

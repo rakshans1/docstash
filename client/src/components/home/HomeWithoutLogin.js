@@ -3,11 +3,15 @@ import {Link} from 'react-router';
 import HeaderWithoutLogin from '../common/HeaderWithoutLogin';
 
 
-const HomeWithoutLogin = () => {
+class HomeWithoutLogin extends React.Component {
+constructor(props) {
+  super(props);
+}
+  render(){
     return(
       <div>
       <div className="homepage">
-        <HeaderWithoutLogin />
+        <HeaderWithoutLogin {...this.props}/>
       <div className="row">
         <div className="col-sm-12">
           <h1>Secure Cloud Storage</h1>
@@ -42,7 +46,7 @@ const HomeWithoutLogin = () => {
       <div className="row">
         <div className="col-sm-12">
           <img src={require('../../assets/img/home/crypto.png')}className="img-fluid hp-img-f" alt="" />
-          <h2 className="hp-features">Get Top Level Cloud Encryption with DocStash Crypto</h2>
+          <h2 className="hp-features">Get Top Level Cloud Encryption with Docstash Crypto</h2>
         </div>
       </div>
 
@@ -51,6 +55,7 @@ const HomeWithoutLogin = () => {
       </footer>
       </div>
     );
-  };
+  }
+}
 
 export default HomeWithoutLogin;

@@ -1,0 +1,74 @@
+.torrents{
+  .torrent-info-row{
+    margin-bottom: 10px;
+  }
+  .torrents-header{
+    position: relative;
+    .torrents-downloading {
+      position: absolute;
+    	right: 0px;
+    	top: 1px;
+    	margin: 9px;
+    	font-size: 0.75rem;
+    	color: $gray-light;
+    }
+  }
+  .torrent-name {
+    font-size: 0.9em;
+    width: 100px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .torrent-hash {
+    font-size: 0.8em;
+    margin-bottom: 10px;
+  }
+  .torrent-status {
+    display: inline-block;
+    font-size: 0.9em;
+    color: $gray-light;
+  }
+  .torrent-download-icon{
+    width: 15px;
+    margin-left: 5px;
+  }
+  .torrent-downloading-icon{
+    width: 25px;
+    cursor: pointer;
+    // margin-left: 5px;
+  }
+  .torrent-icon {
+    width: 12px;
+    margin: 1px 5px 5px;
+  }
+  .torrent-zip{
+    background: darken($green, 12);
+  }
+  .torrent-action{
+    padding: 7px 9px 7px 9px;
+    margin: 10px 0 0 10px;
+    border-radius: 5px;
+    color: $white;
+    cursor: pointer;
+    font-size: 0.8em;
+  }
+  .torrent-stop{
+    background: $red;
+  }
+  table {
+    width: 100%;
+  }
+  td {
+      max-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      word-break: break-all;
+  }
+  td.table-file {
+      width: 80%;
+    @media (max-width: 544px){
+      width: 50%;
+    }
+  }
+}

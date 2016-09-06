@@ -157,7 +157,7 @@ export class CreateAccountScreen extends React.Component {
                   <Input
                   text="Email Address"
                   ref="email"
-                  type="url"
+                  type="email"
                   validate={this.validateEmail}
                   value={this.state.email}
                   onChange={this.handleEmailInput}

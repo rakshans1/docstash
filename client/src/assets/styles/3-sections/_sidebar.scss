@@ -2,7 +2,7 @@
   position: relative;
   border-right: 1px solid darken($light, 10);
   background-color: $white;
-  height: 100vh;
+  // height: 100vh;
   z-index: 5;
   box-shadow: 0px 6px 15px 0px rgba(0, 0, 0, 0.2);
   [class^="flaticon-"]:before, [class*=" flaticon-"]:before, [class^="flaticon-"]:after, [class*=" flaticon-"]:after {
@@ -92,4 +92,7 @@
   .side-nav{
     display: none;
   }
+}
+.side-nav{
+  margin-bottom: 25px;
 }

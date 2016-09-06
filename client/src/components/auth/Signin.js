@@ -6,7 +6,7 @@ class Signin extends React.Component {
   render() {
     return(
       <div className="homepage">
-        <Header/>
+        <Header {...this.props}/>
       <div className="application_wrapper">
 
         <div className="application_routeHandler">

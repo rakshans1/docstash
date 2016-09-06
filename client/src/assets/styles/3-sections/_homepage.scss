@@ -13,7 +13,7 @@
     background-color: transparent;
     border: 1px solid $white;
     color: $white;
-    margin: 15px 15px 0 0;
+    margin: 15px 0px 0 0;
     padding: 1px 15px;
   }
   h1{
@@ -27,7 +27,7 @@
     color: $white;
   }
   .signup-btn{
-    margin: 10px 45%;
+    margin: 10px 42%;
     background-color: $green;
     border-radius: 45px;
     border: 1px solid darken($green, 20%);
@@ -70,8 +70,11 @@
       margin-top: 20px;
       font-size: 2em;
     }
+    .navbar {
+      padding: 15px 5px;
+    }
     .signup-btn{
-      margin: 10px 33.33%;
+      margin: 10px 30.33%;
     }
     .hp-img{
       width: 90%;

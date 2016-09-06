@@ -5,5 +5,5 @@ function node() {
     return false
   }
 }
-const ROOT_URL = node() ? 'http://docstash-server.herokuapp.com' : 'http://localhost:3001';
+const ROOT_URL = node() ? 'http://docstash-server.herokuapp.com' : 'http://d.co';
 export default ROOT_URL;

@@ -8,11 +8,12 @@ $main: #007ee5
 $secondary: lighten( $main, 20% )
 $light: lighten( $main, 54% )
 $green: lighten(desaturate(adjust-hue($main, -73.0980), 41.9355), 18.6275)
+$red: #dc6868
 
 $progress-gradient: darken(saturate(adjust-hue($main, 0.2858), 0), 31.9608)
 
-$white:                     #ffffff !default
-$black :                    #030f01
+$white:                     #fefefa !default
+$black :                    #000000
 $gray-dark:              #373a3c !default
 $gray:                      #55595c !default
 $gray-light:              #818a91 !default
@@ -47,3 +48,7 @@ $font-family-sans-serif:     "Montserrat", sans-serif !default
 $font-family-serif:          Georgia, "Times New Roman", Times, serif !default
 $font-family-monospace:      Menlo, Monaco, Consolas, "Courier New", monospace !default
 $font-family-base:           $font-family-sans-serif !default
+
+
+$body-bg:                    $white !default
+$body-color:                 $gray-dark !default

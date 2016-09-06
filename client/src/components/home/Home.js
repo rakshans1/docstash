@@ -13,7 +13,7 @@ class Home extends React.Component  {
       <div className="container-fluid">
       <div className="row">
         <Sidebar {...this.props}/>
-        <div className="col-sm-8 main">
+        <div className="col-sm-8 col-xs-12 main">
         <Breadcrumb {...this.props}/>
         {this.props.children}
         </div>

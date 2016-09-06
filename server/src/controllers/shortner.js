@@ -20,7 +20,7 @@ export  const post =  (req, res, next) => {
     if (existingUrl) {
       return res.status(200).send({shortner: existingUrl.shortUrl });
     }
-    const uniqueID = randomstring.generate({length: 8,charset: 'alphabetic'});
+    const uniqueID = randomstring.generate({length: 4,charset: 'alphabetic'});
     const shortner = new Shortner();
     shortner.shortUrl = `${secret.domain}/s/${uniqueID}`;
     shortner.url = url;

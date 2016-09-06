@@ -57,6 +57,13 @@ class Breadcrumb extends React.Component {
               <li className="breadcrumb-item "><Link to="/short">Shortner</Link></li>
             </ol>
         );
+        case '/torrent':
+          return(
+                <ol className="breadcrumb">
+                <li className="breadcrumb-item ">Extra</li>
+                <li className="breadcrumb-item "><Link to="/torrent">Torrent</Link></li>
+              </ol>
+          );
       default:
           return false;
     }
@@ -71,6 +78,6 @@ class Breadcrumb extends React.Component {
   }
 }
 Breadcrumb.propTypes = {
-  props: PropTypes.object
+  location: PropTypes.object
 }
 export default Breadcrumb;

@@ -4,7 +4,7 @@
   bottom: 0;
   right: 0;
   left: 0;
-  background-color: transparentize($main, 0.9);
+  background-color: transparentize($black, 0.9);
   z-index: 20;
   animation: fadeIn 0.3s linear;
 }

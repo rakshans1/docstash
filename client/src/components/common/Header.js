@@ -14,7 +14,7 @@ class Header extends React.Component {
       <nav className="navbar nav-shadow navbar-light">
         <div className="brand-img"><Icon type="logo"/></div>
         <IndexLink className="navbar-brand brand" to="/">Docstash</IndexLink>
-        <form className="form-inline pull-xs-center">
+        <form className="form-inline pull-xs-center search-form">
           <div className="form-group search">
               <img src={require('../../assets/icon/search.svg')} className="search-icon" alt="" />
               <i className="fa fa-search search-icon" />
