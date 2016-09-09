@@ -20,7 +20,7 @@ sftp.connect(sshOptions)
   .then(() => console.log("SSH login success"))
   .catch((err) => {
     console.log("SSH login failed: %s", err);
-    process.exit(1);
+    // process.exit(1);
   });
 
 };

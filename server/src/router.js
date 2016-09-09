@@ -88,14 +88,13 @@ export default function(app) {
       if (newFiles) storedFiles = newFiles;
       //broadcast state
       ws.broadcast({
-        config: secret,
+        // config: secret,
         providers: search.providers,
         torrents: torrents.list,
         filesDownloading: torrents.filesDownloading,
         uploads: storedFiles
       });
     };
-    search.on("update", update);
     torrents.on("update", update);
 
     //periodically scan for new stored files

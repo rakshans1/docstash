@@ -59,6 +59,7 @@ class Header extends React.Component {
               <p className="sidebar-text">Extra</p>
               <ul className="nav nav-sidebar sidebar-ul">
                 <li className="sidebar-li"><Link to="/short" className="sidebar-a" activeClassName="active" ><i className="flaticon-link"/> Shortner</Link></li>
+                <li className="sidebar-li"><Link to="/torrent" className="sidebar-a" activeClassName="active" ><i className="flaticon-torrent"/> Torrent Download</Link></li>
               </ul>
 
 

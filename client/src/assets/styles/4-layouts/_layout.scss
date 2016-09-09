@@ -3,13 +3,19 @@
 }
 .shortner_h1{
   color: $secondary;
-  margin: 50px 0 30px  0;
+  margin: 30px 0 30px  0;
 }
 button:focus {
   outline:0;
 }
 .button_center {
   // width: 30%;
-  margin-left: 35%;
-  margin-right: 35%
+  margin-top: auto;
+  margin-bottom: 10px;
+  margin-left: 40%;
+  margin-right: 35%;
+  @media (max-width: 544px){
+    margin-left: 25%;
+    margin-right: 30%;
+  }
 }

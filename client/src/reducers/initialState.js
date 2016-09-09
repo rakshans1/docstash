@@ -7,5 +7,8 @@ export default  {
     email: '',
     picture: '',
   },
-  shortner: ''
+  shortner: '',
+  torrent: {
+    search: []
+  }
 };

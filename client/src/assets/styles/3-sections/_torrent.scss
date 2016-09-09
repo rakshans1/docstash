@@ -34,7 +34,7 @@
     margin-left: 5px;
   }
   .torrent-downloading-icon{
-    width: 25px;
+    width: 18px;
     cursor: pointer;
     // margin-left: 5px;
   }
@@ -52,6 +52,11 @@
     color: $white;
     cursor: pointer;
     font-size: 0.8em;
+    @media (max-width: 544px){
+      span{
+        display: none;
+      }
+    }
   }
   .torrent-stop{
     background: $red;
@@ -64,11 +69,37 @@
       overflow: hidden;
       text-overflow: ellipsis;
       word-break: break-all;
+      font-size: 0.8em;
+      color: $gray;
   }
   td.table-file {
-      width: 80%;
+      width: 70%;
+      font-size: 0.9em;
     @media (max-width: 544px){
-      width: 50%;
+      width: 30%;
     }
+  }
+  td.table-search {
+    width: 70%;
+    font-size: 0.9em;
+    text-align: justify;
+    @media (max-width: 544px){
+      width: 30%;
+    }
+  }
+  .torrent-download{
+    width: 50px;
+  }
+  .torrent-search-status{
+    text-align: right;
+    .torrent-seed {
+      color: $green;
+    }
+    .torrent-leech {
+      color: $red;
+    }
+  }
+  .torrent-search {
+    max-height: 200px;
   }
 }

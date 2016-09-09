@@ -36,8 +36,8 @@ class Sidebar extends React.Component{
       </ul>
       <p className="sidebar-text">Extra</p>
       <ul className="nav nav-sidebar sidebar-ul">
-        <li className="sidebar-li"><Link  className="sidebar-a" activeClassName="active" to="/short"><i className="flaticon-link"/>Link Shortner</Link></li>
         <li className="sidebar-li"><Link  className="sidebar-a" activeClassName="active" to="/torrent"><i className="flaticon-torrent"/>Torrent Download</Link></li>
+        <li className="sidebar-li"><Link  className="sidebar-a" activeClassName="active" to="/short"><i className="flaticon-link"/>Link Shortner</Link></li>
       </ul>
       <div className="usage">
         <p className="usage-use">USAGE</p>

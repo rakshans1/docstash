@@ -205,7 +205,7 @@ class Input extends React.Component {
           onChange={this.handleChange}
           onFocus={this.handleFocus}
           onBlur={this.handleBlur}
-          autoComplete="on"
+          autoComplete="off"
           type={this.props.type}
         />
         <InputError

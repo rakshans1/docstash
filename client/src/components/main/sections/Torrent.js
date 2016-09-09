@@ -1,8 +1,47 @@
 import React, {PropTypes} from 'react';
 import Input from '../../auth/Input';
 import TorrentInfo from './torrent/TorrentInfo';
+import TorrentSearch from './torrent/TorrentSearch';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as torrentActions from '../../../actions/torrentActions';
 
 class Torrent extends React.Component {
+  constructor(props) {
+    super(props);
+      this.state = {
+        torrentInput:  null,
+        showButton: null,
+        buttonValue: ''
+      };
+      this.handletorrentInput = this.handletorrentInput.bind(this);
+      this.saveAndContinue = this.saveAndContinue.bind(this);
+  }
+  handletorrentInput(event) {
+    if ( /^https?:\/\//.test(event.target.value)) {
+      var buttonValue = "Load Torrent";
+      var showButton = "torrent";
+    } else if (/^magnet:\?(.+)$/.test(event.target.value)) {
+       buttonValue = "Load Magnet";
+       showButton = "magnet";
+    } else if (event.target.value) {
+      buttonValue = "Search";
+      showButton = "search";
+    }
+    this.setState({
+      torrentInput: event.target.value,
+      showButton: showButton,
+      buttonValue: buttonValue
+    });
+  }
+
+  saveAndContinue(e) {
+    e.preventDefault();
+    if (this.state.showButton === "search") {
+      this.props.actions.torrentSearch(this.state.torrentInput);
+    }
+  }
+
   render () {
     return(
       <div className="col-sm-8 col-xs-12 torrents">
@@ -10,21 +49,22 @@ class Torrent extends React.Component {
         <form onSubmit={this.saveAndContinue}>
             <Input
             text="Enter search query, torrent URL or magnet URI"
-            ref="url"
+            ref="torrentInput"
             type="text"
             // validate={this.validateUrl}
-            // value={this.state.url}
-            // onChange={this.handleUrlInput}
+            value={this.state.torrentInput}
+            onChange={this.handletorrentInput}
             errorMessage="Url is invalid"
             emptyMessage="Url can't be empty"
             // errorVisible={this.state.showUrlError}
             />
-            <button
+            {this.state.showButton ? <button
               type="submit"
               className="button button_center">
-              Load Torrent
-            </button>
+              {this.state.buttonValue}
+            </button> : null}
         </form>
+        {this.props.torrent.search.length > 0 ?  <TorrentSearch search={this.props.torrent.search} /> : null}
         <div className="torrents-header">
           <h5>Torrents</h5>
           <h6 className="torrents-downloading">Downloading 0 files</h6>
@@ -48,5 +88,16 @@ class Torrent extends React.Component {
     );
   }
 }
-
-export default Torrent;
+Torrent.propTypes = {
+  actions: PropTypes.object.isRequired,
+  torrent: PropTypes.object
+};
+function mapStateToProps(state) {
+  return{ torrent: state.torrent };
+}
+function mapDispatchToProp(dispatch) {
+  return {
+    actions: bindActionCreators(torrentActions, dispatch)
+  };
+}
+export default connect(mapStateToProps, mapDispatchToProp)(Torrent);

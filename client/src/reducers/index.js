@@ -6,6 +6,7 @@ import notification from './notification';
 import modalReducer from './modalReducer';
 import user from './userReducer';
 import shortnerReducer from './shortnerReducer';
+import torrentReducer from './torrentReducer';
 
 const rootReducer = combineReducers({
   routing: routerReducer,
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
   notification: notification,
   modal: modalReducer,
   user: user,
-  shortner: shortnerReducer
+  shortner: shortnerReducer,
+  torrent: torrentReducer
 });
 
 export default rootReducer;

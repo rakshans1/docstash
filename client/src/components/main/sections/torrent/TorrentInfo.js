@@ -16,10 +16,10 @@ class TorrentInfo extends React.Component {
             <img src={require('../../../../assets/icon/download.svg')} className="torrent-download-icon" alt=""/>
           </div>
           <a className="torrent-action torrent-zip"><img src={require('../../../../assets/icon/save.svg')} className="torrent-icon" alt=""/>
-            Zip
+            <span>Zip</span>
           </a>
           <a className="torrent-action torrent-stop"><img src={require('../../../../assets/icon/stop.svg')} className="torrent-icon" alt=""/>
-            Stop
+            <span>Stop</span>
           </a>
         </div>
       </div>
@@ -39,12 +39,12 @@ class TorrentInfo extends React.Component {
           <tr>
             <td className="text-xs-right table-file">Readme.txt</td>
             <td>341 B</td>
-            <td><img src={require('../../../../assets/icon/red-stop.svg')} className="torrent-downloading-icon" alt=""/></td>
+            <td className="torrent-download"><img src={require('../../../../assets/icon/red-stop.svg')} className="torrent-downloading-icon" alt=""/></td>
           </tr>
           <tr>
             <td className="text-xs-right table-file">Ubuntu 16.04.1 LTS.iso</td>
             <td>883 MB</td>
-            <td><img src={require('../../../../assets/icon/cloud-download.svg')} className="torrent-downloading-icon" alt=""/></td>
+            <td className="torrent-download"><img src={require('../../../../assets/icon/cloud-download.svg')} className="torrent-downloading-icon" alt=""/></td>
           </tr>
           <tr>
             <td className="text-xs-right">2 Files</td>
