@@ -2,7 +2,7 @@
 import extra from '../services/searchers/extra';
 
 exports.list = function(query, callback) {
-	extra.popular(query.query)
+	extra.search(query.query)
 		.then(torrents =>{
 			callback(null, torrents);
 		})

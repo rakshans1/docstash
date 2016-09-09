@@ -7,6 +7,7 @@ import modalReducer from './modalReducer';
 import user from './userReducer';
 import shortnerReducer from './shortnerReducer';
 import torrentReducer from './torrentReducer';
+import wsReducer from './wsReducer';
 
 const rootReducer = combineReducers({
   routing: routerReducer,
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
   modal: modalReducer,
   user: user,
   shortner: shortnerReducer,
-  torrent: torrentReducer
+  torrent: torrentReducer,
+  ws: wsReducer
 });
 
 export default rootReducer;

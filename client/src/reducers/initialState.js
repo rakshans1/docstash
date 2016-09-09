@@ -10,5 +10,8 @@ export default  {
   shortner: '',
   torrent: {
     search: []
+  },
+  ws: {
+    
   }
 };

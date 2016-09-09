@@ -110,6 +110,7 @@ const load = (t, next) => {
     $engine: null,
     hash: t.infoHash,
     name: t.name,
+    length: null,
     trackers: t.announce,
     magnet: parse.toMagnetURI(t),
     files: [],
@@ -193,6 +194,7 @@ torrents.open = (data, next) => {
   engine.on('ready', () => {
     //overwrite magnet name with real name
     torrent.name = engine.torrent.name;
+    torrent.length = engine.torrent.length;
     torrent.files = engine.files.map((f, i) => {
       return new File(f, i, torrent);
     });

@@ -2,6 +2,15 @@ import React, {PropTypes} from 'react';
 import units from '../../../../utils/units';
 
 class TorrentSearch extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(hash) {
+    this.props.actions.torrentLoad("magnet" ,hash);
+  }
+
   render() {
     const searchResult = this.props.search.map( (search, i) => {
       return(
@@ -9,7 +18,7 @@ class TorrentSearch extends React.Component {
           <td className=" table-search">{search.title}</td>
           <td>{units(search.size)}</td>
           <td className="torrent-search-status"><span className="torrent-seed">{search.seeds}</span><span className="torrent-leech"> {search.leechs}</span></td>
-          <td className="torrent-download"><img src={require('../../../../assets/icon/search-download.svg')} className="torrent-downloading-icon" alt=""/></td>
+          <td className="torrent-download"><img src={require('../../../../assets/icon/search-download.svg')} className="torrent-downloading-icon" alt=""  onClick={() => this.handleClick(search.hash)}/></td>
         </tr>
       );
     });
@@ -34,6 +43,7 @@ class TorrentSearch extends React.Component {
 }
 
 TorrentSearch.propTypes ={
-  search: PropTypes.array
+  search: PropTypes.array,
+  actions: PropTypes.object
 }
 export default TorrentSearch;

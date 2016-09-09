@@ -12,7 +12,7 @@ import './assets/icon/flaticon.css';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { AUTH_USER_SUCCESS } from './constants/actionTypes';
 import {userInfo} from './actions/userActions';
-
+import ws from './actions/wsAction';
 
 const store = configureStore();
 const history = syncHistoryWithStore(browserHistory, store);
@@ -23,6 +23,7 @@ if (token) {
   // we need to update application state
   store.dispatch({ type: AUTH_USER_SUCCESS });
   store.dispatch(userInfo(token));
+  store.dispatch(ws());
 }
 
 render(

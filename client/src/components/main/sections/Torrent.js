@@ -39,6 +39,8 @@ class Torrent extends React.Component {
     e.preventDefault();
     if (this.state.showButton === "search") {
       this.props.actions.torrentSearch(this.state.torrentInput);
+    } else {
+      this.props.actions.torrentLoad(this.state.showButton ,this.state.torrentInput);
     }
   }
 
@@ -64,17 +66,17 @@ class Torrent extends React.Component {
               {this.state.buttonValue}
             </button> : null}
         </form>
-        {this.props.torrent.search.length > 0 ?  <TorrentSearch search={this.props.torrent.search} /> : null}
+        {this.props.torrent.search.length > 0 ?  <TorrentSearch search={this.props.torrent.search} actions={this.props.actions} /> : null}
         <div className="torrents-header">
           <h5>Torrents</h5>
-          <h6 className="torrents-downloading">Downloading 0 files</h6>
+          <h6 className="torrents-downloading">Downloading {this.props.ws.filesDownloading ? this.props.ws.filesDownloading : 0} files</h6>
         </div>
 
-        <TorrentInfo />
+        {this.props.ws.torrents && this.props.ws.torrents.length > 0 ?   <TorrentInfo torrents={this.props.ws.torrents}/> :
 
         <div className="card card-block">
           <p className="text-xs-center">Add torrents above</p>
-        </div>
+        </div> }
 
         <div className="torrents-header">
           <h5>Downloads</h5>
@@ -90,10 +92,11 @@ class Torrent extends React.Component {
 }
 Torrent.propTypes = {
   actions: PropTypes.object.isRequired,
-  torrent: PropTypes.object
+  torrent: PropTypes.object,
+  ws: PropTypes.object
 };
 function mapStateToProps(state) {
-  return{ torrent: state.torrent };
+  return{ torrent: state.torrent, ws: state.ws};
 }
 function mapDispatchToProp(dispatch) {
   return {

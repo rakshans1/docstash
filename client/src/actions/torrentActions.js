@@ -1,12 +1,12 @@
 import axios from 'axios';
-import { TORRENT_SEARCH_SUCCESS } from '../constants/actionTypes';
+import * as types from '../constants/actionTypes';
 import {beginAjaxCall, ajaxCallError} from './ajaxstatusActions';
 import {addNotification} from './notificationActions';
 import  ROOT_URL from '../baseurl';
 
 export function torrentSearchSucess(data) {
   return {
-    type: TORRENT_SEARCH_SUCCESS,
+    type: types.TORRENT_SEARCH_SUCCESS,
     payload: data
   };
 }
@@ -24,6 +24,22 @@ export function torrentSearch(query) {
       .catch((error) => {
         dispatch(ajaxCallError());
         dispatch(addNotification('Torrent Search Error', 'error'));
+      });
+  };
+}
+
+export function torrentLoad(torrent, query) {
+  return function(dispatch) {
+    const data = torrent === "magnet" ? {magnet : query } : {torrent: query};
+    dispatch(beginAjaxCall());
+    axios.post(`${ROOT_URL}/api/torrents/load`,data)
+      .then(() => {
+        dispatch(addNotification('Torrent Added', 'success'));
+        dispatch(ajaxCallError());
+      })
+      .catch((error) => {
+        dispatch(ajaxCallError());
+        dispatch(addNotification(error.response.data, 'error'));
       });
   };
 }

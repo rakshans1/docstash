@@ -1,5 +1,6 @@
 /* eslint-disable import/default */
 /* eslint-disable no-unused-vars */
+import apiList from './util/apilist';
 import passport from 'passport';
 import * as auth from './controllers/auth';
 import passportConfig from './services/passport';
@@ -22,6 +23,9 @@ export default function(app) {
     //Home Controllers
     app.get('/', requireAuth, (req, res) => {
       res.send('hi ' + req.user.name);
+    });
+    app.get('/load', (req, res) => {
+      res.send('hi');
     });
 
 
@@ -66,7 +70,6 @@ export default function(app) {
         //dont call modules with request/response,
         //instead call with 'body' and 'callback(err, data)'
         const endpoint = '/api/' + name + '/' + key;
-        console.log("POST %s -> %s.%s", endpoint, name, key);
         app.post(endpoint, (req, res) => {
           fn(req.body, (err, data) => {
             if(err) {
@@ -105,4 +108,5 @@ export default function(app) {
     }
     setInterval(list, 15*60*1000);
 
+apiList(app._router.stack);
 } //main function end

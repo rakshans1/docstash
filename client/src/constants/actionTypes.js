@@ -8,4 +8,5 @@ export const BEGIN_AJAX_CALL = 'BEGIN_AJAX_CALL',
                       HIDE_MODAL = 'HIDE_MODAL',
                       USERS_INFO_SUCCESS = 'USERS_INFO_SUCCESS',
                       ADD_SHORTNER_SUCCESS = "ADD_SHORTNER_SUCCESS",
-                      TORRENT_SEARCH_SUCCESS= "TORRENT_SEARCH_SUCCESS"
+                      TORRENT_SEARCH_SUCCESS= "TORRENT_SEARCH_SUCCESS",
+                      WEBSOCKET_SUCCESS= "WEBSOCKET_SUCCESS"

@@ -1,10 +1,11 @@
-const units = (bytes,decimals) => {
-   if(bytes === 0) return '0 Byte';
-   var k = 1000;
-   var dm = decimals + 1 || 3;
-   var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-   var i = Math.floor(Math.log(bytes) / Math.log(k));
-   return Math.floor((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+const units = (bytes) => {
+  if      (bytes>=1000000000) {bytes=(bytes/1000000000).toFixed(2)+' GB';}
+ else if (bytes>=1000000)    {bytes=(bytes/1000000).toFixed(1)+' MB';}
+ else if (bytes>=1000)       {bytes=(bytes/1000).toFixed(2)+' KB';}
+ else if (bytes>1)           {bytes=bytes+' B';}
+ else if (bytes===1)          {bytes=bytes+' B';}
+ else                        {bytes='0 B';}
+ return bytes;
 }
 
 export default units;

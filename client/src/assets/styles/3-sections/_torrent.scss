@@ -73,7 +73,7 @@
       color: $gray;
   }
   td.table-file {
-      width: 70%;
+      width: 77%;
       font-size: 0.9em;
     @media (max-width: 544px){
       width: 30%;
@@ -101,5 +101,9 @@
   }
   .torrent-search {
     max-height: 200px;
+  }
+  .torrent-inactive {
+    font-size: 0.7em;
+    text-align: center;
   }
 }
