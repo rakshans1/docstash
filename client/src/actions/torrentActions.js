@@ -28,9 +28,9 @@ export function torrentSearch(query) {
   };
 }
 
-export function torrentLoad(torrent, query) {
+export function torrentLoad(torrent, query, email) {
   return function(dispatch) {
-    const data = torrent === "magnet" ? {magnet : query } : {torrent: query};
+    const data = torrent === "magnet" ? {magnet : query, email: email } : {torrent: query, email: email};
     dispatch(beginAjaxCall());
     axios.post(`${ROOT_URL}/api/torrents/load`,data)
       .then(() => {

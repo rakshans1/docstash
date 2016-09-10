@@ -100,13 +100,14 @@ const findFile = (torrent, path) => {
 //========
 
 
-const load = (t, next) => {
+const load = (t, email, next) => {
   if (!t) return next("Invalid Torrent");
   if (!t.infoHash) next("Missing Hash");
 
   let torrent = findTorrent(t.infoHash);
   if (torrent) return next("Torrent already exists");
   torrent = {
+    email: email,
     $engine: null,
     hash: t.infoHash,
     name: t.name,
@@ -145,7 +146,7 @@ setTimeout(() => {
 
 torrents.load = (data, next) => {
   if (data.magnet) {
-    load(parse(data.magnet), next);
+    load(parse(data.magnet), data.email , next);
   } else if (data.torrent) {
     request({
       method: "GET",
@@ -160,7 +161,7 @@ torrents.load = (data, next) => {
       } catch(e) {
         return next("Failed to parse torrent");
       }
-      load(t, next);
+      load(t, data.email, next);
     });
   } else {
     return next("Invalid request");

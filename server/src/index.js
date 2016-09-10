@@ -10,8 +10,6 @@ import http from 'http';
 // eslint-disable-next-line
 import ws from './services/ws';
 
-//remove if not cool
-import esm from 'express-status-monitor';
 
 //db options
 let options = {
@@ -35,31 +33,31 @@ if ( process.env.NODE_ENV !== 'test') {
 
 
 
-app.use(esm());
 app.use(cors());
 app.use(bodyParser.json({ type: '*/*' }));
-app.use((req, res, next) => {
-   res.header('Access-Control-Allow-Origin', '*');
-   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-   res.header('Access-Control-Allow-Headers', 'X-Requested-With,Origin,Content-Type, Authorization');
-   if ('OPTIONS' === req.method) {
-        res.send(200);
-    }
-    else {
-        next();
-    }
- });
+// app.use((req, res, next) => {
+//    res.header('Access-Control-Allow-Origin', '*');
+//    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+//    res.header('Access-Control-Allow-Headers', 'X-Requested-With,Origin,Content-Type, Authorization');
+//    if ('OPTIONS' === req.method) {
+//         res.send(200);
+//     }
+//     else {
+//         next();
+//     }
+//  });
 app.disable('x-powered-by');
 
 
 
 const  server = http.createServer(app);
+
+server.listen(secret.port);
+
 //hook http to  websocket
 ws.install(server);
 router(app);
 
 
-
-server.listen(secret.port);
 
 export default app; // for testing

@@ -12,6 +12,7 @@ export default  {
     search: []
   },
   ws: {
-    
+    torrents: '',
+    onlineUsers: 0
   }
 };

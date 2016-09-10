@@ -52,9 +52,9 @@
     "randomstring": "^1.1.5",
     "request": "^2.74.0",
     "rimraf": "^2.5.4",
+    "socket.io": "^1.4.8",
     "ssh2-sftp-client": "^1.0.5",
     "torrent-stream": "^1.0.3",
-    "ws": "^1.1.1",
     "zip-stream": "^1.1.0"
   },
   "devDependencies": {

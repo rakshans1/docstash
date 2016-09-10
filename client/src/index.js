@@ -23,7 +23,6 @@ if (token) {
   // we need to update application state
   store.dispatch({ type: AUTH_USER_SUCCESS });
   store.dispatch(userInfo(token));
-  store.dispatch(ws());
 }
 
 render(

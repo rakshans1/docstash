@@ -8,7 +8,7 @@ class TorrentSearch extends React.Component {
   }
 
   handleClick(hash) {
-    this.props.actions.torrentLoad("magnet" ,hash);
+    this.props.actions.torrentLoad("magnet" ,hash, this.props.email);
   }
 
   render() {
@@ -44,6 +44,7 @@ class TorrentSearch extends React.Component {
 
 TorrentSearch.propTypes ={
   search: PropTypes.array,
-  actions: PropTypes.object
+  actions: PropTypes.object,
+  email: PropTypes.string
 }
 export default TorrentSearch;

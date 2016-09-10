@@ -13,7 +13,7 @@ class Header extends React.Component {
       <div>
       <nav className="navbar nav-shadow navbar-light">
         <div className="brand-img"><Icon type="logo"/></div>
-        <IndexLink className="navbar-brand brand" to="/">Docstash</IndexLink>
+        <IndexLink className="navbar-brand brand" to="/">Docstash <span className="onlineUsers">{this.props.onlineUsers}</span></IndexLink>
         <form className="form-inline pull-xs-center search-form">
           <div className="form-group search">
               <img src={require('../../assets/icon/search.svg')} className="search-icon" alt="" />
@@ -79,6 +79,7 @@ Header.defaultProps = {
 }
 Header.propTypes = {
   user: PropTypes.object.isRequired,
+  onlineUsers:PropTypes.number
 };
 function mapStateToProps(state) {
   return{ user: state.user };

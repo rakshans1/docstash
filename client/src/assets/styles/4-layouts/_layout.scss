@@ -19,3 +19,13 @@ button:focus {
     margin-right: 30%;
   }
 }
+.onlineUsers{
+  position: absolute;
+  padding: 2px 9px;
+  font-size: 0.4em;
+  border-radius: 100px;
+  top: 2px;
+  right: -25px;
+  color: $white;
+  background-color: $secondary;
+}

@@ -90,9 +90,7 @@ export default function(app) {
       //optionnaly update stored files
       if (newFiles) storedFiles = newFiles;
       //broadcast state
-      ws.broadcast({
-        // config: secret,
-        providers: search.providers,
+      ws.send({
         torrents: torrents.list,
         filesDownloading: torrents.filesDownloading,
         uploads: storedFiles
@@ -108,5 +106,5 @@ export default function(app) {
     }
     setInterval(list, 15*60*1000);
 
-apiList(app._router.stack);
+// apiList(app._router.stack);
 } //main function end

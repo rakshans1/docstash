@@ -5,7 +5,8 @@
     "plugin:import/warnings"
   ],
   "plugins": [
-    "react"
+    "react",
+    "you-dont-need-lodash-underscore"
   ],
   "parserOptions": {
     "ecmaVersion": 6,

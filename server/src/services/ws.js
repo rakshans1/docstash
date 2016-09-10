@@ -1,61 +1,80 @@
-import WebSocket from 'ws';
+import socketio from 'socket.io';
+let onlineUsers = 0;
+let io;
 
-let json = "";
-let data = null;
-let conns = [];
-let THROTTLE = 100;
-let queued = false;
+let user = [];
+let userdata = {};
 
-// send keeplive pings
-setInterval(() => {
-  conns.forEach((conn) => {
-    conn.ssend("ping");
+exports.install = (server) => {
+  io = socketio(server);
+  io.on('connection' , (socket) => {
+    io.emit('onlineUsers',{ onlineUsers: ++onlineUsers })
+    // initializeConnection(socket);
+    handleEmail(socket);
+    handleClientDisconnections(socket);
   });
-}, 30 * 1000);
-
-exports.install = function(server) {
-  const ws = new WebSocket.Server( {server: server});
-
-  //this is required to allow the error to fall
-  //through to the http server
-  ws.on("error", () => {});
-
-  ws.on('connection' , (conn) => {
-    //safe send
-    conn.ssend = function(str) {
-      if (this.readyState === WebSocket.OPEN) this.send(str);
-    };
-    //track all connections
-    conns.push(conn);
-    conn.on('close', () => {
-      let i = conns.indexOf(conn);
-      if (i >= 0) conns.splice(i, 1);
-    });
-
-    //noop (dont buffer data)
-    conn.on('data', () => {});
-
-    //initially sends the last broadcast
-    if (json) conn.ssend(json);
-  });
-};
 
 
-function broadcast() {
-  queued = false;
-  //dont include $properties
-  json = JSON.stringify(data, (k, v) => {
-    return typeof k === "string" && k[0] === "$" ? undefined : v;
-  }, 2);
-  conns.forEach((conn) => {
-    conn.ssend(json);
+}
+
+// function initializeConnection(socket){
+//   return
+// }
+
+function handleEmail (socket) {
+  socket.on('email', (email) => {
+    let existingUser = user.find(user => user.email === email);
+    if (existingUser) return updateUser([existingUser.email], userdata.torrents, user, socket);
+    user.push({email: email,  data: {} , sockets: [  socket ]  });
   });
 }
 
-//just throttles to the private 'broadcast' function
-exports.broadcast = function(d) {
-  data = d; //always use latest broadcast
-  if (queued) return;
-  queued = true;
-  setTimeout(broadcast, THROTTLE);
+
+function handleClientDisconnections(socket){
+  socket.on('disconnect', function(){
+   io.emit('onlineUsers',{ onlineUsers: --onlineUsers })
+ });
+}
+
+function sendUpdate(emails) {
+  emails.forEach((email) => {
+    const usr = user.find(user => user.email === email);
+    usr.sockets.forEach((socket) => {
+      socket.emit('data', usr.data);
+    })
+  });
+}
+
+
+exports.send = (data) => {
+  let json = JSON.stringify(data, (k, v) => {
+    return typeof k === "string" && k[0] === "$" ? undefined : v;
+  }, 2);
+  let j = JSON.parse(json);
+  userdata = j;
+  sortByEmail(userdata.torrents);
+}
+
+function sortByEmail(array) {
+	//array should have array.email  property
+	var uniqueemail = [];
+  // eslint-disable-next-line
+	array.map((item) => {
+		const i = uniqueemail.find(email => email === item.email);
+		if (i === undefined) uniqueemail.push(item.email);
+	});
+	updateUser(uniqueemail, array, user);
+}
+
+function updateUser(emails, array, user, socket) {
+	emails.forEach((email) => {
+		const usr = user.find(user => user.email === email);
+		if (!usr) return;
+		if (array ) {
+      var tor = array.filter(array => array.email === email);
+		usr.data.torrents = tor;
+    }
+    if (socket) usr.sockets.push(socket);
+	});
+  sendUpdate(emails);
 }

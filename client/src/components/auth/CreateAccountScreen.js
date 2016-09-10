@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react';
 import Input from './Input';
-import _ from 'lodash';
+import _ from '../../utils/lobash'
+// import _ from 'lodash';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as authActions from '../../actions/authActions';
@@ -14,7 +15,7 @@ export class CreateAccountScreen extends React.Component {
       name: '',
       email: '',
       password: null,
-      confirmPassword: '',
+      confirmPassword: null,
       forbiddenWords: ["password", "user", "username"],
       owl_arm_visible: false
     };

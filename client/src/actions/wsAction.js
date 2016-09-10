@@ -1,6 +1,6 @@
 import * as types from '../constants/actionTypes';
 import  {WS_URL} from '../baseurl';
-
+import io from 'socket.io-client';
 
 export function wsSuccess(data) {
   return {
@@ -10,16 +10,18 @@ export function wsSuccess(data) {
 }
 
 
-export default function ws() {
-  const ws = new WebSocket(WS_URL);
+export default function ws(email) {
   return function(dispatch) {
-    ws.onopen = () => {
-      console.log("Connected");
-    };
-    ws.onmessage = (e) => {
-      if (e.data === "ping") return;
-      const data = JSON.parse(e.data);
+    const socket =  io(WS_URL);
+    socket.emit('email', email);
+    socket.on('onlineUsers', (onlineUsers) => {
+      dispatch({
+        type: types.WEBSOCKET_TOTAL_USER,
+        payload: onlineUsers
+      });
+    });
+    socket.on('data', (data) => {
       dispatch(wsSuccess(data));
-    }
+    });
   }
 }

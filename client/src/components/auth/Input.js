@@ -1,5 +1,6 @@
 import React, {PropTypes} from 'react';
-import _ from 'lodash';
+import _ from '../../utils/lobash'
+// import _ from 'lodash';
 import Icon from '.././icon';
 import InputError from './InputErrors';
 import PasswordValidator from './PasswordValidator';
@@ -156,7 +157,7 @@ class Input extends React.Component {
     return /\d/.test(value);
   }
   checkWords(value) {
-    return  _.some(this.state.forbiddenWords, function (word) {
+    return  this.state.forbiddenWords.some(function (word) {
       let matched = (word === value) ? true : "";
       return matched;
     });

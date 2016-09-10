@@ -40,7 +40,7 @@ class Torrent extends React.Component {
     if (this.state.showButton === "search") {
       this.props.actions.torrentSearch(this.state.torrentInput);
     } else {
-      this.props.actions.torrentLoad(this.state.showButton ,this.state.torrentInput);
+      this.props.actions.torrentLoad(this.state.showButton ,this.state.torrentInput, this.props.email);
     }
   }
 
@@ -66,7 +66,7 @@ class Torrent extends React.Component {
               {this.state.buttonValue}
             </button> : null}
         </form>
-        {this.props.torrent.search.length > 0 ?  <TorrentSearch search={this.props.torrent.search} actions={this.props.actions} /> : null}
+        {this.props.torrent.search.length > 0 ?  <TorrentSearch search={this.props.torrent.search} actions={this.props.actions} email={this.props.email}/> : null}
         <div className="torrents-header">
           <h5>Torrents</h5>
           <h6 className="torrents-downloading">Downloading {this.props.ws.filesDownloading ? this.props.ws.filesDownloading : 0} files</h6>
@@ -93,10 +93,11 @@ class Torrent extends React.Component {
 Torrent.propTypes = {
   actions: PropTypes.object.isRequired,
   torrent: PropTypes.object,
-  ws: PropTypes.object
+  ws: PropTypes.object,
+  email: PropTypes.string
 };
 function mapStateToProps(state) {
-  return{ torrent: state.torrent, ws: state.ws};
+  return{ torrent: state.torrent, ws: state.ws, email: state.user.email};
 }
 function mapDispatchToProp(dispatch) {
   return {

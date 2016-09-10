@@ -37,7 +37,7 @@ HomePage.propTypes ={
 };
 
 function mapStateToProps(state) {
-  return { authenticated: state.auth.authenticated };
+  return { authenticated: state.auth.authenticated, onlineUsers: state.ws.onlineUsers };
 }
 
 export default connect(mapStateToProps)(HomePage);
