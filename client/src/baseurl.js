@@ -5,6 +5,6 @@ function node() {
     return false
   }
 }
-const ROOT_URL = node() ? 'http://docstash-server.herokuapp.com' : 'http://d.co';
-export const WS_URL = node() ? 'ws://docstash-server.herokuapp.com' : 'ws://d.co';
+const ROOT_URL = node() ? 'http://docstash-server.herokuapp.com' : 'http://d.in';
+export const WS_URL = node() ? 'ws://docstash-server.herokuapp.com' : 'ws://d.in';
 export default ROOT_URL;

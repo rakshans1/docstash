@@ -72,7 +72,7 @@ class Torrent extends React.Component {
           <h6 className="torrents-downloading">Downloading {this.props.ws.filesDownloading ? this.props.ws.filesDownloading : 0} files</h6>
         </div>
 
-        {this.props.ws.torrents && this.props.ws.torrents.length > 0 ?   <TorrentInfo torrents={this.props.ws.torrents}/> :
+        {this.props.ws.torrents && this.props.ws.torrents.length > 0 ?   <TorrentInfo torrents={this.props.ws.torrents} actions={this.props.actions}/> :
 
         <div className="card card-block">
           <p className="text-xs-center">Add torrents above</p>

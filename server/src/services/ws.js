@@ -2,8 +2,8 @@ import socketio from 'socket.io';
 let onlineUsers = 0;
 let io;
 
-let user = [];
-let userdata = {};
+let user = []; //  [ {email: , data:{} , sockets:[{}, {}] } ]
+let userdata = {}; // object given by updater
 
 exports.install = (server) => {
   io = socketio(server);
@@ -13,40 +13,54 @@ exports.install = (server) => {
     handleEmail(socket);
     handleClientDisconnections(socket);
   });
-
-
 }
 
 // function initializeConnection(socket){
 //   return
 // }
 
-function handleEmail (socket) {
+function handleEmail (socket) {  //Add new connections to user array if user exists see for his data and update
   socket.on('email', (email) => {
     let existingUser = user.find(user => user.email === email);
-    if (existingUser) return updateUser([existingUser.email], userdata.torrents, user, socket);
+    if (existingUser) return updateUser([existingUser.email], userdata.torrents, socket);
     user.push({email: email,  data: {} , sockets: [  socket ]  });
   });
 }
 
 
-function handleClientDisconnections(socket){
+function handleClientDisconnections(socket){  //delete user socket from array of sockets
   socket.on('disconnect', function(){
    io.emit('onlineUsers',{ onlineUsers: --onlineUsers })
+   deleteSocket(socket);
  });
 }
 
 function sendUpdate(emails) {
   emails.forEach((email) => {
-    const usr = user.find(user => user.email === email);
+    const usr = user.find(usr => usr.email === email);
     usr.sockets.forEach((socket) => {
       socket.emit('data', usr.data);
     })
   });
 }
 
+function socketHeartBeat( ) {
+  user.forEach(usr => {
+    usr.sockets.forEach((socket) => {
+      socket.emit('data', usr.data);
+    })
+  });
+}
 
-exports.send = (data) => {
+function deleteSocket (socket) {
+  user.forEach(usr => {
+    usr.sockets.forEach((sock, index, object) => {
+      if (sock.id === socket.id) object.splice(index, 1);
+    })
+  });
+}
+
+exports.send = (data) => { // Updater sends updates here
   let json = JSON.stringify(data, (k, v) => {
     return typeof k === "string" && k[0] === "$" ? undefined : v;
   }, 2);
@@ -63,16 +77,17 @@ function sortByEmail(array) {
 		const i = uniqueemail.find(email => email === item.email);
 		if (i === undefined) uniqueemail.push(item.email);
 	});
-	updateUser(uniqueemail, array, user);
+	updateUser(uniqueemail, array);
 }
 
-function updateUser(emails, array, user, socket) {
+function updateUser(emails, array, socket) {
 	emails.forEach((email) => {
 		const usr = user.find(user => user.email === email);
-		if (!usr) return;
+		if (!usr) return socketHeartBeat();
 		if (array ) {
       var tor = array.filter(array => array.email === email);
 		usr.data.torrents = tor;
+    usr.data.filesDownloading = tor.length;
     }
     if (socket) usr.sockets.push(socket);
 	});

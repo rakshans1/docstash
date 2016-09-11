@@ -43,3 +43,99 @@ export function torrentLoad(torrent, query, email) {
       });
   };
 }
+
+
+export function torrentStop(hash) {
+  return function(dispatch) {
+    const data = {hash : hash };
+    dispatch(beginAjaxCall());
+    axios.post(`${ROOT_URL}/api/torrents/close`,data)
+      .then(() => {
+        dispatch(addNotification('Torrent Stopped', 'info'));
+        dispatch(ajaxCallError());
+      })
+      .catch((error) => {
+        dispatch(ajaxCallError());
+        dispatch(addNotification(error.response.data, 'error'));
+      });
+  };
+}
+export function torrentRemove(hash) {
+  return function(dispatch) {
+    const data = {hash : hash };
+    dispatch(beginAjaxCall());
+    axios.post(`${ROOT_URL}/api/torrents/remove`,data)
+      .then(() => {
+        dispatch(addNotification('Torrent Removed', 'success'));
+        dispatch(ajaxCallError());
+      })
+      .catch((error) => {
+        dispatch(ajaxCallError());
+        dispatch(addNotification(error.response.data, 'error'));
+      });
+  };
+}
+
+export function torrentOpen(hash) {
+  return function(dispatch) {
+    const data = {hash : hash };
+    dispatch(beginAjaxCall());
+    axios.post(`${ROOT_URL}/api/torrents/open`,data)
+      .then(() => {
+        dispatch(addNotification('Torrent Resumed', 'info'));
+        dispatch(ajaxCallError());
+      })
+      .catch((error) => {
+        dispatch(ajaxCallError());
+        dispatch(addNotification(error.response.data, 'error'));
+      });
+  };
+}
+
+export function torrentZip(hash) {
+  return function(dispatch) {
+    const data = {hash : hash };
+    dispatch(beginAjaxCall());
+    axios.post(`${ROOT_URL}/api/torrents/zipALL`,data)
+      .then(() => {
+        dispatch(addNotification('Torrent Zipping', 'info'));
+        dispatch(ajaxCallError());
+      })
+      .catch((error) => {
+        dispatch(ajaxCallError());
+        dispatch(addNotification(error.response.data, 'error'));
+      });
+  };
+}
+
+export function torrentdownloadFile(hash, path ) {
+  return function(dispatch) {
+    const data = {hash : hash, path: path };
+    dispatch(beginAjaxCall());
+    axios.post(`${ROOT_URL}/api/torrents/downloadFile`,data)
+      .then(() => {
+        dispatch(addNotification('File Downloading', 'info'));
+        dispatch(ajaxCallError());
+      })
+      .catch((error) => {
+        dispatch(ajaxCallError());
+        dispatch(addNotification(error.response.data, 'error'));
+      });
+  };
+}
+
+export function torrentcancelFile(hash, path ) {
+  return function(dispatch) {
+    const data = {hash : hash, path: path };
+    dispatch(beginAjaxCall());
+    axios.post(`${ROOT_URL}/api/torrents/cancelFile`,data)
+      .then(() => {
+        dispatch(addNotification('File Stopped', 'info'));
+        dispatch(ajaxCallError());
+      })
+      .catch((error) => {
+        dispatch(ajaxCallError());
+        dispatch(addNotification(error.response.data, 'error'));
+      });
+  };
+}

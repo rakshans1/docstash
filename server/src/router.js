@@ -106,5 +106,8 @@ export default function(app) {
     }
     setInterval(list, 15*60*1000);
 
-// apiList(app._router.stack);
+  if (process.env.NODE_ENV === undefined) {
+    const apilist =  require('./util/apilist');
+    apiList(app._router.stack);
+  }
 } //main function end
