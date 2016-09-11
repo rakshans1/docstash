@@ -1,7 +1,7 @@
 import socketio from 'socket.io';
 let onlineUsers = 0;
 let io;
-
+let downloadList =  [];
 let user = []; //  [ {email: , data:{} , sockets:[{}, {}] } ]
 let userdata = {}; // object given by updater
 
@@ -44,14 +44,6 @@ function sendUpdate(emails) {
   });
 }
 
-function socketHeartBeat( ) {
-  user.forEach(usr => {
-    usr.sockets.forEach((socket) => {
-      socket.emit('data', usr.data);
-    })
-  });
-}
-
 function deleteSocket (socket) {
   user.forEach(usr => {
     usr.sockets.forEach((sock, index, object) => {
@@ -83,7 +75,7 @@ function sortByEmail(array) {
 function updateUser(emails, array, socket) {
 	emails.forEach((email) => {
 		const usr = user.find(user => user.email === email);
-		if (!usr) return socketHeartBeat();
+		if (!usr) return
 		if (array ) {
       var tor = array.filter(array => array.email === email);
 		usr.data.torrents = tor;
@@ -91,5 +83,19 @@ function updateUser(emails, array, socket) {
     }
     if (socket) usr.sockets.push(socket);
 	});
-  sendUpdate(emails);
+	sendUpdate(emails);
+	let difference = downloadList.filter(x => emails.indexOf(x) == -1); //difference between previous update list and now
+	if (difference.length > 0) nodownload(difference); 
+	downloadList = emails;
+}
+
+
+function nodownload(emails) {
+	emails.forEach((email) => {
+		const usr = user.find(user => user.email === email);
+		if (!usr) return
+			usr.data.torrents = [];
+  	  usr.data.filesDownloading = 0;
+	});
+	sendUpdate(emails);
 }

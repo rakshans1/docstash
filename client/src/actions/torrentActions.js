@@ -92,7 +92,7 @@ export function torrentOpen(hash) {
   };
 }
 
-export function torrentZip(hash) {
+export function torrentzipAll(hash) {
   return function(dispatch) {
     const data = {hash : hash };
     dispatch(beginAjaxCall());
