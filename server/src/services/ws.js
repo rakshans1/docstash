@@ -24,6 +24,7 @@ function handleEmail (socket) {  //Add new connections to user array if user exi
     let existingUser = user.find(user => user.email === email);
     if (existingUser) return updateUser([existingUser.email], userdata.torrents, socket);
     user.push({email: email,  data: {} , sockets: [  socket ]  });
+    sendUpdate([email]);
   });
 }
 
@@ -39,7 +40,7 @@ function sendUpdate(emails) {
   emails.forEach((email) => {
     const usr = user.find(usr => usr.email === email);
     usr.sockets.forEach((socket) => {
-      socket.emit('data', usr.data);
+      socket.emit('data', Object.assign({},usr.data, {uploads: userdata.uploads}));
     })
   });
 }
@@ -84,8 +85,8 @@ function updateUser(emails, array, socket) {
     if (socket) usr.sockets.push(socket);
 	});
 	sendUpdate(emails);
-	let difference = downloadList.filter(x => emails.indexOf(x) == -1); //difference between previous update list and now
-	if (difference.length > 0) nodownload(difference); 
+	let difference = downloadList.filter(x => emails.indexOf(x) === -1); //difference between previous update list and now
+	if (difference.length > 0) nodownload(difference);
 	downloadList = emails;
 }
 
@@ -95,7 +96,7 @@ function nodownload(emails) {
 		const usr = user.find(user => user.email === email);
 		if (!usr) return
 			usr.data.torrents = [];
-  	  usr.data.filesDownloading = 0;
+      usr.data.filesDownloading = 0;
 	});
 	sendUpdate(emails);
 }

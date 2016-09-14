@@ -71,7 +71,7 @@ class TorrentInfo extends React.Component {
          <tbody>
              {torrent.files.map((file, i) => {
               return(<tr key={i}>
-                <td className="text-sm-right table-file"><div className="file-name"><div className="torrent-progress-bar" style={{width: ((file.downloadLength/file.length)*90)+5 +'%'}} ></div>{file.name}</div></td>
+                <td className="text-sm-right table-file"><div className="file-name"><div className="torrent-progress-bar" style={{width: ((file.downloadLength/file.length)*90)+15 +'%'}} ></div>{file.name}</div></td>
                 <td>{units(file.length)}</td>
                 <td className="torrent-download">{file.downloading ? <img src={require('../../../../assets/icon/red-stop.svg')} className="torrent-downloading-icon" alt="" onClick={() => this.handlecancelFile(torrent.hash, file.path)} />: <img src={require('../../../../assets/icon/cloud-download.svg')} className="torrent-downloading-icon" onClick={() => this.handledownloadFile(torrent.hash, file.path)} alt="" />}</td>
               </tr>)

@@ -2,7 +2,7 @@ let Client = require('ssh2-sftp-client');
 import secret from '../../config/secret';
 
 
-exports.vars = ["SSH_HOST", "SSH_USERNAME", "SSH_PASSWORD"];
+exports.vars = ["SSH_HOST", "SSH_USERNAME", "SSH_PASSWORD", "SSH_PORT"];
 
 
 let sftp = new Client();
@@ -62,14 +62,18 @@ exports.upload = function(torrentFile, done) {
 exports.list = function(done) {
 	sftp.list(secret.ssh.SSH_ROOT)
 		.then((data) => {
-      var files = {};
-      data.forEach((f) => {
-        files[f.name] = {
-          length: f.size
+      var files = [];
+      data.forEach(f => {
+        const tmp = {
+          name: f.name
         }
-        done(null, files);
+        files.push(tmp);
       });
-		});
+      done(null, files);
+		})
+    .catch((err) => {
+      if(err) console.log(err);
+    });
 };
 
 

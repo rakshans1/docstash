@@ -104,6 +104,7 @@ export default function(app) {
         if(!err) update(files);
       });
     }
+    setTimeout(list, 1000*10);
     setInterval(list, 15*60*1000);
 
   if (process.env.NODE_ENV === undefined) {

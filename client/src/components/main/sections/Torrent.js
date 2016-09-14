@@ -2,6 +2,7 @@ import React, {PropTypes} from 'react';
 import Input from '../../auth/Input';
 import TorrentInfo from './torrent/TorrentInfo';
 import TorrentSearch from './torrent/TorrentSearch';
+import TorrentDownload from './torrent/TorrentDownload';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as torrentActions from '../../../actions/torrentActions';
@@ -82,9 +83,10 @@ class Torrent extends React.Component {
           <h5>Downloads</h5>
         </div>
 
+        {this.props.ws.uploads && this.props.ws.uploads.length > 0 ? <TorrentDownload uploads={this.props.ws.uploads} actions={this.props.actions}/> :
         <div className="card card-block">
           <p className="text-xs-center">Download files above</p>
-        </div>
+        </div> }
 
       </div>
     );
