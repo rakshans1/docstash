@@ -46,6 +46,8 @@
     "react-router": "^2.6.1",
     "react-router-redux": "^4.0.5",
     "redux": "^3.5.2",
+    "redux-storage": "^4.1.1",
+    "redux-storage-engine-localstorage": "^1.1.2",
     "redux-thunk": "^2.1.0",
     "socket.io-client": "^1.4.8"
   },

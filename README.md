@@ -2,7 +2,7 @@ Docstash - A cloud storage Application Built in React, Redux, Node & Mongodb
 =============================
 [ ![Codeship Status for rakshans1/docstash](https://codeship.com/projects/34dc9430-2fff-0134-a02d-0637f2a9daca/status?branch=master)](https://codeship.com/projects/164076)
 
-![DocStash ScreenShot](screenshot.png?raw=true "Optional Title")
+![Docstash ScreenShot](screenshot.png?raw=true "Optional Title")
 
 
 

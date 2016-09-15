@@ -10,23 +10,35 @@ require('./assets/favicon.png');
 import './assets/styles/main.sass';
 import './assets/icon/flaticon.css';
 import { syncHistoryWithStore } from 'react-router-redux';
-import { AUTH_USER_SUCCESS } from './constants/actionTypes';
 import {userInfo} from './actions/userActions';
-import ws from './actions/wsAction';
 
-const store = configureStore();
-const history = syncHistoryWithStore(browserHistory, store);
-
-const token = localStorage.getItem('token');
-// If we have a token, consider the user to be signed in
-if (token) {
-  // we need to update application state
-  store.dispatch({ type: AUTH_USER_SUCCESS });
-  store.dispatch(userInfo(token));
+class Root extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      isLoading: true,
+      store: configureStore(() => this.setState({isLoading: false})),
+    };
+  }
+  render () {
+    if (this.state.isLoading) {
+      return null;
+    }
+    const state = this.state.store.getState();
+    if (state.auth.authenticated) {
+      this.state.store.dispatch(userInfo(state.auth.token));
+    }
+    const history = syncHistoryWithStore(browserHistory, this.state.store);
+    return (
+      <Provider store={this.state.store}>
+        <Router history={history} routes={routes}/>
+      </Provider>
+    );
+  }
 }
 
+
+
 render(
-  <Provider store={store}>
-   <Router history={history} routes={routes}/>
-  </Provider>, document.getElementById('app')
+  <Root/>, document.getElementById('app')
 );

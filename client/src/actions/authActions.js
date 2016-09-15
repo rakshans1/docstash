@@ -6,9 +6,10 @@ import {beginAjaxCall, ajaxCallError} from './ajaxstatusActions';
 import {userInfo} from './userActions';
 import  ROOT_URL from '../baseurl';
 
-export function authSucess() {
+export function authSucess(token) {
   return {
-    type: types.AUTH_USER_SUCCESS
+    type: types.AUTH_USER_SUCCESS,
+    payload: token
   };
 }
 
@@ -17,9 +18,8 @@ export function signinUser(email, password) {
     dispatch(beginAjaxCall());
     axios.post(`${ROOT_URL}/signin`,{email, password})
       .then(response => {
-        localStorage.setItem('token', response.data.token);
-        dispatch(authSucess());
-        dispatch(userInfo());
+        dispatch(authSucess(response.data.token));
+        dispatch(userInfo(response.data.token));
         browserHistory.push('/');
       })
       .catch(() => {
@@ -33,8 +33,7 @@ export function signupUser(name,  email, password ) {
     dispatch(beginAjaxCall());
     axios.post(`${ROOT_URL}/signup`,{name, email, password})
       .then(response => {
-        localStorage.setItem('token', response.data.token);
-        dispatch(authSucess());
+        dispatch(authSucess(response.data.token));
         dispatch(userInfo(response.data.token));
         browserHistory.push('/');
       })
@@ -46,14 +45,15 @@ export function signupUser(name,  email, password ) {
 }
 
 export function signoutUser() {
-  localStorage.removeItem('token');
+  localStorage.removeItem('Docstash');
+  browserHistory.push('/');
   return { type: types.UNAUTH_USER_SUCCESS };
 }
 
 export function googleLogin(token) {
     return function(dispatch) {
       localStorage.setItem('token', token);
-      dispatch(authSucess());
+      dispatch(authSucess(token));
       dispatch(userInfo(token));
       browserHistory.push('/');
     };

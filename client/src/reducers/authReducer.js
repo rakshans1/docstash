@@ -2,23 +2,17 @@
 import * as types from '../constants/actionTypes';
 import initialState from './initialState';
 
-export default function(state =  initialState.authenticated, action) {
+export default function(state =  initialState.auth, action) {
   switch(action.type) {
     case types.AUTH_USER_SUCCESS:
       return Object.assign({}, state, {
-        authenticated: true,
+           authenticated: true, token: action.payload
       });
-      // return { ...state, error: '', authenticated: true };
+
     case types.UNAUTH_USER_SUCCESS:
-      return Object.assign({}, state, {
-        authenticated: false,
-      });
-      // return { ...state, authenticated: false };
-    // case types.FETCH_MESSAGE:
-    //   return Object.assign({}, state, {
-    //     message: action.payload,
-    //   });
-      // return { ...state, message: action.payload };
+    return Object.assign({}, state, {
+         authenticated: false, token: ''
+    });
     default:
         return state;
   }

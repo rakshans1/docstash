@@ -1,6 +1,13 @@
 export default  {
   pendingTask: 0,
-  authenticated: false,
+  notification: {
+    message: null,
+    level: null
+  },
+  auth:{
+    authenticated: false,
+    token: '',
+  },
   modal: false,
   user:{
     name: '',
