@@ -3,6 +3,7 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import WebpackMd5Hash from 'webpack-md5-hash';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import Visualizer  from 'webpack-visualizer-plugin';
+import SWPrecacheWebpackPlugin from 'sw-precache-webpack-plugin';
 
 const GLOBALS = {
   'process.env.NODE_ENV': JSON.stringify('production'),
@@ -26,7 +27,7 @@ export default {
     new webpack.DefinePlugin(GLOBALS),
     new ExtractTextPlugin('static/css/[name].[contenthash].css'),
     new HtmlWebpackPlugin({
-      template: 'src/index.html',
+      template: 'tools/build.html',
       minify: {
         removeComments: true,
         collapseWhitespace: true,
@@ -55,7 +56,16 @@ export default {
         screw_ie8: true
       }
     }),
-    new Visualizer()
+    new Visualizer(),
+    new SWPrecacheWebpackPlugin({
+      cacheId: 'Docstash',
+      filename: 'docstash-sw.js',
+      maximumFileSizeToCacheInBytes: 4194304,
+      runtimeCaching: [{
+          handler: 'cacheFirst',
+          urlPattern: /[.]jpg$/,
+        }],
+    })
   ],
   module: {
     loaders: [
@@ -112,6 +122,10 @@ export default {
       {
         test: /\.ico$/,
         loader: 'file?name=[name].[ext]'
+      },
+      {
+        test: /manifest.json$/,
+        loader: 'file-loader?name=manifest.json!web-app-manifest-loader'
       }
     ]
   }

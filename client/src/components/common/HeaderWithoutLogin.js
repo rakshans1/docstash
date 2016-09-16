@@ -21,7 +21,6 @@ class HeaderWithoutLogin extends React.Component{
   render() {
     return(
       <nav className="navbar navbar-light">
-        <img src={require('../../assets/img/logo.svg')}  className="brand-img" alt="" />
         <IndexLink to="/" className="navbar-brand ">Docstash</IndexLink>
 
         <div className="pull-xs-right">

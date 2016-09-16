@@ -1,5 +1,5 @@
 import * as types from '../constants/actionTypes';
-import  {WS_URL} from '../baseurl';
+import  ROOT_URL from '../baseurl';
 import io from 'socket.io-client';
 
 export function wsSuccess(data) {
@@ -12,7 +12,7 @@ export function wsSuccess(data) {
 
 export default function ws(email) {
   return function(dispatch) {
-    const socket =  io(WS_URL);
+    const socket =  io(ROOT_URL);
     socket.emit('email', email);
     socket.on('onlineUsers', (onlineUsers) => {
       dispatch({

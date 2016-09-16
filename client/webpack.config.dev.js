@@ -1,6 +1,5 @@
 import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import path from 'path';
 
 export default {
   debug: true,
@@ -43,6 +42,7 @@ export default {
       {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=image/svg+xml'},
       {test: /\.(jpe?g|png|gif)$/i, loader: 'file?name=[name].[ext]'},
       {test: /\.ico$/, loader: 'file?name=[name].[ext]'},
+      {test: /manifest.json$/,loader: 'file-loader?name=manifest.json!web-app-manifest-loader'}
     ]
   }
 };

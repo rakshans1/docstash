@@ -1,0 +1,20 @@
+{
+  "name": "Docstash",
+  "short_name": "Docstash",
+  "splash_screens": [
+    {
+      "src": "./assets/screen.png",
+      "sizes": "1280x780",
+      "type": "image/png"
+    }
+  ],
+  "icons": [
+    {
+      "src": "./assets/ic_launcher.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "./",
+  "display": "standalone"
+}

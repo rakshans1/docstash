@@ -1,7 +1,6 @@
 import React, {PropTypes} from 'react';
 import {Link, IndexLink} from 'react-router';
 import {connect} from 'react-redux';
-import Icon from '../icon'
 
 class Header extends React.Component {
   // constructor(props) {
@@ -12,7 +11,7 @@ class Header extends React.Component {
     return(
       <div>
       <nav className="navbar nav-shadow navbar-light">
-        <div className="brand-img"><Icon type="logo"/></div>
+        {/* <div className="brand-img"></div> */}
         <IndexLink className="navbar-brand brand" to="/">Docstash <span className="onlineUsers">{this.props.onlineUsers}</span></IndexLink>
         <form className="form-inline pull-xs-center search-form">
           <div className="form-group search">

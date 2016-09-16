@@ -11,8 +11,9 @@ Docstash - A cloud storage Application Built in React, Redux, Node & Mongodb
 To use this project, you'll need the following things installed on your machine.
 
 1. [NodeJS](http://nodejs.org) - use the installer.
-2. [Mongodb](http://jekyllrb.com/) - `$ gem install jekyll`
-3. [Nodemon](https://github.com/gulpjs/gulp) - `$ npm install -g nodemon`
+2. [Mongodb](https://www.mongodb.com/) - use the installer.
+3. [Nodemon](http://nodemon.io/) - `$ npm install -g nodemon`
+4. [Webpack](https://webpack.github.io/) - `$ npm install -g webpack`
 
 ## Local Installation
 
