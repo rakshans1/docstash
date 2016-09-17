@@ -1,5 +1,10 @@
 .shortner{
   margin-top: 50px;
+  animation: fadeIn 0.3s ease-in;
+}
+.shortner-link{
+  margin-top: 50px;
+  animation: bounceIn 0.3s ease-in;
 }
 .shortner_h1{
   color: $secondary;

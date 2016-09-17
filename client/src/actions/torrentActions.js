@@ -4,10 +4,11 @@ import {beginAjaxCall, ajaxCallError} from './ajaxstatusActions';
 import {addNotification} from './notificationActions';
 import  ROOT_URL from '../baseurl';
 
-export function torrentSearchSucess(data) {
+export function torrentSearchSucess(data, query) {
   return {
     type: types.TORRENT_SEARCH_SUCCESS,
-    payload: data
+    data: data,
+    query: query 
   };
 }
 
@@ -19,7 +20,7 @@ export function torrentSearch(query) {
         if (response.data.length === 0) {
           dispatch(addNotification('No Result Found', 'warning'));
         }
-        dispatch(torrentSearchSucess(response.data));
+        dispatch(torrentSearchSucess(response.data, query));
       })
       .catch((error) => {
         dispatch(ajaxCallError());

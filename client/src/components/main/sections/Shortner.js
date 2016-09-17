@@ -38,13 +38,13 @@ class Shortner extends React.Component {
       }
   }
   renderShortnerMessage() {
-    if (this.props.shortner !== undefined) {
-      const url = this.props.shortner.shortner;
+    if (this.props.shortner.value !== null) {
+      const {shortner, input} = this.props.shortner;
       return(
-        <div className="card card-inverse card-outline-success text-xs-center shortner">
+        <div className="card card-inverse card-outline-success text-xs-center shortner-link">
           <div className="card-block">
-              <p>Your Link has been Shortned</p>
-              <a target="_blank" href={url}>{url}</a>
+              <p>{input} has been Shortned to</p>
+              <a target="_blank" href={shortner}>{shortner}</a>
           </div>
         </div>
       );
@@ -52,7 +52,7 @@ class Shortner extends React.Component {
   }
   render() {
     return(
-      <div className="col-sm-8 col-xs-12">
+      <div className="col-sm-8 col-xs-12 shortner">
         <h1 className="text-sm-center shortner_h1">Link Shortner</h1>
         <div className="row">
           <div className="col-sm-2"/>
@@ -89,7 +89,7 @@ Shortner.propTypes = {
   actions: PropTypes.object.isRequired,
 };
 function mapStateToProps(state) {
-  return{ shortner: state.shortner.shortner };
+  return{ shortner: state.shortner };
 }
 function mapDispatchToProp(dispatch) {
   return {

@@ -11,7 +11,7 @@ class Torrent extends React.Component {
   constructor(props) {
     super(props);
       this.state = {
-        torrentInput:  null,
+        torrentInput:  '',
         showButton: null,
         buttonValue: ''
       };
@@ -63,11 +63,11 @@ class Torrent extends React.Component {
             />
             {this.state.showButton ? <button
               type="submit"
-              className="button button_center">
+              className="button button_center torrent-button">
               {this.state.buttonValue}
             </button> : null}
         </form>
-        {this.props.torrent.search.length > 0 ?  <TorrentSearch search={this.props.torrent.search} actions={this.props.actions} email={this.props.email}/> : null}
+        {this.props.torrent.search.length > 0 ?  <TorrentSearch search={this.props.torrent.search} input={this.props.torrent.input} actions={this.props.actions} email={this.props.email}/> : null}
         <div className="torrents-header">
           <h5>Torrents</h5>
           <h6 className="torrents-downloading">Downloading {this.props.ws.filesDownloading ? this.props.ws.filesDownloading : 0} files</h6>
@@ -75,7 +75,7 @@ class Torrent extends React.Component {
 
         {this.props.ws.torrents && this.props.ws.torrents.length > 0 ?   <TorrentInfo torrents={this.props.ws.torrents} actions={this.props.actions}/> :
 
-        <div className="card card-block">
+        <div className="card card-block fadeIn">
           <p className="text-xs-center">Add torrents above</p>
         </div> }
 
@@ -84,7 +84,7 @@ class Torrent extends React.Component {
         </div>
 
         {this.props.ws.uploads && this.props.ws.uploads.length > 0 ? <TorrentDownload uploads={this.props.ws.uploads} actions={this.props.actions}/> :
-        <div className="card card-block">
+        <div className="card card-block fadeIn">
           <p className="text-xs-center">Download files above</p>
         </div> }
 

@@ -1,6 +1,13 @@
 .torrents{
+  animation: fadeIn 0.3s ease-in;
   .torrent-info-row{
     margin-bottom: 10px;
+  }
+  .torrent-button{
+    animation: fadeIn 0.5s ease-out;
+  }
+  .torrent-info{
+    animation: bounceIn 1s ease-out;
   }
   .torrents-header{
     position: relative;
@@ -100,6 +107,7 @@
   }
   .torrent-search {
     max-height: 200px;
+    animation: fadeIn 1s ease-out;
   }
   .torrent-inactive {
     font-size: 0.7em;

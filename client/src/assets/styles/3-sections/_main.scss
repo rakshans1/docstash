@@ -1,4 +1,5 @@
 .main{
-  background-color: lighten($black, 92);
+  background-color: $body-bg;
   min-height: 100vh;
+  animation: fadeIn 2s ease-in;
 }

@@ -25,7 +25,7 @@ class TorrentSearch extends React.Component {
     return (
       <div>
       <div className="torrents-header">
-        <h5>Search Result</h5>
+        <h5>Search Result for {this.props.input}</h5>
         <h6 className="torrents-downloading">Total {this.props.search.length} files</h6>
       </div>
       <div className="card card-block">
@@ -45,6 +45,7 @@ class TorrentSearch extends React.Component {
 TorrentSearch.propTypes ={
   search: PropTypes.array,
   actions: PropTypes.object,
-  email: PropTypes.string
+  email: PropTypes.string,
+  input: PropTypes.string
 }
 export default TorrentSearch;

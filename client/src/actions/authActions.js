@@ -52,7 +52,6 @@ export function signoutUser() {
 
 export function googleLogin(token) {
     return function(dispatch) {
-      localStorage.setItem('token', token);
       dispatch(authSucess(token));
       dispatch(userInfo(token));
       browserHistory.push('/');

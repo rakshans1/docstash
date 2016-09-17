@@ -5,10 +5,11 @@ import {addNotification} from './notificationActions';
 import  ROOT_URL from '../baseurl';
 
 
-export function shortnerSucess(url) {
+export function shortnerSucess(url, query) {
   return {
     type: ADD_SHORTNER_SUCCESS,
-    payload: url
+    url: url,
+    query: query
   };
 }
 
@@ -17,7 +18,7 @@ export function addShortner(url) {
     dispatch(beginAjaxCall());
     axios.post(`${ROOT_URL}/short`,{url})
       .then(response => {
-        dispatch(shortnerSucess(response.data));
+        dispatch(shortnerSucess(response.data, url));
       })
       .catch(() => {
         dispatch(ajaxCallError());

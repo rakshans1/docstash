@@ -64,7 +64,10 @@ export default {
       runtimeCaching: [{
           handler: 'cacheFirst',
           urlPattern: /[.]jpg$/,
-        }],
+        },{
+            handler: 'cacheFirst',
+            urlPattern: /[.]png$/,
+          }],
     })
   ],
   module: {

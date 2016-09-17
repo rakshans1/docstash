@@ -46,6 +46,10 @@
 nav{
   border-bottom: 1px solid darken($light, 10);
 }
+.navbar-light{
+  background: $white;
+  animation: slideInDown 1s;
+}
 .navbar{
   padding: 5px 20px;
   z-index: 10;

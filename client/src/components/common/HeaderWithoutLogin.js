@@ -20,7 +20,7 @@ class HeaderWithoutLogin extends React.Component{
   }
   render() {
     return(
-      <nav className="navbar navbar-light">
+      <nav className="navbar">
         <IndexLink to="/" className="navbar-brand ">Docstash</IndexLink>
 
         <div className="pull-xs-right">

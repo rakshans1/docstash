@@ -14,9 +14,13 @@ export default  {
     email: '',
     picture: '',
   },
-  shortner: '',
+  shortner: {
+    shortner: null,
+    input: ''
+  },
   torrent: {
-    search: []
+    search: [],
+    input: ''
   },
   ws: {
     torrents: '',
