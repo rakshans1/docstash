@@ -2,7 +2,7 @@ let Client = require('ssh2-sftp-client');
 import secret from '../../config/secret';
 
 
-exports.vars = ["SSH_HOST", "SSH_USERNAME", "SSH_PASSWORD", "SSH_PORT"];
+exports.vars = ["SSH_HOST", "SSH_USERNAME", "SSH_PASSWORD", "SSH_PORT", "SSH_ROOT"];
 
 
 let sftp = new Client();
@@ -20,7 +20,7 @@ sftp.connect(sshOptions)
   .then(() => console.log("SSH login success"))
   .catch((err) => {
     console.log("SSH login failed: %s", err);
-    // process.exit(1);
+    process.exit(1);
   });
 
 };

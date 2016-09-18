@@ -7,7 +7,7 @@ import fs from 'fs';
 
 //list all backends
 var backends = fs.readdirSync(__dirname+"/backends").filter(function(js) {
-	return js !== "_template.js" && (/\.js$/).test(js);
+	return (/\.js$/).test(js);
 });
 //exit helper
 function exit(msg) {
@@ -19,7 +19,7 @@ var matched = false;
 
 //load the *first* viable backend
 backends.forEach(function(name) {
-
+	name = name.substring(0, name.indexOf('.js'));
 	if(matched)
 		return;//break
 
@@ -32,7 +32,7 @@ backends.forEach(function(name) {
 
 // eslint-disable-next-line
 	var vals = vars.map(function(v) {
-		var val = secret.ssh[v]; //change here when using another backend
+	var val = secret[name][v]; //change here when using another backend
 		if(!val)
 			backend = null;
 		return val;
@@ -48,7 +48,7 @@ backends.forEach(function(name) {
 
 	if(!backend.init)
 		exit("Backend " + name + " missing 'init(env vars...)' function");
-	backend.init();
+	backend.init(secret);
 
 	if(typeof backend.upload !== "function")
 		exit("Backend " + name + " missing 'upload(torrent file, callback)' function");
