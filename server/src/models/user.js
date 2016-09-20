@@ -13,6 +13,8 @@ const userSchema = new Schema({
   reset_token: {type: String , required: false},
   facebook_profile_id: {type: String, required: false},
   google_profile_id: {type: String, required: false},
+  access_token: String,
+  refresh_token: String,
   last_updated : {type: Date, default: Date.now()}
 });
 

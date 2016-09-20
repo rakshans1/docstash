@@ -259,6 +259,7 @@ torrents.downloadFile = (data, next) => {
 
   //pass copy of file to backend
   backend.upload({
+    email: torrent.email,
     path: file.path,
     length: file.length,
     createReadStream: file.createReadStream.bind(file)

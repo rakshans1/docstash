@@ -50,7 +50,10 @@ export const signup = (req, res, next) => {
 
 export const googleSignIn = (req, res, next) => {
   const passport = req._passport.instance;
-  passport.authenticate('google', {scope: 'https://www.googleapis.com/auth/userinfo.email'}, (err, user, info) => {
+  passport.authenticate('google', {scope: [
+    'https://www.googleapis.com/auth/userinfo.email',
+    'https://www.googleapis.com/auth/drive'
+  ]}, (err, user, info) => {
   })(req, res, next);
 }
 

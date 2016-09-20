@@ -14,8 +14,8 @@ import secret from './config/secret'
 
 const requireAuth = passport.authenticate('jwt', {session: false });
 const requireSignIn = passport.authenticate('local', {session: false });
-const google = passport.authenticate('google', {scope: ['email']});
-const googleCallback = passport.authenticate('google', {session: false, scope: 'https://www.googleapis.com/auth/plus.login'});
+const google = passport.authenticate('google', {scope: ['openid profile email https://www.googleapis.com/auth/drive'], accessType: 'offline', approvalPrompt: 'force'});
+const googleCallback = passport.authenticate('google', {session: false, scope: ['openid profile email https://www.googleapis.com/auth/drive'], accessType: 'offline',approvalPrompt: 'force'});
 const facebook = passport.authenticate('facebook', {session: false, scope: ['email'] });
 const facebookCallback = passport.authenticate('facebook', {session: false, scope: [] });
 

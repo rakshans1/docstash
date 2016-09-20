@@ -64,6 +64,7 @@ const googleLogin = new GoogleStrategy.OAuth2Strategy({
         user.picture = profile.photos[0].value;
         user.google_profile_id = profile.id;
         user.access_token = accessToken;
+        user.refresh_token = refreshToken;
         user.token = User.tokenForUser(user);
         user.save((err) => {
           if (err) {
