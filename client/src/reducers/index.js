@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux';
-import {routerReducer} from 'react-router-redux';
+// import {routerReducer} from 'react-router-redux';
 import pendingTasks from './ajaxStatusReducer';
 import authReducer from './authReducer';
 import notification from './notification';
@@ -10,7 +10,7 @@ import torrentReducer from './torrentReducer';
 import wsReducer from './wsReducer';
 
 const rootReducer = combineReducers({
-  routing: routerReducer,
+  // routing: routerReducer,
   auth: authReducer,
   pendingTasks,
   notification: notification,

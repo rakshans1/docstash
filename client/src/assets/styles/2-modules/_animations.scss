@@ -1,6 +1,3 @@
-.fadeIn{
-    animation: fadeIn 0.3s ease-out;
-}
 @keyframes slideInDown {
   from {
     transform: translate3d(0, -100%, 0);
@@ -111,7 +108,33 @@
     transform: scale3d(1, 1, 1);
   }
 }
+@keyframes slideInLeft {
+  from {
+    transform: translate3d(-100%, 0, 0);
+    visibility: visible;
+  }
 
-.bounceIn {
-  animation-name: bounceIn;
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes slideInRight {
+  from {
+    transform: translate3d(100%, 0, 0);
+    visibility: visible;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes zoomfade {
+  from {
+    opacity: 0;
+    transform: scale3d(1.3, 1.3, 1.3);
+  }
+  to {
+    opacity: 1;
+    transform: scale3d(1, 1,1);
+  }
 }

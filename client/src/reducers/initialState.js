@@ -24,6 +24,8 @@ export default  {
   },
   ws: {
     torrents: '',
-    onlineUsers: 0
+    onlineUsers: 0,
+    filesDownloading: 0,
+    uploads: ''
   }
 };

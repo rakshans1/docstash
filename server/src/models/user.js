@@ -10,11 +10,11 @@ const userSchema = new Schema({
   password: String,
   picture: {type: String, default: ''},
   date_created: {type: Date, default: Date.now},
-  reset_token: {type: String , required: false},
   facebook_profile_id: {type: String, required: false},
   google_profile_id: {type: String, required: false},
   access_token: String,
   refresh_token: String,
+  drive_folder: String,
   last_updated : {type: Date, default: Date.now()}
 });
 

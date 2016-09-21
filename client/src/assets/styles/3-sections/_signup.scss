@@ -500,6 +500,7 @@
   position: relative;
   margin: 0px 0 200px 0;
   min-height: 400px;
+  animation: fadeIn 1s ease-out;
 }
 .application_wrapper .create_account_screen .create_account_form > h1 {
   display: block;

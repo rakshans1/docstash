@@ -40,7 +40,7 @@ function sendUpdate(emails) {
   emails.forEach((email) => {
     const usr = user.find(usr => usr.email === email);
     usr.sockets.forEach((socket) => {
-      socket.emit('data', Object.assign({},usr.data, {uploads: userdata.uploads}));
+      socket.emit('data', Object.assign({},usr.data, {onlineUsers: onlineUsers}, {uploads: userdata.uploads}));
     })
   });
 }

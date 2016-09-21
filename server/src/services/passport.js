@@ -56,7 +56,11 @@ const googleLogin = new GoogleStrategy.OAuth2Strategy({
       if (err) {
         return done(err);
       } if (user) {
-        return done(null, user);
+        user.access_token = accessToken;
+        user.save(err => {
+          if (err) return done(err);
+          return done(null, user);
+        });
       } else {
         const user = new User();
         user.name =  profile.name.givenName +' '+ profile.name.familyName;

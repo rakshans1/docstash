@@ -327,7 +327,8 @@ torrents.zipAll = (data, next) => {
 
   //pass zip stream to backend
   backend.upload({
-    path: torrent.name + ".zip",
+    email: torrent.email,
+    path: torrent.name,
     length: files.reduce((len, f) => {return len+f.length;}, 0),
     createReadStream: () => { return archive; }
   }, (err) => {

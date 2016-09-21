@@ -2,7 +2,7 @@
   position: relative;
   border-right: 1px solid darken($light, 10);
   background-color: $white;
-  animation: bounceInLeft 3s ease-in;
+  animation: slideInLeft 1s ease-in;
   // height: 100vh;
   z-index: 5;
   box-shadow: 0px 6px 15px 0px rgba(0, 0, 0, 0.2);

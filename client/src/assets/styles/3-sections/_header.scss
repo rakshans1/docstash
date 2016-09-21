@@ -48,7 +48,7 @@ nav{
 }
 .navbar-light{
   background: $white;
-  animation: slideInDown 1s;
+  animation: slideInDown 1s ease-out;
 }
 .navbar{
   padding: 5px 20px;

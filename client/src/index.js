@@ -10,7 +10,7 @@ require('./assets/favicon.ico');
 require('./manifest.json');
 import './assets/styles/main.sass';
 import './assets/icon/flaticon.css';
-import { syncHistoryWithStore } from 'react-router-redux';
+// import { syncHistoryWithStore } from 'react-router-redux';
 import {userInfo} from './actions/userActions';
 
 class Root extends React.Component {
@@ -29,10 +29,10 @@ class Root extends React.Component {
     if (state.auth.authenticated) {
       this.state.store.dispatch(userInfo(state.auth.token));
     }
-    const history = syncHistoryWithStore(browserHistory, this.state.store);
+    // const history = syncHistoryWithStore(browserHistory, this.state.store);
     return (
       <Provider store={this.state.store}>
-        <Router history={history} routes={routes}/>
+        <Router history={browserHistory} routes={routes}/>
       </Provider>
     );
   }
