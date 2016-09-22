@@ -53,9 +53,11 @@
     "randomstring": "^1.1.5",
     "request": "^2.74.0",
     "rimraf": "^2.5.4",
+    "sentiment": "^2.0.0",
     "socket.io": "^1.4.8",
     "ssh2-sftp-client": "^1.0.5",
     "torrent-stream": "^1.0.3",
+    "twitter": "^1.4.0",
     "zip-stream": "^1.1.0"
   },
   "devDependencies": {
@@ -66,6 +68,7 @@
     "chai": "^3.5.0",
     "chai-http": "^3.0.0",
     "cli-table": "^0.3.1",
+    "enclose": "^2.2.0",
     "eslint": "^3.3.1",
     "eslint-plugin-import": "^1.13.0"
   }

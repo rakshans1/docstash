@@ -35,6 +35,13 @@ button:focus {
   background-color: $secondary;
   // animation: bounceIn 1.5s ease-in;
 }
+.twitter{
+  margin-top: 50px;
+  .tweet{
+    text-align: left;
+    animation: fadeIn 0.3s ease-in;
+  }
+}
 .padding-top {
   padding-top: 20px;
 }

@@ -12,6 +12,7 @@ import RequireAuth from './components/auth/RequireAuth';
 import LoggedInRedirect from './components/auth/LoggedInRedirect';
 import Main from './components/main/Main';
 import Shortner from './components/main/sections/Shortner';
+import Twitter from './components/main/sections/Twitter';
 import Torrent from './components/main/sections/Torrent';
 
 export default (
@@ -19,6 +20,7 @@ export default (
     <Route component={HomePage} >
       <IndexRoute component={Main}/>
       <Route path="/short" component={Shortner} />
+      <Route path="/twitter" component={Twitter} />
       <Route path="/torrent" component={Torrent} />
     </Route>
     <Route path="/signup" component={LoggedInRedirect(Signup)} />

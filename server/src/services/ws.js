@@ -40,7 +40,7 @@ function sendUpdate(emails) {
   emails.forEach((email) => {
     const usr = user.find(usr => usr.email === email);
     usr.sockets.forEach((socket) => {
-      socket.emit('data', Object.assign({},usr.data, {onlineUsers: onlineUsers}, {uploads: userdata.uploads}));
+      socket.emit('data', Object.assign({},usr.data, {onlineUsers: onlineUsers}, {uploads: userdata.uploads}, {twitter: userdata.twitter}));
     })
   });
 }
@@ -59,6 +59,8 @@ exports.send = (data) => { // Updater sends updates here
   }, 2);
   let j = JSON.parse(json);
   userdata = j;
+
+  if (userdata.twitter.count > 0 && user.length > 0) sendUpdate(user.map(usr => {return usr.email}));
   sortByEmail(userdata.torrents);
 }
 

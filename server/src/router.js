@@ -12,6 +12,8 @@ import backend from './services/backend';
 import ws from './services/ws';
 import secret from './config/secret'
 
+import twitter from './controllers/twitter';
+
 const requireAuth = passport.authenticate('jwt', {session: false });
 const requireSignIn = passport.authenticate('local', {session: false });
 const google = passport.authenticate('google', {scope: ['openid profile email https://www.googleapis.com/auth/drive'], accessType: 'offline', approvalPrompt: 'force'});
@@ -53,10 +55,6 @@ export default function(app) {
     app.post('/short', shortner.post);
     app.get('/s/:hash', shortner.get);
 
-
-    //hook http to  websocket
-    // ws.install(app);
-
     //Torrent Controllers
     api('torrents', torrents);
 
@@ -85,7 +83,6 @@ export default function(app) {
 
     let storedFiles = {};
 
-
     const update = function(newFiles) {
       //optionnaly update stored files
       if (newFiles) storedFiles = newFiles;
@@ -93,10 +90,12 @@ export default function(app) {
       ws.send({
         torrents: torrents.list,
         filesDownloading: torrents.filesDownloading,
-        uploads: storedFiles
+        uploads: storedFiles,
+        twitter: {count: twitter.tweetCount , sentiment: twitter.tweetTotalSentiment,phrase: twitter.monitoringPhrase,tweets: twitter.tweets}
       });
     };
     torrents.on("update", update);
+    twitter.on("update", update);
 
     //periodically scan for new stored files
     function list() {
@@ -106,6 +105,20 @@ export default function(app) {
     }
     setTimeout(list, 1000*10);
     setInterval(list, 15*60*1000);
+
+//Twitter Sentiment  { tweet: hi}
+// app.post('/sentiment', twitter.sentimentTwitter);
+app.post('/twitter', twitter.watchTwitter);
+
+
+
+
+
+
+
+
+
+
 
   if (process.env.NODE_ENV === undefined) {
     const apilist =  require('./util/apilist');
