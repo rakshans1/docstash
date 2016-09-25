@@ -1,6 +1,5 @@
 /* eslint-disable import/default */
 /* eslint-disable no-unused-vars */
-import apiList from './util/apilist';
 import passport from 'passport';
 import * as auth from './controllers/auth';
 import passportConfig from './services/passport';
@@ -16,10 +15,10 @@ import twitter from './controllers/twitter';
 
 const requireAuth = passport.authenticate('jwt', {session: false });
 const requireSignIn = passport.authenticate('local', {session: false });
-const google = passport.authenticate('google', {scope: ['openid profile email https://www.googleapis.com/auth/drive'], accessType: 'offline', approvalPrompt: 'force'});
-const googleCallback = passport.authenticate('google', {session: false, scope: ['openid profile email https://www.googleapis.com/auth/drive'], accessType: 'offline',approvalPrompt: 'force'});
-const facebook = passport.authenticate('facebook', {session: false, scope: ['email'] });
-const facebookCallback = passport.authenticate('facebook', {session: false, scope: [] });
+const googleCallbackWeb = passport.authenticate('google', {session: false, scope: ['openid profile email https://www.googleapis.com/auth/drive'], accessType: 'offline',approvalPrompt: 'force', callbackURL:"/auth/google/callback/web"});
+const googleCallbackMobile = passport.authenticate('google', {session: false, scope: ['openid profile email https://www.googleapis.com/auth/drive'], accessType: 'offline',approvalPrompt: 'force', callbackURL:"/auth/google/callback/mobile"});
+const facebookCallbackWeb = passport.authenticate('facebook', {session: false, scope: [], callbackURL:"/auth/facebook/callback/web" });
+const facebookCallbackMobile = passport.authenticate('facebook', {session: false, scope: [], callbackURL:"/auth/facebook/callback/mobile" });
 
 export default function(app) {
     //Home Controllers
@@ -27,7 +26,8 @@ export default function(app) {
       res.send('hi ' + req.user.name);
     });
     app.get('/load', (req, res) => {
-      res.send('hi');
+      // res.send('hi');
+      return res.redirect('docstash://auth?text=Hello%20World!');
     });
 
 
@@ -46,10 +46,12 @@ export default function(app) {
     app.post('/signin', requireSignIn, auth.signin);
     app.post('/signup', auth.signup);
     app.post('/resetpassword', auth.resetPassword);
-    app.get('/auth/google', google, auth.googleSignIn);
-    app.get('/auth/google/callback', googleCallback, auth.googleSignInCallback);
-    app.get('/auth/facebook', facebook , auth.facebookSignIn);
-    app.get('/auth/facebook/callback', facebookCallback, auth.facebookSignInCallback);
+    app.get('/auth/google/:id', auth.googleSignIn);
+    app.get('/auth/google/callback/web', googleCallbackWeb, auth.CallbackWeb);
+    app.get('/auth/google/callback/mobile', googleCallbackMobile, auth.CallbackMobile);
+    app.get('/auth/facebook/:id', auth.facebookSignIn);
+    app.get('/auth/facebook/callback/web', facebookCallbackWeb, auth.CallbackWeb);
+    app.get('/auth/facebook/callback/mobile', facebookCallbackMobile, auth.CallbackMobile);
 
     //Shortner Controllers
     app.post('/short', shortner.post);
@@ -120,7 +122,7 @@ app.post('/twitter', twitter.watchTwitter);
 
 
 
-  if (process.env.NODE_ENV === undefined) {
+  if (process.env.NODE_ENV === "development") {
     const apilist =  require('./util/apilist');
     apiList(app._router.stack);
   }

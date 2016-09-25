@@ -48,7 +48,6 @@ const jwtLogin = new JwtStrategy(jwtOptions, (payload, done) => {
 const googleLogin = new GoogleStrategy.OAuth2Strategy({
   clientID: secret.google.clientID,
   clientSecret: secret.google.clientSecret,
-	callbackURL: secret.google.callbackURL
 },
  (accessToken, refreshToken, profile, done) =>{
   process.nextTick( () =>{
@@ -84,7 +83,6 @@ const googleLogin = new GoogleStrategy.OAuth2Strategy({
 const fbLogin = new FacebookStrategy.Strategy({
   clientID: secret.facebook.FACEBOOK_APP_ID,
   clientSecret: secret.facebook.FACEBOOK_SECRET_KEY,
-  callbackURL: secret.facebook.FACEBOOK_CALLBACK_URL,
   profileFields: ['id','emails','name']
 },
  (accessToken, refreshToken, profile, done) => {

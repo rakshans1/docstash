@@ -2,6 +2,7 @@ import User from '../models/user';
 import * as mailer from './mail';
 import secret from '../config/secret'
 import randomstring from 'randomstring';
+import passport from 'passport';
 
 function validateEmail(email) {
     let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -49,35 +50,39 @@ export const signup = (req, res, next) => {
 }
 
 export const googleSignIn = (req, res, next) => {
-  const passport = req._passport.instance;
-  passport.authenticate('google', {scope: [
-    'https://www.googleapis.com/auth/userinfo.email',
-    'https://www.googleapis.com/auth/drive'
-  ]}, (err, user, info) => {
+  passport.authenticate('google', {scope: ['openid profile email https://www.googleapis.com/auth/drive'],
+         accessType: 'offline',
+         approvalPrompt: 'force',
+        callbackURL:"/auth/google/callback/" +req.params.id
+  }, (err, user, info) => {
   })(req, res, next);
 }
 
-export const googleSignInCallback = (req, res, next) => {
-  if(req.user.token) {
-  return res.redirect(secret.client + '/auth?code=' + req.user.token);
-  } else {
-    const token = User.tokenForUser(req.user);
-    return res.redirect( secret.client + '/auth?code=' + token);
-  }
-}
-
 export const facebookSignIn = (req, res, next ) => {
-  res.send('Facebook Login Successful');
-}
+  passport.authenticate('facebook', {session: false,
+    scope: ['email'],
+    callbackURL:"/auth/facebook/callback/" +req.params.id
+   }, (err, user, info) => {
+   })(req, res, next);
+ }
 
-export const facebookSignInCallback = (req, res, next) => {
-  if(req.user.token) {
-  return res.redirect(secret.client + '/auth?code=' + req.user.token);
-  } else {
-    const token = User.tokenForUser(req.user);
-    return res.redirect( secret.client + '/auth?code=' + token);
-  }
-}
+ export const CallbackWeb = (req, res, next) => {
+   if(req.user.token) {
+   return res.redirect(secret.client + '/auth?code=' + req.user.token);
+   } else {
+     const token = User.tokenForUser(req.user);
+     return res.redirect( secret.client + '/auth?code=' + token);
+   }
+ }
+
+ export const CallbackMobile = (req, res, next) => {
+   if(req.user.token) {
+   return res.redirect('docstash://auth?code=' + req.user.token);
+   } else {
+     const token = User.tokenForUser(req.user);
+     return res.redirect('docstash://auth?code=' + token);
+   }
+ }
 
 export const resetPassword = (req, res, next) => {
   const email = req.body.email;

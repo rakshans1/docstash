@@ -147,12 +147,12 @@ class LoginScreen extends React.Component {
             <h5 className="or">OR</h5>
             <div className="row">
             <button className="btn-social" >
-                  <a href={`${ROOT_URL}/auth/google`}>
+                  <a href={`${ROOT_URL}/auth/google/web`}>
                     <img className="social-img" src={require('../../assets/img/google.svg')}/>
                   </a>
               </button>
             <button className="btn-social">
-                  <a href={`${ROOT_URL}/auth/facebook`}>
+                  <a href={`${ROOT_URL}/auth/facebook/web`}>
                     <img className="social-img" src={require('../../assets/img/facebook.svg')}/>
                   </a>
             </button>
