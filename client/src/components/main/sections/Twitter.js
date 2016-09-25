@@ -59,7 +59,7 @@ class Twitter extends React.Component {
   render() {
     return(
       <div className="col-sm-8 col-xs-12 shortner">
-        <h1 className="text-sm-center shortner_h1">Twitter Feeds Analysis</h1>
+        <h1 className="text-sm-center shortner_h1">Twitter Feeds</h1>
         <div className="row">
           <div className="col-sm-2"/>
           <div className="col-sm-8">

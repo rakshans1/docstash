@@ -31,20 +31,25 @@ twitter.sentimentTwitter = (req, res, next) => {
 }
 
 twitter.watchTwitter = (req, res, next) => {
-  if (stream ) stream.destroy();
+	//reset all stats in every request
+  if (stream) stream.destroy();
+  twitter.tweetCount = 0;	
+  twitter.tweets = [];
+  twitter.tweetTotalSentiment = 0;
+  
   const tweet = req.body.tweet;
   twitter.monitoringPhrase = tweet;
   stream = client.stream('statuses/filter', {track: tweet});
   stream.on('data', (data) => {
-    if (data.lang === 'en') {
+    // if (data.lang === 'en') {
       sentiment(data.text, (err, result) => {
         twitter.tweetCount++;
         twitter.tweetTotalSentiment += result.score;
         twitter.tweets.unshift(data.text);
-        if (twitter.tweets.length === 10) twitter.tweets.pop()
+        if (twitter.tweets.length === 11) twitter.tweets.pop()
         twitter.emit("update");
       });
-    }
+    // }
   });
   stream.on('error', function(err) {
     console.log(err);

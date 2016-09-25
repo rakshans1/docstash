@@ -1,0 +1,28 @@
+version: "2"
+services:
+  client:
+    build:
+      context: .
+      dockerfile: Dockerfile-client.dev
+    command: npm start
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+    ports:
+      - 3000:3000
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile-server.dev
+    command: node_modules/.bin/nodemon --exec node_modules/.bin/babel-node src/index.js
+    depends_on:
+      - mongodb
+    volumes:
+      - ./server:/app
+      - /app/node_modules
+    ports:
+      - 3001:3001     
+  mongodb:
+    image: mongo:latest
+    ports:
+    - "27017:27017"   
