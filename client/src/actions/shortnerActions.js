@@ -1,28 +1,21 @@
 import axios from 'axios';
-import { ADD_SHORTNER_SUCCESS } from '../constants/actionTypes';
+import {ADD_SHORTNER_SUCCESS} from '../constants/actionTypes';
 import {beginAjaxCall, ajaxCallError} from './ajaxstatusActions';
 import {addNotification} from './notificationActions';
-import  ROOT_URL from '../baseurl';
-
+import ROOT_URL from '../baseurl';
 
 export function shortnerSucess(url, query) {
-  return {
-    type: ADD_SHORTNER_SUCCESS,
-    url: url,
-    query: query
-  };
+    return {type: ADD_SHORTNER_SUCCESS, url: url, query: query};
 }
 
 export function addShortner(url) {
-  return function(dispatch) {
-    dispatch(beginAjaxCall());
-    axios.post(`${ROOT_URL}/short`,{url})
-      .then(response => {
-        dispatch(shortnerSucess(response.data, url));
-      })
-      .catch(() => {
-        dispatch(ajaxCallError());
-        dispatch(addNotification('Shortner Error', 'error'));
-      });
-  };
+    return function(dispatch) {
+        dispatch(beginAjaxCall());
+        axios.post(`${ROOT_URL}/short`, {url}).then(response => {
+            dispatch(shortnerSucess(response.data, url));
+        }).catch(() => {
+            dispatch(ajaxCallError());
+            dispatch(addNotification('Shortner Error', 'error'));
+        });
+    };
 }

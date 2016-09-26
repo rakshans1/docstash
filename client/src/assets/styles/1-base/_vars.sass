@@ -1,54 +1,47 @@
 $main: #007ee5
+
 // $main: #30b55a
 // $main: #C63D0F
 // $main: #7D1935
 
-
-
-$secondary: lighten( $main, 20% )
-$light: lighten( $main, 54% )
-$green: lighten(desaturate(adjust-hue($main, -73.0980), 41.9355), 18.6275)
+$secondary: lighten($main, 20%)
+$light: lighten($main, 54%)
+$green: lighten(desaturate(adjust-hue($main, -73.098), 41.9355), 18.6275)
 $red: #dc6868
 
 $progress-gradient: darken(saturate(adjust-hue($main, 0.2858), 0), 31.9608)
 
-$white:                     #fefefa !default
-$black :                    #000000
-$gray-dark:              #373a3c !default
-$gray:                      #55595c !default
-$gray-light:              #818a91 !default
-$gray-lighter:           #eceeef !default
-$gray-lightest:         #f7f7f9 !default
-
-
+$white: #fefefa !default
+$black: #000000
+$gray-dark: #373a3c !default
+$gray: #55595c !default
+$gray-light: #818a91 !default
+$gray-lighter: #eceeef !default
+$gray-lightest: #f7f7f9 !default
 
 //file operations
 $delete: #d9534f !default
-$edit:     #5bc0de !default
+$edit: #5bc0de !default
 $added: darken(#007ee5, 10)
-
 
 //bb8
 // $bb8: #CD7640
 $bb8: $main
 
-
-$brand-primary:             $main !default
-$brand-success:             #5cb85c !default
-$brand-info:                #5bc0de !default
-$brand-warning:             #f0ad4e !default
-$brand-danger:              #d9534f !default
-
+$brand-primary: $main !default
+$brand-success: #5cb85c !default
+$brand-info: #5bc0de !default
+$brand-warning: #f0ad4e !default
+$brand-danger: #d9534f !default
 
 // Typography
 //
 // Font, line-height, and color for body text, headings, and more.
 
-$font-family-sans-serif:     "Montserrat", sans-serif !default
-$font-family-serif:          Georgia, "Times New Roman", Times, serif !default
-$font-family-monospace:      Menlo, Monaco, Consolas, "Courier New", monospace !default
-$font-family-base:           $font-family-sans-serif !default
+$font-family-sans-serif: "Montserrat", sans-serif !default
+$font-family-serif: Georgia, "Times New Roman", Times, serif !default
+$font-family-monospace: Menlo, Monaco, Consolas, "Courier New", monospace !default
+$font-family-base: $font-family-sans-serif !default
 
-
-$body-bg:                    lighten($black, 92) !default
-$body-color:                 $gray-dark !default
+$body-bg: lighten($black, 92) !default
+$body-color: $gray-dark !default

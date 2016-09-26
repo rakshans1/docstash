@@ -10,31 +10,39 @@ import http from 'http';
 // eslint-disable-next-line
 import ws from './services/ws';
 
-
 //db options
 let options = {
-                server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 } },
-                replset: { socketOptions: { keepAlive: 1, connectTimeoutMS : 30000 } }
-              };
+    server: {
+        socketOptions: {
+            keepAlive: 1,
+            connectTimeoutMS: 30000
+        }
+    },
+    replset: {
+        socketOptions: {
+            keepAlive: 1,
+            connectTimeoutMS: 30000
+        }
+    }
+};
 mongoose.Promise = global.Promise;
-mongoose.connect(secret.database, options, function(err){
-  if(err) console.log(err);
-  if ( process.env.NODE_ENV !== 'test') {
-     console.log("Connected to DB");
-  }
+mongoose.connect(secret.database, options, function(err) {
+    if (err)
+        console.log(err);
+    if (process.env.NODE_ENV !== 'test') {
+        console.log("Connected to DB");
+    }
 });
 
 const app = express();
 
 //don't show the log when it is test
-if ( process.env.NODE_ENV !== 'test') {
-  app.use(morgan('dev'));
+if (process.env.NODE_ENV !== 'test') {
+    app.use(morgan('dev'));
 }
 
-
-
 app.use(cors());
-app.use(bodyParser.json({ type: '*/*' }));
+app.use(bodyParser.json({type: '*/*'}));
 // app.use((req, res, next) => {
 //    res.header('Access-Control-Allow-Origin', '*');
 //    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
@@ -48,16 +56,12 @@ app.use(bodyParser.json({ type: '*/*' }));
 //  });
 app.disable('x-powered-by');
 
-
-
-const  server = http.createServer(app);
+const server = http.createServer(app);
 
 server.listen(secret.port);
 
 //hook http to  websocket
 ws.install(server);
 router(app);
-
-
 
 export default app; // for testing

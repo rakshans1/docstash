@@ -38,7 +38,7 @@ class Shortner extends React.Component {
       }
   }
   renderShortnerMessage() {
-    if (this.props.shortner.value === null) {
+    if (this.props.shortner.input) {
       const {shortner, input} = this.props.shortner;
       return(
         <div className="card card-inverse card-outline-success text-xs-center shortner-link">

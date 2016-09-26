@@ -1,144 +1,177 @@
-.torrents{
-  animation: fadeIn 0.3s ease-in;
-  .torrent-info-row{
-    margin-bottom: 10px;
-  }
-  .torrent-button{
-    animation: fadeIn 0.5s ease-out;
-  }
-  .torrent-info{
-    animation: bounceIn 1s ease-out;
-  }
-  .torrents-header{
-    position: relative;
-    .torrents-downloading {
-      position: absolute;
-    	right: 0px;
-    	top: 1px;
-    	margin: 9px;
-    	font-size: 0.75rem;
-    	color: $gray-light;
-    }
-  }
-  .torrent-name {
-    font-size: 0.9em;
-    width: 100px;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-  }
-  .torrent-hash {
-    font-size: 0.8em;
-    margin-bottom: 10px;
-  }
-  .torrent-status {
-    display: inline-block;
-    font-size: 0.9em;
-    color: $gray-light;
-  }
-  .torrent-download-icon{
-    width: 15px;
-    margin-left: 5px;
-  }
-  .torrent-downloading-icon{
-    width: 18px;
-    cursor: pointer;
-    // margin-left: 5px;
-  }
-  .torrent-icon {
-    width: 12px;
-    margin: 1px 5px 5px;
-  }
-  .torrent-zip{
-    background: darken($green, 12);
-  }
-  .torrent-downloads {
-    background: darken($green, 12);
-  }
-  .torrent-action{
-    padding: 7px 9px 7px 9px;
-    margin: 10px 0 0 10px;
-    border-radius: 5px;
-    color: $white;
-    cursor: pointer;
-    font-size: 0.8em;
-    @media (max-width: 544px){
-      span{
-        display: none;
-      }
-    }
-  }
-  .torrent-stop{
-    background: $red;
-  }
-  table {
-    width: 100%;
-  }
-  td {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      word-break: break-all;
-      font-size: 0.8em;
-      color: $gray;
-  }
-  td.table-file {
-    width: 77%;
-    font-size: 0.9em;
-    @media (max-width: 544px){
-      width: 100%;
-    }
-  }
-  td.table-search {
-    width: 70%;
-    font-size: 0.9em;
-    text-align: justify;
-  }
-  .torrent-download{
-    width: 80px;
-  }
-  .torrent-search-status{
-    text-align: right;
-    .torrent-seed {
-      color: $green;
-    }
-    .torrent-leech {
-      color: $red;
-    }
-  }
-  .torrent-search {
-    max-height: 200px;
-    animation: fadeIn 1s ease-out;
-  }
-  .torrent-inactive {
-    font-size: 0.7em;
-    text-align: center;
-  }
-  .file-name{
-    position: relative;
-    .torrent-progress-bar {
-      position: absolute;
-      background-color: transparentize($secondary, 0.8);
-      height: 20em;
-      top: -12px;
-      left: -12px;
-    }
-  }
+.torrents {
+    animation: fadeIn 0.3s ease-in;
 
-  @media (max-width: 544px){
-    table,thead,tbody,th,td,tr {
-		  display: block;
-	  }
-    thead tr {
-	  	position: absolute;
-	  	top: -9999px;
-	  	left: -9999px;
-	  }
+    .torrent-info-row {
+        margin-bottom: 10px;
+    }
+
+    .torrent-button {
+        animation: fadeIn 0.5s ease-out;
+    }
+
+    .torrent-info {
+        animation: bounceIn 1s ease-out;
+    }
+
+    .torrents-header {
+        position: relative;
+
+        .torrents-downloading {
+            position: absolute;
+            right: 0;
+            top: 1px;
+            margin: 9px;
+            font-size: 0.75rem;
+            color: $gray-light;
+        }
+    }
+
+    .torrent-name {
+        font-size: 0.9em;
+        width: 100px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    .torrent-hash {
+        font-size: 0.8em;
+        margin-bottom: 10px;
+    }
+
+    .torrent-status {
+        display: inline-block;
+        font-size: 0.9em;
+        color: $gray-light;
+    }
+
+    .torrent-download-icon {
+        width: 15px;
+        margin-left: 5px;
+    }
+
+    .torrent-downloading-icon {
+        width: 18px;
+        cursor: pointer;
+        // margin-left: 5px;
+    }
+
+    .torrent-icon {
+        width: 12px;
+        margin: 1px 5px 5px;
+    }
+
+    .torrent-zip {
+        background: darken($green, 12);
+    }
+
+    .torrent-downloads {
+        background: darken($green, 12);
+    }
+
+    .torrent-action {
+        padding: 7px 9px;
+        margin: 10px 0 0 10px;
+        border-radius: 5px;
+        color: $white;
+        cursor: pointer;
+        font-size: 0.8em;
+        @media (max-width: 544px) {
+            span {
+                display: none;
+            }
+        }
+    }
+
+    .torrent-stop {
+        background: $red;
+    }
+
+    table {
+        width: 100%;
+    }
+
     td {
-	  	border: none;
-	  	border-bottom: 1px solid #eee;
-	  	position: relative;
-  		white-space: normal;
-  		text-align:left;
-  	}
-  }
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-break: break-all;
+        font-size: 0.8em;
+        color: $gray;
+    }
+
+    td.table-file {
+        width: 77%;
+        font-size: 0.9em;
+        @media (max-width: 544px) {
+            width: 100%;
+        }
+    }
+
+    td.table-search {
+        width: 70%;
+        font-size: 0.9em;
+        text-align: justify;
+    }
+
+    .torrent-download {
+        width: 80px;
+    }
+
+    .torrent-search-status {
+        text-align: right;
+
+        .torrent-seed {
+            color: $green;
+        }
+
+        .torrent-leech {
+            color: $red;
+        }
+    }
+
+    .torrent-search {
+        max-height: 200px;
+        animation: fadeIn 1s ease-out;
+    }
+
+    .torrent-inactive {
+        font-size: 0.7em;
+        text-align: center;
+    }
+
+    .file-name {
+        position: relative;
+
+        .torrent-progress-bar {
+            position: absolute;
+            background-color: transparentize($secondary, 0.8);
+            height: 20em;
+            top: -12px;
+            left: -12px;
+        }
+    }
+    @media (max-width: 544px) {
+        table,
+        tbody,
+        td,
+        th,
+        thead,
+        tr {
+            display: block;
+        }
+
+        thead tr {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+        }
+
+        td {
+            border: none;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            white-space: normal;
+            text-align: left;
+        }
+    }
 }

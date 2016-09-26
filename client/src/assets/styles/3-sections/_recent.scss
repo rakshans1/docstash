@@ -1,61 +1,71 @@
-.recent{
-  box-shadow: 0px 6px 15px 0 rgba(0, 0, 0, 0.2);
-  background: $white;
-  animation: slideInRight 1s ease-in;
-}
-.recent-heading{
-  margin-top: 30px;
-  color: lighten($gray-light, 20);
-  font-weight: 600;
-  padding: 0;
-  font-size: 0.8em;
-}
-.recent-activity{
-  position: relative;
-  font-size: 0.8em;
-  .flaticon{
-    padding-right: 25px;
-    position: absolute;
-    left: -20px;
-  }
-  [class^="flaticon-"]:before, [class*=" flaticon-"]:before, [class^="flaticon-"]:after, [class*=" flaticon-"]:after {
-    font-size: 1.8em;
-  }
-}
-.recent-activity-event{
-  text-align: left;
-  margin-left: 30px;
-  margin-bottom: 0;
-  font-weight: 600;
-  color: $gray;
-}
-.recent-activity-filename{
-  text-align: left;
-  margin-left: 30px;
-  margin-bottom: 0;
-  font-weight: 600;
-  color: darken($secondary,10%);
-}
-.rececnt-activity-time{
-  text-align: left;
-  margin-left: 30px;
-  font-weight: 500;
-  color: darken($gray-lighter,30%);
+.recent {
+    box-shadow: 0 6px 15px 0 rgba(0, 0, 0, 0.2);
+    background: $white;
+    animation: slideInRight 1s ease-in;
 }
 
-.edit{
-  color: $edit;
-}
-.delete{
-  color: $delete;
-}
-.added{
-  color: $added;
+.recent-heading {
+    margin-top: 30px;
+    color: lighten($gray-light, 20);
+    font-weight: 600;
+    padding: 0;
+    font-size: 0.8em;
 }
 
+.recent-activity {
+    position: relative;
+    font-size: 0.8em;
 
-@media (max-width: 544px){
-  .recent{
-    display: none;
-  }
+    .flaticon {
+        padding-right: 25px;
+        position: absolute;
+        left: -20px;
+    }
+
+    [class*=" flaticon-"]:after,
+    [class*=" flaticon-"]:before,
+    [class^="flaticon-"]:after,
+    [class^="flaticon-"]:before {
+        font-size: 1.8em;
+    }
+}
+
+.recent-activity-event {
+    text-align: left;
+    margin-left: 30px;
+    margin-bottom: 0;
+    font-weight: 600;
+    color: $gray;
+}
+
+.recent-activity-filename {
+    text-align: left;
+    margin-left: 30px;
+    margin-bottom: 0;
+    font-weight: 600;
+    color: darken($secondary,10%);
+}
+
+.rececnt-activity-time {
+    text-align: left;
+    margin-left: 30px;
+    font-weight: 500;
+    color: darken($gray-lighter,30%);
+}
+
+.edit {
+    color: $edit;
+}
+
+.delete {
+    color: $delete;
+}
+
+.added {
+    color: $added;
+}
+@media (max-width: 544px) {
+    .recent {
+        display: none;
+    }
 }

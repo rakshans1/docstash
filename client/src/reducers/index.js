@@ -10,15 +10,15 @@ import torrentReducer from './torrentReducer';
 import wsReducer from './wsReducer';
 
 const rootReducer = combineReducers({
-  // routing: routerReducer,
-  auth: authReducer,
-  pendingTasks,
-  notification: notification,
-  modal: modalReducer,
-  user: user,
-  shortner: shortnerReducer,
-  torrent: torrentReducer,
-  ws: wsReducer
+    // routing: routerReducer,
+    auth: authReducer,
+    pendingTasks,
+    notification: notification,
+    modal: modalReducer,
+    user: user,
+    shortner: shortnerReducer,
+    torrent: torrentReducer,
+    ws: wsReducer
 });
 
 export default rootReducer;

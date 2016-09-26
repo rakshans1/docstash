@@ -1,87 +1,103 @@
-.homepage{
-  background-color: rgba(0,126,229,1);
-  background: linear-gradient(135deg, $main 0%, $green 88%, $green 100%);
-  .navbar-brand{
-    color: $white!important;
-  }
-  nav{
-    border-bottom: none;
-    padding-top: 20px;
-  }
-  .hp-btn{
-    border-radius: 45px;
-    background-color: transparent;
-    border: 1px solid $white;
-    color: $white;
-    margin: 15px 0px 0 0;
-    padding: 1px 15px;
-  }
-  h1{
+.homepage {
+    background-color: rgba(0,126,229,1);
+    background: linear-gradient(135deg, $main 0%, $green 88%, $green 100%);
+
+    .navbar-brand {
+        color: $white!important;
+    }
+
+    nav {
+        border-bottom: none;
+        padding-top: 20px;
+    }
+
+    .hp-btn {
+        border-radius: 45px;
+        background-color: transparent;
+        border: 1px solid $white;
+        color: $white;
+        margin: 15px 0 0;
+        padding: 1px 15px;
+    }
+
+    h1 {
+        text-align: center;
+        margin-top: 50px;
+        color: $white;
+        font-weight: 600;
+    }
+
+    p {
+        text-align: center;
+        color: $white;
+    }
+
+    .signup-btn {
+        margin: 10px 42%;
+        background-color: $green;
+        border-radius: 45px;
+        border: 1px solid darken($green, 10%);
+        color: $white;
+        padding: 10px 30px;
+        font-size: 0.8em;
+        font-weight: 500;
+    }
+
+    .hp-img {
+        width: 60%;
+        margin: 50px 20%;
+    }
+}
+
+.hp-features {
+    margin-top: 60px;
     text-align: center;
-    margin-top: 50px;
-    color: $white;
+}
+
+.hp-img-f {
+    margin: 50px auto;
+}
+
+.hp-head {
+    text-align: center;
+    font-size: 1.5em;
     font-weight: 600;
-  }
-  p{
-    text-align: center;
-    color: $white;
-  }
-  .signup-btn{
-    margin: 10px 42%;
-    background-color: $green;
-    border-radius: 45px;
-    border: 1px solid darken($green, 10%);
-    color: $white;
-    padding: 10px 30px;
-    font-size: 0.8em;
-    font-weight: 500;
-  }
-  .hp-img{
-    width: 60%;
-    margin: 50px 20%;
-  }
 }
-.hp-features{
-  margin-top: 60px;
-  text-align: center;
-}
-.hp-img-f{
-  margin: 50px auto;
-}
-.hp-head{
-  text-align: center;
-  font-size: 1.5em;
-  font-weight: 600;
-}
-.hp-p{
-  font-size: 1em;
-  color: $gray-light;
-  text-align: center;
-  padding: 50px 0;
-}
-.foot-text{
-  text-align: center;
-  color: $gray-light;
-}
-@media (max-width: 544px){
-  .homepage{
-    h1{
-      text-align: center;
-      margin-top: 20px;
-      font-size: 2em;
-    }
-    .navbar {
-      padding: 15px 5px;
-    }
-    .signup-btn{
-      margin: 10px 30.33%;
-    }
-    .hp-img{
-      width: 90%;
-      margin: 20px 5%;
-    }
-  }
-  .hp-features{
+
+.hp-p {
     font-size: 1em;
-  }
+    color: $gray-light;
+    text-align: center;
+    padding: 50px 0;
+}
+
+.foot-text {
+    text-align: center;
+    color: $gray-light;
+}
+@media (max-width: 544px) {
+    .homepage {
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 2em;
+        }
+
+        .navbar {
+            padding: 15px 5px;
+        }
+
+        .signup-btn {
+            margin: 10px 30.33%;
+        }
+
+        .hp-img {
+            width: 90%;
+            margin: 20px 5%;
+        }
+    }
+
+    .hp-features {
+        font-size: 1em;
+    }
 }

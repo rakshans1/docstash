@@ -1,24 +1,31 @@
-.sidebar{
-  position: relative;
-  border-right: 1px solid darken($light, 10);
-  background-color: $white;
-  animation: slideInLeft 1s ease-in;
-  // height: 100vh;
-  z-index: 5;
-  box-shadow: 0px 6px 15px 0px rgba(0, 0, 0, 0.2);
-  [class^="flaticon-"]:before, [class*=" flaticon-"]:before, [class^="flaticon-"]:after, [class*=" flaticon-"]:after {
-    font-size: 1.4em;
-    font-weight: 500;
-  }
-  i{
-    position: absolute;
-    left: 8px;
-  }
-  .active{
-    color: darken($secondary, 10);
-  }
+.sidebar {
+    position: relative;
+    border-right: 1px solid darken($light, 10);
+    background-color: $white;
+    animation: slideInLeft 1s ease-in;
+    // height: 100vh;
+    z-index: 5;
+    box-shadow: 0 6px 15px 0 rgba(0, 0, 0, 0.2);
+
+    [class*=" flaticon-"]:after,
+    [class*=" flaticon-"]:before,
+    [class^="flaticon-"]:after,
+    [class^="flaticon-"]:before {
+        font-size: 1.4em;
+        font-weight: 500;
+    }
+
+    i {
+        position: absolute;
+        left: 8px;
+    }
+
+    .active {
+        color: darken($secondary, 10);
+    }
 }
-  .sidebar-btn{
+
+.sidebar-btn {
     margin: 30px 0 0 20px;
     background-color: $white;
     border: 1px solid $secondary;
@@ -27,12 +34,14 @@
     padding: 5px 30px;
     font-size: 1em;
     position: relative;
-  }
-  .upload-icon{
+}
+
+.upload-icon {
     top: 4px;
     left: 5px !important;
-  }
-  .sidebar-a{
+}
+
+.sidebar-a {
     color: darken($gray-light, 10);
     text-decoration: none;
     font-weight: 600;
@@ -40,60 +49,68 @@
     font-size: 0.8em;
     text-align: center;
     text-decoration: none;
-    &:hover{
-      text-decoration: none;
-      color: $secondary;
+
+    &:hover {
+        text-decoration: none;
+        color: $secondary;
     }
-    &:focus{
-      text-decoration: none;
-      color: darken($gray-light, 10);
+
+    &:focus {
+        text-decoration: none;
+        color: darken($gray-light, 10);
     }
-    &.active{
-      color: darken($secondary, 10);
+
+    &.active {
+        color: darken($secondary, 10);
     }
-  }
-  .sidebar-text{
+}
+
+.sidebar-text {
     color: lighten($gray-light, 20);
     font-weight: 600;
     text-align: left;
     margin: 30px 0 10px 30px;
     font-size: 0.8em;
-  }
+}
 
-  .sidebar-ul{
+.sidebar-ul {
     margin: 10px 0;
-  }
-  .sidebar-li{
+}
+
+.sidebar-li {
     margin: 5px 30px;
     text-align: left;
-  }
-  .usage{
+}
+
+.usage {
     position: absolute;
     width: 80%;
     top: 32em;
-    .usage-use{
-      color: $secondary;
-      font-weight: 600;
-      padding: 0;
-      font-size: 0.8em;
-    }
-    .usage-capacity{
-      color: $main;
-      font-weight: 700;
-      font-size: 0.8em;
-    }
-  }
 
-@media (max-width: 544px){
-  .sidebar{
-    display: none;
-  }
+    .usage-use {
+        color: $secondary;
+        font-weight: 600;
+        padding: 0;
+        font-size: 0.8em;
+    }
+
+    .usage-capacity {
+        color: $main;
+        font-weight: 700;
+        font-size: 0.8em;
+    }
 }
-@media (min-width: 544px){
-  .side-nav{
-    display: none;
-  }
+@media (max-width: 544px) {
+    .sidebar {
+        display: none;
+    }
 }
-.side-nav{
-  margin-bottom: 25px;
+@media (min-width: 544px) {
+    .side-nav {
+        display: none;
+    }
+}
+
+.side-nav {
+    margin-bottom: 25px;
 }

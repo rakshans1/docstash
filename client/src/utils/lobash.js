@@ -4,16 +4,13 @@ export default lobash
 
 lobash.isEmpty = (str) => {
 
-    if (typeof str == 'undefined' || !str || str.length === 0 || str === "" || !/[^\s]/.test(str) || /^\s*$/.test(str) || str.replace(/\s/g,"") === "")
-    {
+    if (typeof str == 'undefined' || !str || str.length === 0 || str === "" || !/[^\s]/.test(str) || /^\s*$/.test(str) || str.replace(/\s/g, "") === "") {
         return true;
-    }
-    else
-    {
+    } else {
         return false;
     }
 }
 
-lobash.isUndefined = (value) =>  {
-   return value === undefined;
- }
+lobash.isUndefined = (value) => {
+    return value === undefined;
+}

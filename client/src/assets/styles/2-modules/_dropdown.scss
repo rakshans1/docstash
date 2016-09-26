@@ -8,21 +8,26 @@
     border-radius: 5px;
     padding: 0;
     z-index: 1;
-  li{
-    list-style: none;
-    padding: 5px 20px;
-    background-color: $white;
-    &:hover{
-      background-color: $gray-lighter;
+
+    li {
+        list-style: none;
+        padding: 5px 20px;
+        background-color: $white;
+
+        &:hover {
+            background-color: $gray-lighter;
+        }
     }
-  }
-  a{
-    text-decoration: none;
-  }
+
+    a {
+        text-decoration: none;
+    }
 }
-.avatar:hover > ul{
-  display:inherit;
+
+.avatar:hover > ul {
+    display: inherit;
 }
+
 .dropdowns:hover {
-  display: block;
+    display: block;
 }

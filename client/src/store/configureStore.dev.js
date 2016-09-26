@@ -10,21 +10,14 @@ import reduxStorageActions from '../constants/reduxstorage';
 const logger = createLogger();
 
 export default function configureStore(onComplete) {
-  const rootReducer = storage.reducer(reducers);
-  const engine = createEngine('Docstash');
-  const storeMiddleware = storage.createMiddleware(engine, reduxStorageActions);
+    const rootReducer = storage.reducer(reducers);
+    const engine = createEngine('Docstash');
+    const storeMiddleware = storage.createMiddleware(engine, reduxStorageActions);
 
-  let store =  createStore(
-    rootReducer,
-    compose(
-    applyMiddleware(thunk, reduxImmutableStateInvariant(), logger, storeMiddleware),
-    window.devToolsExtension && window.devToolsExtension()
-  ));
+    let store = createStore(rootReducer, compose(applyMiddleware(thunk, reduxImmutableStateInvariant(), logger, storeMiddleware), window.devToolsExtension && window.devToolsExtension()));
 
-  const load = storage.createLoader(engine);
-  load(store)
-  .then(onComplete)
-  .catch(() => console.log('Failed to load previous state'));
+    const load = storage.createLoader(engine);
+    load(store).then(onComplete).catch(() => console.log('Failed to load previous state'));
 
-  return store;
+    return store;
 }

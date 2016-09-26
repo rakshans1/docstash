@@ -1,248 +1,253 @@
-.brand-img{
-  margin-top: 5px;
-  width: 40px;
-  float: left;
-  color: $white;
+.brand-img {
+    margin-top: 5px;
+    width: 40px;
+    float: left;
+    color: $white;
 }
-.docstash{
-  fill: $main;
+
+.docstash {
+    fill: $main;
 }
+
 .arrow-down {
-  // width: 0;
-  // height: 0;
-  border-left: 8px solid transparent;
-  border-right: 8px solid transparent;
-  border-top: 5px solid $gray-light;
+    // width: 0;
+    // height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 5px solid $gray-light;
 }
-.logout{
-  border: none;
-  padding: none;
-  margin: none;
-  background-color: $white;
-}
+
 .logout {
-  user-select: none;
-  display: inline-block;
-  position: relative;
-  border: none;
-  background: $white;
-  color: $secondary;
-  height: 40px;
-  width: 100%;
-  padding: 0px 10px;
-  cursor: pointer;
-  white-space: nowrap;
-  &:hover{
-    background: $gray-lighter;
-  }
-}
-.navbar-brand{
-  color: $main !important;
-  position: relative;
-  font-size: 2em;
-  font-weight: 600;
-  margin-left: 5px;
-}
-nav{
-  border-bottom: 1px solid darken($light, 10);
-}
-.navbar-light{
-  background: $white;
-  animation: slideInDown 1s ease-out;
-}
-.navbar{
-  padding: 5px 20px;
-  z-index: 10;
-}
-.nav-shadow{
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
-}
-.search{
-  position: relative;
-}
-.search-icon{
-  width: 15px;
-  color: $gray-lighter;
-  position: absolute;
-  left: 57px;
-  top: 21px;
-}
-.search-input{
-  border-radius: 50px;
-  padding: 0 30px 0 30px;
-  margin: 15px 0 0 50px;
-  border-color: darken($light, 15);
-  background-color: $white;
-  color: $gray-light;
-}
-.form-inline{
-  display: inline-block;
-}
-.fa-search{
-  color: lighten($gray-light, 20%);
-}
-.avatar{
-  display: inline;
-  float: right;
-  position: relative;
-}
-.avatar-image{
-  width: 3em;
-  height: 3em;
-  margin: 5px 20px;
-  border-radius: 100%;
-  border: 1px solid lighten($secondary, 30%);
-  background: $light;
-  &:hover{
     border: none;
-    box-shadow: 0px 0px 1px 5px lighten($gray-light, 30%);
-  }
+    padding: none;
+    margin: none;
+    background-color: $white;
 }
-.avatar-drop{
-  position: absolute;
-  // float: right;
-  bottom:20px;
-  right: 0px;
-  color: $gray-light;
+
+.logout {
+    user-select: none;
+    display: inline-block;
+    position: relative;
+    border: none;
+    background: $white;
+    color: $secondary;
+    height: 40px;
+    width: 100%;
+    padding: 0 10px;
+    cursor: pointer;
+    white-space: nowrap;
+
+    &:hover {
+        background: $gray-lighter;
+    }
 }
-@media (max-width: 544px){
-  .search-icon{
+
+.navbar-brand {
+    color: $main !important;
+    position: relative;
+    font-size: 2em;
+    font-weight: 600;
+    margin-left: 5px;
+}
+
+nav {
+    border-bottom: 1px solid darken($light, 10);
+}
+
+.navbar-light {
+    background: $white;
+    animation: slideInDown 1s ease-out;
+}
+
+.navbar {
+    padding: 5px 20px;
+    z-index: 10;
+}
+
+.nav-shadow {
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.search {
+    position: relative;
+}
+
+.search-icon {
+    width: 15px;
+    color: $gray-lighter;
     position: absolute;
-    left: 30px;
-    top: 5px;
-  }
-  .search-input{
+    left: 57px;
+    top: 21px;
+}
+
+.search-input {
     border-radius: 50px;
-    padding: 0 10px 0 30px;
-    margin: 15px 0 0 20px;
+    padding: 0 30px;
+    margin: 15px 0 0 50px;
     border-color: darken($light, 15);
     background-color: $white;
     color: $gray-light;
-  }
-  .form-inline{
-    display: block;
-    position: absolute;
-    top: 65px;
-    right: 30px;
-  }
-  nav{
-    border-bottom: none;
-  }
-  .navbar{
-    padding: 15px 20px;
-    box-shadow: none;
-  }
-  .avatar-image{
+}
+
+.form-inline {
+    display: inline-block;
+}
+
+.fa-search {
+    color: lighten($gray-light, 20%);
+}
+
+.avatar {
+    display: inline;
+    float: right;
+    position: relative;
+}
+
+.avatar-image {
+    width: 3em;
+    height: 3em;
+    margin: 5px 20px;
+    border-radius: 100%;
     border: 1px solid lighten($secondary, 30%);
-    &:hover{
-      border: none;
-      box-shadow: 0px 0px 1px 3px lighten($gray-light, 30%);
+    background: $light;
+
+    &:hover {
+        border: none;
+        box-shadow: 0 0 1px 5px lighten($gray-light, 30%);
     }
-  }
 }
 
+.avatar-drop {
+    position: absolute;
+    // float: right;
+    bottom: 20px;
+    right: 0;
+    color: $gray-light;
+}
+@media (max-width: 544px) {
+    .search-icon {
+        position: absolute;
+        left: 30px;
+        top: 5px;
+    }
 
-#menuToggle
-{
-  display: block;
-  position: relative;
-  top: -4px;
-  left: 5px;
+    .search-input {
+        border-radius: 50px;
+        padding: 0 10px 0 30px;
+        margin: 15px 0 0 20px;
+        border-color: darken($light, 15);
+        background-color: $white;
+        color: $gray-light;
+    }
 
-  // z-index: 1;
+    .form-inline {
+        display: block;
+        position: absolute;
+        top: 65px;
+        right: 30px;
+    }
 
-  -webkit-user-select: none;
-  user-select: none;
+    nav {
+        border-bottom: none;
+    }
+
+    .navbar {
+        padding: 15px 20px;
+        box-shadow: none;
+    }
+
+    .avatar-image {
+        border: 1px solid lighten($secondary, 30%);
+
+        &:hover {
+            border: none;
+            box-shadow: 0 0 1px 3px lighten($gray-light, 30%);
+        }
+    }
 }
 
-#menuToggle input
-{
-  display: block;
-  width: 40px;
-  height: 32px;
-  position: absolute;
-  top: -7px;
-  left: -5px;
-
-  cursor: pointer;
-
-  opacity: 0; /* hide this */
-  z-index: 100; /* and place it over the hamburger */
-
-  -webkit-touch-callout: none;
+#menuToggle {
+    display: block;
+    position: relative;
+    top: -4px;
+    left: 5px;
+    // z-index: 1;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
-
-#menuToggle span
-{
-  display: block;
-  width: 33px;
-  height: 4px;
-  margin-bottom: 5px;
-  position: relative;
-
-  background: $gray-light;
-  border-radius: 3px;
-
-  z-index: 99;
-
-  transform-origin: 4px 0px;
-
-  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
-              background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
-              opacity 0.55s ease;
+#menuToggle input {
+    display: block;
+    width: 40px;
+    height: 32px;
+    position: absolute;
+    top: -7px;
+    left: -5px;
+    cursor: pointer;
+    opacity: 0;
+    /* hide this */
+    z-index: 100;
+    /* and place it over the hamburger */
+    -webkit-touch-callout: none;
 }
 
-#menuToggle span:first-child
-{
-  transform-origin: 0% 0%;
+#menuToggle span {
+    display: block;
+    width: 33px;
+    height: 4px;
+    margin-bottom: 5px;
+    position: relative;
+    background: $gray-light;
+    border-radius: 3px;
+    z-index: 99;
+    transform-origin: 4px 0;
+    transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0), background 0.5s cubic-bezier(0.77,0.2,0.05,1.0), opacity 0.55s ease;
 }
 
-#menuToggle span:nth-last-child(2)
-{
-  transform-origin: 0% 100%;
+#menuToggle span:first-child {
+    transform-origin: 0 0;
 }
 
-
-#menuToggle input:checked ~ span
-{
-  opacity: 1;
-  transform: rotate(45deg) translate(-2px, -1px);
-  background: #232323;
-}
-#menuToggle input:checked ~ span:nth-last-child(3)
-{
-  opacity: 0;
-  transform: rotate(0deg) scale(0.2, 0.2);
-}
-#menuToggle input:checked ~ span:nth-last-child(2)
-{
-  opacity: 1;
-  transform: rotate(-45deg) translate(0, -1px);
-}
-#menu
-{
-  z-index: 16;
-  position: absolute;
-  // width: 300px;
-  margin: -100px 0 0 -50px;
-  padding: 50px;
-  padding-top: 125px;
-  background: $white;
-  list-style-type: none;
-  -webkit-font-smoothing: antialiased;
-  transform-origin: 0% 0%;
-  transform: translate(-100%, 0);
-  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+#menuToggle span:nth-last-child(2) {
+    transform-origin: 0 100%;
 }
 
-#menu li
-{
-  padding: 10px 0;
-  font-size: 22px;
+#menuToggle input:checked ~ span {
+    opacity: 1;
+    transform: rotate(45deg) translate(-2px, -1px);
+    background: #232323;
 }
-#menuToggle input:checked ~ ul
-{
-  transform: scale(1.0, 1.0);
-  opacity: 1;
+
+#menuToggle input:checked ~ span:nth-last-child(3) {
+    opacity: 0;
+    transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+#menuToggle input:checked ~ span:nth-last-child(2) {
+    opacity: 1;
+    transform: rotate(-45deg) translate(0, -1px);
+}
+
+#menu {
+    z-index: 16;
+    position: absolute;
+    // width: 300px;
+    margin: -100px 0 0 -50px;
+    padding: 125px 50px 50px;
+    background: $white;
+    list-style-type: none;
+    -webkit-font-smoothing: antialiased;
+    transform-origin: 0 0;
+    transform: translate(-100%, 0);
+    transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+}
+
+#menu li {
+    padding: 10px 0;
+    font-size: 22px;
+}
+
+#menuToggle input:checked ~ ul {
+    transform: scale(1.0, 1.0);
+    opacity: 1;
 }
