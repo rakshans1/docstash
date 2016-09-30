@@ -59,8 +59,7 @@ class Torrent extends React.Component {
                     <h5>Torrents</h5>
                     <h6 className="torrents-downloading">Downloading {this.props.ws.filesDownloading
                             ? this.props.ws.filesDownloading
-                            : 0}
-                        files</h6>
+                            : 0} files</h6>
                 </div>
 
                 {this.props.ws.torrents && this.props.ws.torrents.length > 0

@@ -30,8 +30,7 @@ class TorrentSearch extends React.Component {
             <div>
                 <div className="torrents-header">
                     <h5>Search Result for {this.props.input}</h5>
-                    <h6 className="torrents-downloading">Total {this.props.search.length}
-                        files</h6>
+                    <h6 className="torrents-downloading">Total {this.props.search.length} files</h6>
                 </div>
                 <div className="card card-block">
                     <div className="table-responsive torrent-search">

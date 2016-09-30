@@ -13,7 +13,7 @@ class Header extends React.Component {
                 <nav className="navbar nav-shadow navbar-light">
                     {/* <div className="brand-img"></div> */}
                     <IndexLink className="navbar-brand brand" to="/">Docstash
-                        <span className="onlineUsers">{this.props.onlineUsers}</span>
+                        <span className="onlineUsers indicator">{this.props.onlineUsers}</span>
                     </IndexLink>
                     <form className="form-inline pull-xs-center search-form">
                         <div className="form-group search">

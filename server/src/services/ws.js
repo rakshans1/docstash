@@ -1,9 +1,13 @@
 import socketio from 'socket.io';
+import User from '../models/user';
+
 let onlineUsers = 0;
 let io;
 let downloadList = [];
 let user = []; //  [ {email: , data:{} , sockets:[{}, {}] } ]
 let userdata = {}; // object given by updater
+
+
 
 exports.install = (server) => {
     io = socketio(server);
@@ -14,20 +18,26 @@ exports.install = (server) => {
         // initializeConnection(socket);
         handleEmail(socket);
         handleClientDisconnections(socket);
+        handleMessage(socket);
     });
 }
 
-// function initializeConnection(socket){
-//   return
-// }
+function addUser(email, socket, done) {
+    User.findOne({
+      email: email
+    }, (err, existingUser) => {
+      if (err) return
+        user.push({email: existingUser.email, pic: existingUser.picture, name: existingUser.name, data: {}, sockets: [socket] })
+        done(null, user);
+    });
+}
 
 function handleEmail(socket) { //Add new connections to user array if user exists see for his data and update
     socket.on('email', (email) => {
         let existingUser = user.find(user => user.email === email);
         if (existingUser)
             return updateUser([existingUser.email], userdata.torrents, socket);
-        user.push({email: email, data: {}, sockets: [socket]});
-        sendUpdate([email]);
+        addUser(email ,socket, sendUpdate);
     });
 }
 
@@ -39,18 +49,46 @@ function handleClientDisconnections(socket) { //delete user socket from array of
         deleteSocket(socket);
     });
 }
+function handleMessage(socket) {
+  socket.on('message', (senderEmail, recieverEmail, message) => {
+      updateChat(senderEmail, recieverEmail, message);
+  });
+
+}
 
 function sendUpdate(emails) {
-    emails.forEach((email) => {
-        const usr = user.find(usr => usr.email === email);
-        usr.sockets.forEach((socket) => {
-            socket.emit('data', Object.assign({}, usr.data, {
-                onlineUsers: onlineUsers
-            }, {
-                uploads: userdata.uploads
-            }, {twitter: userdata.twitter}));
-        })
-    });
+  let chatUser = [];
+  if (emails === null){
+    emails = []
+    chatUser = []
+   user.forEach(usr => {
+     if (usr.sockets.length > 0) {
+       emails.push(usr.email);
+       chatUser.push({name: usr.name, pic: usr.pic, email: usr.email});
+     }
+   })
+ } else {
+   chatUser = []
+  user.forEach(usr => {
+    if (usr.sockets.length > 0) {
+      chatUser.push({name: usr.name, pic: usr.pic, email: usr.email});
+    }
+  })
+ }
+
+  emails.forEach((email) => {
+      const usr = user.find(usr => usr.email === email);
+      usr.sockets.forEach((socket) => {
+          socket.emit('data', Object.assign({}, usr.data, {
+              onlineUsers: onlineUsers
+          }, {
+              uploads: userdata.uploads
+          }, {twitter: userdata.twitter
+          },{chat: {
+            user: chatUser
+          } }));
+      })
+  });
 }
 
 function deleteSocket(socket) {
@@ -61,6 +99,7 @@ function deleteSocket(socket) {
             }
         )
     });
+    sendUpdate(null);
 }
 
 exports.send = (data) => { // Updater sends updates here
@@ -106,7 +145,7 @@ function updateUser(emails, array, socket) {
             usr.sockets.push(socket);
         }
     );
-    sendUpdate(emails);
+    sendUpdate(null);
     let difference = downloadList.filter(x => emails.indexOf(x) === -1); //difference between previous update list and now
     if (difference.length > 0)
         nodownload(difference);
@@ -122,4 +161,32 @@ function nodownload(emails) {
         usr.data.filesDownloading = 0;
     });
     sendUpdate(emails);
+}
+
+
+function updateChat(senderEmail, recieverEmail, message) {
+  //get sender from user array
+  const sender = user.find(usr => usr.email === senderEmail);
+  //get reciever from user array
+  const reciever = user.find(usr => usr.email === recieverEmail);
+
+  if (sender.data.chats) {
+    //get reciever array in senders data    {data: chat: [{email:  ,  messages: [{1: message }]   }  ]  , [    ]  }
+    const senderRArray = sender.data.chats.find(sendr => sendr.email === recieverEmail);
+    senderRArray.messages.push({1: message});
+  } else {
+    sender.data.chats = []
+    sender.data.chats.push({email: recieverEmail, messages: [  {1: message} ] });
+  }
+
+  if (reciever.data.chats) {
+    //get reciever array in senders data    {data: chat: [{email:  ,  messages: [{2: message }]   }  ]  , [    ]  }
+    const recieverSArray = reciever.data.chats.find(recvr => recvr.email === senderEmail );
+    recieverSArray.messages.push({2: message});
+  } else {
+    reciever.data.chats = []
+    reciever.data.chats.push({email: senderEmail, messages: [ {2: message} ] });
+  }
+  sendUpdate([senderEmail, recieverEmail]);
+
 }

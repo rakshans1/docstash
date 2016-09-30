@@ -3,6 +3,7 @@ import React, {PropTypes} from 'react';
 import NotificationContainer from '../containers/Notification';
 import Spinner from '../containers/Spinner';
 import Modal from '../components/common/Modal';
+import Chat from '../containers/Chat';
 
 class App extends React.Component {
     constructor(props) {
@@ -13,7 +14,8 @@ class App extends React.Component {
             <div>
                 <Spinner/>
                 <NotificationContainer props/>
-                <Modal/> {this.props.children}
+                <Modal/>
+                {this.props.children}
             </div>
         );
     }

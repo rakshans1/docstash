@@ -2,6 +2,7 @@ import React, {PropTypes} from 'react';
 import Sidebar from '../main/Sidebar';
 import Recent from '../main/Recent';
 import Breadcrumb from '../main/Breadcrumb';
+import Chat from '../../containers/Chat';
 
 class Home extends React.Component {
     constructor(props) {
@@ -17,6 +18,7 @@ class Home extends React.Component {
                         <Breadcrumb {...this.props}/> {this.props.children}
                     </div>
                     <Recent {...this.props}/>
+                    <Chat />
                 </div>
             </div>
         );

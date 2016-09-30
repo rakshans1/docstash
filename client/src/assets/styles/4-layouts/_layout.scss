@@ -28,14 +28,20 @@ button:focus {
 
 .onlineUsers {
     position: absolute;
-    padding: 2px 9px;
-    font-size: 0.4em;
-    border-radius: 100px;
-    top: 2px;
+    top: 12px;
     right: -25px;
-    color: $white;
-    background-color: $secondary;
-    // animation: bounceIn 1.5s ease-in;
+}
+.indicator {
+  background: $main;
+  color: $white;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: bold;
+  height: 25px;
+  line-height: 25px;
+  margin: -15px 0 0 -15px;
+  text-align: center;
+  width: 25px;
 }
 
 .twitter {
@@ -49,4 +55,7 @@ button:focus {
 
 .padding-top {
     padding-top: 20px;
+}
+.display-none {
+  display: none;
 }

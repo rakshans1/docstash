@@ -26,21 +26,3 @@
     box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.4);
     animation: slideInUp 0.3s linear;
 }
-@keyframes slideInUp {
-    from {
-        transform: translate3d(0, 100%, 0);
-    }
-
-    to {
-        transform: translate3d(0, 0, 0);
-    }
-}
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
