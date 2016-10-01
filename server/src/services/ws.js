@@ -171,21 +171,23 @@ function updateChat(senderEmail, recieverEmail, message) {
   const reciever = user.find(usr => usr.email === recieverEmail);
 
   if (sender.data.chats) {
-    //get reciever array in senders data    {data: chat: [{email:  ,  messages: [{1: message }]   }  ]  , [    ]  }
+    //get reciever array in senders data    {data: chat: [{email:  ,  name, messages: [{1: message }]   }  ]  , [    ]  }
     const senderRArray = sender.data.chats.find(sendr => sendr.email === recieverEmail);
-    senderRArray.messages.push({1: message});
+    if (senderRArray === undefined ) sender.data.chats.push({email: reciever.email, name: reciever.name, pic: reciever.pic, messages: [  {1: message} ] });
+    else senderRArray.messages.push({1: message});
   } else {
     sender.data.chats = []
-    sender.data.chats.push({email: recieverEmail, messages: [  {1: message} ] });
+    sender.data.chats.push({email: reciever.email, name: reciever.name, pic: reciever.pic, messages: [  {1: message} ] });
   }
 
   if (reciever.data.chats) {
-    //get reciever array in senders data    {data: chat: [{email:  ,  messages: [{2: message }]   }  ]  , [    ]  }
+    //get reciever array in senders data    {data: chat: [{email:  ,name,  messages: [{2: message }]   }  ]  , [    ]  }
     const recieverSArray = reciever.data.chats.find(recvr => recvr.email === senderEmail );
-    recieverSArray.messages.push({2: message});
+    if (recieverSArray === undefined ) reciever.data.chats.push({email: sender.email, name: sender.name, pic: sender.pic, messages: [ {2: message} ] });
+    else recieverSArray.messages.push({2: message});
   } else {
     reciever.data.chats = []
-    reciever.data.chats.push({email: senderEmail, messages: [ {2: message} ] });
+    reciever.data.chats.push({email: sender.email, name: sender.name, pic: sender.pic, messages: [ {2: message} ] });
   }
   sendUpdate([senderEmail, recieverEmail]);
 

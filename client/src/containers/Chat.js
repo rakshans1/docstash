@@ -4,6 +4,7 @@ import {bindActionCreators} from 'redux';
 import * as wsAction from '../actions/wsAction';
 import ChatFriends from '../components/main/sections/chat/ChatFriends';
 import ChatModal from '../components/main/sections/chat/ChatModal';
+import chatNotification from '../utils/chatNotification';
 import classNames from 'classnames';
 
 class Chat extends React.Component {
@@ -17,7 +18,9 @@ class Chat extends React.Component {
         this.showModal = this.showModal.bind(this);
         this.sendmessage = this.sendmessage.bind(this);
     }
-
+    componentDidUpdate() {
+      chatNotification(this.props.ws.chats);
+    }
     show() {
         if (this.state.chatVisible) {
             this.setState({chatVisible: false})
@@ -52,7 +55,7 @@ class Chat extends React.Component {
                     <h4>Chat</h4>
                     <span className={indicator}>{chat ? chat.user.length -1  : 0}</span>
                 </header>
-                    { chat ? <ChatFriends  user={chat.user} email={this.props.user} showModal={this.showModal}/> : null }
+                    { chat ? <ChatFriends  user={chat.user} chats={chats} email={this.props.user} showModal={this.showModal}/> : null }
                     {this.state.showModal ? <ChatModal {...this.state} senderPic={this.props.user.picture} senderEmail={this.props.user.email} chatMessage={chats}  sendMessage={this.sendmessage} showModal={this.showModal}/> : null}
             </div>
         )

@@ -46,8 +46,9 @@ export default function(app) {
         res.send('hi ' + req.user.name);
     });
     app.get('/load', (req, res) => {
-        // res.send('hi');
-        return res.redirect('docstash://auth?text=Hello%20World!');
+      let ram = Math.floor(process.memoryUsage().rss / 1000000).toString()
+      let uptime = Math.floor(process.uptime() / 60).toString()
+        res.send('Ram Used : ' + ram + ' MB Uptime: ' + uptime + ' min');
     });
 
     //User info Controllers

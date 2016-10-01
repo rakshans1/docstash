@@ -16,7 +16,7 @@ class ChatMessage extends React.Component {
   const message = this.props.message.messages.map((message, i) => {
     if (Object.keys(message)[0] === "1"){
       return(
-        <div className="message" key={i}>
+        <div className="message right" key={i}>
           <img src={senderPic} alt=""/>
           <div className="bubble">
             {message[1]}
@@ -26,7 +26,7 @@ class ChatMessage extends React.Component {
       )
     } else {
       return (
-        <div className="message right" key={i}>
+        <div className="message" key={i}>
           <img src={receiverPic} alt=""/>
            <div className="bubble">
              {message[2]}

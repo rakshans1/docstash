@@ -26,6 +26,7 @@ export default {
         torrents: '',
         onlineUsers: 0,
         filesDownloading: 0,
-        uploads: ''
+        uploads: '',
+        chats: []
     }
 };

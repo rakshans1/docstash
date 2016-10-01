@@ -71,7 +71,18 @@
             background: #f1f4f6;
             cursor: pointer;
         }
-
+        .status{
+          background: $green;
+          border-radius: 50%;
+          width: 9px;
+          height: 9px;
+          position: absolute;
+          top: 31px;
+          right: 17px;
+        }
+        .away {
+          background: #ffce54;
+        }
         img {
             width: 40px;
             border-radius: 50%;

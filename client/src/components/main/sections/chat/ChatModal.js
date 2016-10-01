@@ -50,7 +50,7 @@ class ChatModal extends React.Component {
             <p>{chatName}<br/><span>{chatEmail}</span></p>
         </div>
 
-          {chatMessage ? <ChatMessage senderPic={senderPic} receiverPic={chatPic} message={chatMessage.find(message => message.email === chatEmail)}/> : null}
+          {chatMessage && chatMessage.find(message => message.email === chatEmail) ? <ChatMessage senderPic={senderPic} receiverPic={chatPic} message={chatMessage.find(message => message.email === chatEmail)}/> : null}
 
         <div className="sendmessage">
           <div dir="auto" className="chat-input" ref="message" contentEditable="true" onInput={this.handleMessage} onKeyPress={this.onEnter}></div>
