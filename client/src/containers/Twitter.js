@@ -1,8 +1,8 @@
 import React, {PropTypes} from 'react';
-import Input from '../../auth/Input';
+import Input from '../components/Input';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import * as tweetActions from '../../../actions/twitterActions';
+import * as tweetActions from '../actions/twitterActions';
 
 class Twitter extends React.Component {
   constructor(props) {
@@ -35,7 +35,7 @@ class Twitter extends React.Component {
 
 
   renderTweet() {
-    if (this.props.twitter !== undefined) {
+    if (this.props.twitter.count !== 0) {
       const {count, sentiment, tweets, phrase} = this.props.twitter;
       return(
         <div className="card card-inverse card-outline-success text-xs-center twitter">
@@ -52,17 +52,16 @@ class Twitter extends React.Component {
 
   sentimentImg(sentiment, count) {
     var avg = sentiment / count;
-    if (avg > 0.5) return <img src={require('../../../assets/img/excited.png')} /> //happy
-    if (avg < -0.5) return <img src={require('../../../assets/img/angry.png')} /> //angry
-    return <img src={require('../../../assets/img/normal.png')} /> //happy
+    if (avg > 0.5) return <img src={require('../assets/img/excited.png')} /> //happy
+    if (avg < -0.5) return <img src={require('../assets/img/angry.png')} /> //angry
+    return <img src={require('../assets/img/normal.png')} /> //normal
   }
   render() {
     return(
       <div className="col-sm-8 col-xs-12 shortner">
         <h1 className="text-sm-center shortner_h1">Twitter Feeds</h1>
         <div className="row">
-          <div className="col-sm-2"/>
-          <div className="col-sm-8">
+          <div className="col-sm-12">
             <form onSubmit={this.saveAndContinue}>
                 <Input
                 text="Enter Phrase to scan Twitter"
@@ -76,7 +75,7 @@ class Twitter extends React.Component {
                 />
                 <button
                   type="submit"
-                  className="button button_wide">
+                  className="button button_center">
                   Twitter Me
                 </button>
             </form>

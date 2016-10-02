@@ -18,6 +18,7 @@ export default {
         shortner: null,
         input: ''
     },
+    weather: [],
     torrent : {
         search: [],
         input: ''

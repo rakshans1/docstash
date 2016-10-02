@@ -1,8 +1,8 @@
 import React, {PropTypes} from 'react';
-import Input from '../../auth/Input';
+import Input from '../components/Input';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import * as shortActions from '../../../actions/shortnerActions';
+import * as shortActions from '../actions/shortnerActions';
 
 class Shortner extends React.Component {
   constructor(props) {
@@ -55,8 +55,7 @@ class Shortner extends React.Component {
       <div className="col-sm-8 col-xs-12 shortner">
         <h1 className="text-sm-center shortner_h1">Link Shortner</h1>
         <div className="row">
-          <div className="col-sm-2"/>
-          <div className="col-sm-8">
+          <div className="col-sm-12">
             <form onSubmit={this.saveAndContinue}>
                 <Input
                 text="Enter Url to shorten"
@@ -71,7 +70,7 @@ class Shortner extends React.Component {
                 />
                 <button
                   type="submit"
-                  className="button button_wide">
+                  className="button button_center">
                   Shorten Link
                 </button>
             </form>

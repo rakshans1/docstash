@@ -1,5 +1,5 @@
 .shortner {
-    margin-top: 50px;
+    margin-top: 20px;
     animation: fadeIn 0.3s ease-in;
 }
 
@@ -10,9 +10,17 @@
 
 .shortner_h1 {
     color: $secondary;
-    margin: 30px 0;
+    margin: 10px 0;
 }
-
+.youtube-li {
+  cursor: pointer;
+}
+.youtube-heading{
+  font-size: 0.8em;
+}
+.youtube-side-img{
+  width: 100px
+}
 button:focus {
     outline: 0;
 }

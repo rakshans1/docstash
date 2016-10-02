@@ -1,11 +1,11 @@
 import React, {PropTypes} from 'react';
-import Input from '../../auth/Input';
-import TorrentInfo from './torrent/TorrentInfo';
-import TorrentSearch from './torrent/TorrentSearch';
-import TorrentDownload from './torrent/TorrentDownload';
+import Input from '../components/Input';
+import TorrentInfo from '../components/main/sections/torrent/TorrentInfo';
+import TorrentSearch from '../components/main/sections/torrent/TorrentSearch';
+import TorrentDownload from '../components/main/sections/torrent/TorrentDownload';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import * as torrentActions from '../../../actions/torrentActions';
+import * as torrentActions from '../actions/torrentActions';
 
 class Torrent extends React.Component {
     constructor(props) {

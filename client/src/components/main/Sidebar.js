@@ -53,6 +53,12 @@ class Sidebar extends React.Component {
                         <Link className="sidebar-a" activeClassName="active" to="/torrent"><i className="flaticon-torrent"/>Torrent Download</Link>
                     </li>
                     <li className="sidebar-li">
+                        <Link className="sidebar-a" activeClassName="active" to="/youtube"><i className="flaticon-youtube"/>Youtube Player</Link>
+                    </li>
+                    <li className="sidebar-li">
+                        <Link className="sidebar-a" activeClassName="active" to="/weather"><i className="flaticon-weather"/>Weather Report</Link>
+                    </li>
+                    <li className="sidebar-li">
                         <Link className="sidebar-a" activeClassName="active" to="/twitter"><i className="flaticon-twitter"/>Twitter Feeds</Link>
                     </li>
                     <li className="sidebar-li">

@@ -6,6 +6,7 @@ import notification from './notification';
 import modalReducer from './modalReducer';
 import user from './userReducer';
 import shortnerReducer from './shortnerReducer';
+import weatherReducer from './weatherReducer';
 import torrentReducer from './torrentReducer';
 import wsReducer from './wsReducer';
 
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
     modal: modalReducer,
     user: user,
     shortner: shortnerReducer,
+    weather: weatherReducer,
     torrent: torrentReducer,
     ws: wsReducer
 });

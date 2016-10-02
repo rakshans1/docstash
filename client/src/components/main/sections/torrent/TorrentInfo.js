@@ -1,5 +1,7 @@
 import React, {PropTypes} from 'react';
 import units from '../../../../utils/units';
+import TorrentChart from './TorrentChart';
+import classNames from 'classnames';
 
 class TorrentInfo extends React.Component {
     // constructor (props) {
@@ -31,6 +33,11 @@ class TorrentInfo extends React.Component {
     }
 
     render() {
+      const torrentComplete = (file, torrent) => {
+        if (file.length === file.downloadLength) return <img src={require('../../../../assets/icon/tick.svg')} className="torrent-downloading-icon" alt=""/>
+        return <img src={require('../../../../assets/icon/cloud-download.svg')} className="torrent-downloading-icon" onClick={() => this.handledownloadFile(torrent.hash, file.path)} alt=""/>
+
+      }
         const torrentInfo = this.props.torrents.map((torrent, i) => {
             return (
                 <div key={i} className="card card-block torrent-info">
@@ -40,11 +47,14 @@ class TorrentInfo extends React.Component {
                             </div>
                         : null}
                     <div className="row torrent-info-row">
-                        <div className="col-md-6 col-sm-12 col-xs-12 torrent-name">
+                        <div className={classNames({'col-md-6':!torrent.open, 'col-md-4': torrent.open, 'col-sm-12': true, 'col-xs-12': true, 'torrent-name': true })}>
                             <span>{torrent.name}</span>
                             <div className="torrent-hash">#{torrent.hash}</div>
                         </div>
-                        <div className="col-md-6 col-sm-12 col-xs-12 text-sm-right">
+                        <div className={classNames({'display-none':!torrent.open, 'col-md-3': torrent.open, 'col-sm-12': true, 'col-xs-12': true,  })}>
+                        <TorrentChart data={torrent.status.downps}/>
+                        </div>
+                        <div className={classNames({'col-md-6':!torrent.open, 'col-md-5': torrent.open, 'col-sm-12': true, 'col-xs-12': true,  'text-xs-right': true })}>
                             <div className="torrent-status">
                                 <span>{units(torrent.status.down)}</span>
                                 <span>
@@ -92,7 +102,7 @@ class TorrentInfo extends React.Component {
                                                     <td>{units(file.length)}</td>
                                                     <td className="torrent-download">{file.downloading
                                                             ? <img src={require('../../../../assets/icon/red-stop.svg')} className="torrent-downloading-icon" alt="" onClick={() => this.handlecancelFile(torrent.hash, file.path)}/>
-                                                            : <img src={require('../../../../assets/icon/cloud-download.svg')} className="torrent-downloading-icon" onClick={() => this.handledownloadFile(torrent.hash, file.path)} alt=""/>}</td>
+                                                            : torrentComplete(file, torrent) }</td>
                                                 </tr>
                                             )
                                         })}

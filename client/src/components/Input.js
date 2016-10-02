@@ -1,7 +1,6 @@
 import React, {PropTypes} from 'react';
-import _ from '../../utils/lobash'
-// import _ from 'lodash';
-import Icon from '.././icon';
+import _ from '../utils/lobash'
+import Icon from './icon';
 import InputError from './InputErrors';
 import PasswordValidator from './PasswordValidator';
 

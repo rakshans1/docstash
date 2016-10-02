@@ -11,9 +11,11 @@ import SocialLogin from './components/auth/SocialLogin';
 import RequireAuth from './components/auth/RequireAuth';
 import LoggedInRedirect from './components/auth/LoggedInRedirect';
 import Main from './components/main/Main';
-import Shortner from './components/main/sections/Shortner';
-import Twitter from './components/main/sections/Twitter';
-import Torrent from './components/main/sections/Torrent';
+import Shortner from './containers/Shortner';
+import Twitter from './containers/Twitter';
+import Torrent from './containers/Torrent';
+import Weather from './containers/Weather';
+import Youtube from './containers/Youtube';
 
 export default(
     <Route path="/" component={App}>
@@ -22,6 +24,8 @@ export default(
             <Route path="/short" component={Shortner}/>
             <Route path="/twitter" component={Twitter}/>
             <Route path="/torrent" component={Torrent}/>
+            <Route path="/weather" component={Weather}/>
+            <Route path="/youtube" component={Youtube}/>
         </Route>
         <Route path="/signup" component={LoggedInRedirect(Signup)}/>
         <Route path="/login" component={LoggedInRedirect(Signin)}/>

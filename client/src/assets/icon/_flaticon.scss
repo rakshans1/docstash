@@ -1,6 +1,6 @@
     /*
     Flaticon icon font: Flaticon
-    Creation date: 22/09/2016 17:49
+    Creation date: 01/10/2016 19:23
     */
 
     @font-face {
@@ -49,6 +49,8 @@
 .flaticon-square:before { content: "\f10a"; }
 .flaticon-torrent:before { content: "\f10b"; }
 .flaticon-twitter:before { content: "\f10c"; }
+.flaticon-weather:before { content: "\f10d"; }
+.flaticon-youtube:before { content: "\f10e"; }
     
     $font-Flaticon-draw: "\f100";
     $font-Flaticon-file: "\f101";
@@ -63,3 +65,5 @@
     $font-Flaticon-square: "\f10a";
     $font-Flaticon-torrent: "\f10b";
     $font-Flaticon-twitter: "\f10c";
+    $font-Flaticon-weather: "\f10d";
+    $font-Flaticon-youtube: "\f10e";

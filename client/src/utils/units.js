@@ -15,4 +15,9 @@ const units = (bytes) => {
     return bytes;
 }
 
+
+export const chart = (bytes) => {
+    bytes = (bytes / 1000).toFixed(2);
+    return bytes;
+}
 export default units;

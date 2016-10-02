@@ -99,6 +99,24 @@ class Breadcrumb extends React.Component {
                         </li>
                     </ol>
                 );
+            case '/youtube':
+                return (
+                    <ol className="breadcrumb">
+                        <li className="breadcrumb-item ">Extra</li>
+                        <li className="breadcrumb-item ">
+                            <Link to="/youtube">Youtube</Link>
+                        </li>
+                    </ol>
+                );
+            case '/weather':
+                return (
+                    <ol className="breadcrumb">
+                        <li className="breadcrumb-item ">Extra</li>
+                        <li className="breadcrumb-item ">
+                            <Link to="/weather">Weather</Link>
+                        </li>
+                    </ol>
+                );
             default:
                 return false;
         }

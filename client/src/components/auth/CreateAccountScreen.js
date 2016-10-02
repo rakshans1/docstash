@@ -1,7 +1,6 @@
 import React, {PropTypes} from 'react';
-import Input from './Input';
+import Input from '../Input';
 import _ from '../../utils/lobash'
-// import _ from 'lodash';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as authActions from '../../actions/authActions';

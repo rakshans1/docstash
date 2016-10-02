@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react';
-import Icon from '../icon';
+import Icon from './icon';
 import classNames from 'classnames';
 
 class PasswordValidator extends React.Component {

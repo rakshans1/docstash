@@ -7,10 +7,10 @@ let sftp = new Client();
 
 exports.init = function() {
     const sshOptions = {
-        host: secret.ssh.SSH_HOST,
-        port: secret.ssh.SSH_PORT,
-        username: secret.ssh.SSH_USERNAME,
-        password: secret.ssh.SSH_PASSWORD
+        host: secret.sftp.SSH_HOST,
+        port: secret.sftp.SSH_PORT,
+        username: secret.sftp.SSH_USERNAME,
+        password: secret.sftp.SSH_PASSWORD
     }
     sftp.connect(sshOptions).then(() => console.log("SSH login success")).catch((err) => {
         console.log("SSH login failed: %s", err);
@@ -27,7 +27,7 @@ exports.upload = function(torrentFile, done) {
         : dirs.pop();
     // eslint-disable-next-line
     var dir = null;
-    var root = secret.ssh.SSH_ROOT;
+    var root = secret.sftp.SSH_ROOT;
 
     //call back when all dirs made
     mkdirp(dirs, root, function(err, dir) {
@@ -53,7 +53,7 @@ exports.upload = function(torrentFile, done) {
 
 //list will be called to list all stored files
 exports.list = function(done) {
-    sftp.list(secret.ssh.SSH_ROOT).then((data) => {
+    sftp.list(secret.sftp.SSH_ROOT).then((data) => {
         var files = [];
         data.forEach(f => {
             const tmp = {
@@ -70,5 +70,5 @@ exports.list = function(done) {
 };
 
 exports.remove = function(path, done) {
-    sftp.rmdir(secret.ssh.SSH_ROOT + path, true).then(() => done(null)).catch((err) => done(err));
+    sftp.rmdir(secret.sftp.SSH_ROOT + path, true).then(() => done(null)).catch((err) => done(err));
 };

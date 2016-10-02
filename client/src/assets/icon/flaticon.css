@@ -1,6 +1,6 @@
 	/*
   	Flaticon icon font: Flaticon
-  	Creation date: 22/09/2016 17:49
+  	Creation date: 01/10/2016 19:23
   	*/
 
 @font-face {
@@ -42,3 +42,5 @@ margin-left: 20px;
 .flaticon-square:before { content: "\f10a"; }
 .flaticon-torrent:before { content: "\f10b"; }
 .flaticon-twitter:before { content: "\f10c"; }
+.flaticon-weather:before { content: "\f10d"; }
+.flaticon-youtube:before { content: "\f10e"; }

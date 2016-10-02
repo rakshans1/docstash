@@ -36,7 +36,6 @@
     "babel-preset-stage-1": "^6.13.0",
     "classnames": "^2.2.5",
     "eslint": "^3.6.1",
-    "lodash": "^4.16.2",
     "nprogress": "^0.2.0",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
@@ -45,12 +44,12 @@
     "react-redux": "^4.4.5",
     "react-router": "^2.8.1",
     "react-router-redux": "^4.0.5",
+    "react-sparklines": "^1.6.0",
     "redux": "^3.6.0",
     "redux-storage": "^4.1.1",
     "redux-storage-engine-localstorage": "^1.1.2",
     "redux-thunk": "^2.1.0",
-    "socket.io-client": "^1.4.8",
-    "webpack-dev-middleware": "^1.8.3"
+    "socket.io-client": "^1.4.8"
   },
   "devDependencies": {
     "babel-cli": "^6.11.4",
@@ -101,7 +100,7 @@
     "web-app-manifest-loader": "^0.1.1",
     "webpack": "^1.13.1",
     "webpack-dashboard": "0.0.1",
-    "webpack-dev-middleware": "^1.6.1",
+    "webpack-dev-middleware": "^1.8.3",
     "webpack-dev-server": "^1.14.1",
     "webpack-hot-middleware": "^2.12.2",
     "webpack-md5-hash": "0.0.5",
