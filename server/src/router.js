@@ -13,6 +13,8 @@ import secret from './config/secret'
 
 import twitter from './controllers/twitter';
 
+import weather from './controllers/weather';
+
 const requireAuth = passport.authenticate('jwt', {session: false});
 const requireSignIn = passport.authenticate('local', {session: false});
 const googleCallbackWeb = passport.authenticate('google', {
@@ -50,6 +52,8 @@ export default function(app) {
       let uptime = Math.floor(process.uptime() / 60).toString()
         res.send('Ram Used : ' + ram + ' MB Uptime: ' + uptime + ' min');
     });
+
+    app.post('/weather', weather);
 
     //User info Controllers
     app.get('/user', requireAuth, (req, res) => {
@@ -141,8 +145,8 @@ export default function(app) {
     // app.post('/sentiment', twitter.sentimentTwitter);
     app.post('/twitter', twitter.watchTwitter);
 
-    if (process.env.NODE_ENV === "development") {
+    if (process.env.NODE_ENV === "undefined") {
         const apilist = require('./util/apilist');
-        apiList(app._router.stack);
+        apilist(app._router.stack);
     }
 } //main function end

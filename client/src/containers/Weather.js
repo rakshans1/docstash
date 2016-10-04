@@ -52,7 +52,7 @@ class Weather extends React.Component {
                 <button
                   type="submit"
                   className="button button_center">
-                  Shorten Link
+                  Get Weather
                 </button>
             </form>
         </div>
