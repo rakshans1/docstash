@@ -64,7 +64,7 @@ class Main extends React.Component {
 
                     <div className="col-md-2 col-xs-6 image-div">
                         <div className="image-wrapper">
-                            <img src="https://unsplash.it/200/300/?random" alt="' " className="image img-fluid img-rounded"/>
+                            <img src="https://source.unsplash.com/category/food/135x135" alt="' " className="image img-fluid img-rounded"/>
                         </div>
                         <p className="filename">
                             <i className="flaticon-file flaticon-photo"></i>
@@ -74,7 +74,7 @@ class Main extends React.Component {
 
                     <div className="col-md-2 col-xs-6 image-div">
                         <div className="image-wrapper">
-                            <img src="https://unsplash.it/200/300/?random" alt="" className="image img-fluid img-rounded"/>
+                            <img src="https://source.unsplash.com/category/technology/135x135" alt="" className="image img-fluid img-rounded"/>
                         </div>
                         <p className="filename">
                             <i className="flaticon-file flaticon-photo"></i>
@@ -84,7 +84,7 @@ class Main extends React.Component {
 
                     <div className="col-md-2 col-xs-6 image-div">
                         <div className="image-wrapper">
-                            <img src="https://unsplash.it/200/300/?random" alt="" className="image img-fluid img-rounded"/>
+                            <img src="https://source.unsplash.com/category/buildings/135x135" alt="" className="image img-fluid img-rounded"/>
                         </div>
                         <p className="filename">
                             <i className="flaticon-file flaticon-photo"></i>

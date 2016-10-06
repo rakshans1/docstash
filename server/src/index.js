@@ -64,5 +64,5 @@ server.listen(secret.port);
 ws.install(server);
 router(app);
 
-require('./chat');
+require('./services/chat');
 export default app; // for testing

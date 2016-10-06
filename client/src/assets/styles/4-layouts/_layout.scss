@@ -5,22 +5,26 @@
 
 .shortner-link {
     margin-top: 50px;
-    animation: bounceIn 0.3s ease-in;
+    animation: fadeIn 0.5s ease-in;
 }
 
 .shortner_h1 {
     color: $secondary;
     margin: 10px 0;
 }
+
 .youtube-li {
-  cursor: pointer;
+    cursor: pointer;
 }
-.youtube-heading{
-  font-size: 0.8em;
+
+.youtube-heading {
+    font-size: 0.8em;
 }
-.youtube-side-img{
-  width: 100px
+
+.youtube-side-img {
+    width: 100px;
 }
+
 button:focus {
     outline: 0;
 }
@@ -39,17 +43,18 @@ button:focus {
     top: 12px;
     right: -25px;
 }
+
 .indicator {
-  background: $main;
-  color: $white;
-  border-radius: 50%;
-  font-size: 12px;
-  font-weight: bold;
-  height: 25px;
-  line-height: 25px;
-  margin: -15px 0 0 -15px;
-  text-align: center;
-  width: 25px;
+    background: $main;
+    color: $white;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: bold;
+    height: 25px;
+    line-height: 25px;
+    margin: -15px 0 0 -15px;
+    text-align: center;
+    width: 25px;
 }
 
 .twitter {
@@ -64,6 +69,7 @@ button:focus {
 .padding-top {
     padding-top: 20px;
 }
+
 .display-none {
-  display: none;
+    display: none;
 }

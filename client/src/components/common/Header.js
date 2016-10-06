@@ -26,7 +26,7 @@ class Header extends React.Component {
                         <img className="avatar-image" src={picture} alt=""/> {/* <i className="arrow-down avatar-drop" aria-hidden="true" /> */}
                         <ul className="dropdowns">
                             <li>
-                                <a href="#">Setting</a>
+                                <Link to="/setting">Setting</Link>
                             </li>
                             <li>
                                 <Link to="/signout">Logout</Link>

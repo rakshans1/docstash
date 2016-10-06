@@ -17,6 +17,15 @@ class Breadcrumb extends React.Component {
                         </li>
                     </ol>
                 );
+            case '/setting':
+                return (
+                    <ol className="breadcrumb">
+                        <li className="breadcrumb-item ">Profile</li>
+                        <li className="breadcrumb-item ">
+                            <Link to="/setting">Setting</Link>
+                        </li>
+                    </ol>
+                );
             case '/recent':
                 return (
                     <ol className="breadcrumb">

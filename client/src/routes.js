@@ -11,6 +11,7 @@ import SocialLogin from './components/auth/SocialLogin';
 import RequireAuth from './components/auth/RequireAuth';
 import LoggedInRedirect from './components/auth/LoggedInRedirect';
 import Main from './components/main/Main';
+import Setting from './containers/Setting';
 import Shortner from './containers/Shortner';
 import Twitter from './containers/Twitter';
 import Torrent from './containers/Torrent';
@@ -26,6 +27,7 @@ export default(
             <Route path="/torrent" component={Torrent}/>
             <Route path="/weather" component={Weather}/>
             <Route path="/youtube" component={Youtube}/>
+            <Route path="/setting" component={Setting}/>
         </Route>
         <Route path="/signup" component={LoggedInRedirect(Signup)}/>
         <Route path="/login" component={LoggedInRedirect(Signin)}/>

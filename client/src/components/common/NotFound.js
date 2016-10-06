@@ -57,7 +57,7 @@ class NotFound extends React.Component {
         let {droidX, mouseX, toTheRight} = this.state;
         return (
             <div className="notfound">
-                <nav className="navbar navbar-light">
+                <nav className="navbar">
                     <img src={require('../../assets/img/logo.svg')} className="brand-img" alt=""/>
                     <IndexLink to="/" className="navbar-brand ">Docstash</IndexLink>
                 </nav>

@@ -1,5 +1,6 @@
 import io from 'socket.io-client'
-import secret from './config/secret';
+import secret from '../config/secret';
+import * as wit from './wit';
 
 let chatLog = []
 
@@ -18,8 +19,12 @@ socket.on('data', (data) => {
 
             if (chatLog[i] < data.chats[i].messages.length) {
                 if (Object.keys(data.chats[i].messages[chatLog[i]])[0] === "2") {
-                    const email = data.chats[i].email
-                    socket.emit('message', 'docstashcare@gmail.com', email, 'Hey, I am in Development. Will help you soon');
+                    const email = data.chats[i].email;
+                    const name = data.chats[i].name;
+                    const message = data.chats[i].messages[chatLog[i]]['2'];
+                    wit.message(message, name, (msg) => {
+                      socket.emit('message', 'docstashcare@gmail.com', email, msg);
+                    });
                 }
             }
             chatLog[i] = data.chats[i].messages.length

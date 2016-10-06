@@ -81,7 +81,7 @@ class Twitter extends React.Component {
             </form>
         </div>
         </div>
-        {this.renderTweet()}
+        {this.props.twitter ? this.renderTweet() : null}
       </div>
 
 
