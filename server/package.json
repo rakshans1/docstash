@@ -11,7 +11,9 @@
     "break": "nodemon --inspect --debug-brk  --exec babel-node src/index.js",
     "build": "babel src -d dist",
     "db": "mongod --dbpath ../data",
-    "serve": "node dist/index.js"
+    "serve": "node dist/index.js",
+    "predev": "mongod --dbpath ../data",
+    "dev": "nodemon --exec 'nodejs-dashboard babel-node' src/index.js"
   },
   "repository": {
     "type": "git",
@@ -77,6 +79,7 @@
     "cli-table": "^0.3.1",
     "eslint": "^3.3.1",
     "eslint-plugin-import": "^1.13.0",
+    "nodejs-dashboard": "^0.1.1",
     "nodemon": "^1.10.2",
     "npm-run-all": "^3.1.0"
   }

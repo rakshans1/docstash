@@ -10,6 +10,8 @@ import http from 'http';
 // eslint-disable-next-line
 import ws from './services/ws';
 
+require("nodejs-dashboard");
+
 //db options
 let options = {
     server: {

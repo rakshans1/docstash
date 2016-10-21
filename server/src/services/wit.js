@@ -37,7 +37,7 @@ function witWeather(data, done) {
     const cityData = JSON.parse(data);
     const temp = Math.floor(cityData.list[0].main.temp - 273);
     const todayweather = cityData.list[0].weather[0].description
-    done(`It is ${temp}°C in ${city} and is ${todayweather}`);
+    done(`It is ${temp}°C in ${city} and ${todayweather}`);
   });
 }
 function about(done) {
