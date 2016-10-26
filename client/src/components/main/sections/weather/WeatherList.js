@@ -3,7 +3,7 @@ import WeatherChart from './WeatherChart';
 
 class WeatherList extends React.Component {
   renderWeather(cityData, i) {
-    if (cityData === null) return;
+    if (cityData === null || cityData === undefined) return;
     const name = cityData.city.name;
     const todayTemp = Math.floor(cityData.list[0].main.temp - 273);
     const todayweather = cityData.list[0].weather[0].description;
