@@ -44,7 +44,9 @@ if (process.env.NODE_ENV !== 'test') {
 }
 
 app.use(cors());
-app.use(bodyParser.json({type: '*/*'}));
+const jsonParser = bodyParser.json({type: '*/*'});
+
+//app.use(bodyParser.json({type: '*/*'}));
 // app.use((req, res, next) => {
 //    res.header('Access-Control-Allow-Origin', '*');
 //    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
@@ -64,7 +66,7 @@ server.listen(secret.port);
 
 //hook http to  websocket
 ws.install(server);
-router(app);
+router(app, jsonParser);
 
 require('./services/chat');
 export default app; // for testing

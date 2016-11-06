@@ -30,7 +30,7 @@ socket.on('data', (data) => {
             chatLog[i] = data.chats[i].messages.length
 
         });
-        // console.log(chatLog);
+         //console.log(chatLog);
     }
 
 });

@@ -11,6 +11,8 @@ import backend from './services/backend';
 import ws from './services/ws';
 import secret from './config/secret'
 
+import upload from './controllers/upload';
+
 import twitter from './controllers/twitter';
 
 import weather from './controllers/weather';
@@ -42,18 +44,19 @@ const facebookCallbackMobile = passport.authenticate('facebook', {
     callbackURL: "/auth/facebook/callback/mobile"
 });
 
-export default function(app) {
+export default function(app, jsonParser) {
     //Home Controllers
     app.get('/', requireAuth, (req, res) => {
         res.send('hi ' + req.user.name);
     });
+    
     app.get('/load', (req, res) => {
       let ram = Math.floor(process.memoryUsage().rss / 1000000).toString()
       let uptime = Math.floor(process.uptime() / 60).toString()
         res.send('Ram Used : ' + ram + ' MB Uptime: ' + uptime + ' min');
     });
 
-    app.post('/weather', weather);
+    app.post('/weather', jsonParser, weather);
 
     //User info Controllers
     app.get('/user', requireAuth, (req, res) => {
@@ -66,9 +69,9 @@ export default function(app) {
     });
 
     //Auth Controllers
-    app.post('/signin', requireSignIn, auth.signin);
-    app.post('/signup', auth.signup);
-    app.post('/resetpassword', auth.resetPassword);
+    app.post('/signin', jsonParser, requireSignIn, auth.signin);
+    app.post('/signup', jsonParser, auth.signup);
+    app.post('/resetpassword', jsonParser, auth.resetPassword);
     app.get('/auth/google/:id', auth.googleSignIn);
     app.get('/auth/google/callback/web', googleCallbackWeb, auth.CallbackWeb);
     app.get('/auth/google/callback/mobile', googleCallbackMobile, auth.CallbackMobile);
@@ -77,14 +80,17 @@ export default function(app) {
     app.get('/auth/facebook/callback/mobile', facebookCallbackMobile, auth.CallbackMobile);
 
     //Shortner Controllers
-    app.post('/short', shortner.post);
-    app.get('/s/:hash', shortner.get);
+    app.post('/short',jsonParser, shortner.post);
+    app.get('/s/:hash',jsonParser, shortner.get);
 
     //Torrent Controllers
     api('torrents', torrents);
 
     //Torrent Search Controllers
     api('search', search);
+
+    // Upload Controllers
+    app.post('/upload', upload);
 
     function api(name, module) {
         Object.keys(module).forEach((key) => {
@@ -95,7 +101,7 @@ export default function(app) {
             //dont call modules with request/response,
             //instead call with 'body' and 'callback(err, data)'
             const endpoint = '/api/' + name + '/' + key;
-            app.post(endpoint, (req, res) => {
+            app.post(endpoint,jsonParser, (req, res) => {
                 fn(req.body, (err, data) => {
                     if (err) {
                         res.status(400).send(err);
@@ -143,7 +149,7 @@ export default function(app) {
 
     //Twitter Sentiment  { tweet: hi}
     // app.post('/sentiment', twitter.sentimentTwitter);
-    app.post('/twitter', twitter.watchTwitter);
+    app.post('/twitter',jsonParser, twitter.watchTwitter);
 
     if (process.env.NODE_ENV === "undefined") {
         const apilist = require('./util/apilist');
