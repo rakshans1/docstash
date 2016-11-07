@@ -18,9 +18,9 @@
     }
 
     .upload-progress-bar {
-        width: 100%;
+        width: 0;
         height: 35px;
-        // background-color: ivory;
+        background-color: lighten($secondary, 20%);
     }
 
     .upload-file-info {
@@ -32,7 +32,7 @@
         position: absolute;
         top: 0;
         left: 0;
-        background-color: lighten($secondary, 33%);
+        // background-color: lighten($secondary, 33%);
     }
 
     .filename-col {

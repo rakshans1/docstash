@@ -13,16 +13,32 @@ class Upload extends React.Component {
         this.onDrop = this.onDrop.bind(this);
         this.span = this.span.bind(this);
         this.uploadFile = this.uploadFile.bind(this);
+        // this.handelProgress = this.handelProgress.bind(this);
     }
-    onDrop(files) {
-        this.setState({files: files});
-        // var data = new FormData();
-        // files.forEach((file) => {
-        //   data.append('uploads[]', file);
-        // });
-        //axios.post('http://localhost:3001/upload', data)
-        //.then(res => console.log(res))
-        //.catch(err => console.log(err));
+
+    onDrop(acceptedfiles) {
+      const state = this.state;
+      function handelProgress(progressEvent, i, file) {
+        var percentCompleted = progressEvent.loaded / progressEvent.total;
+        // file.percentCompleted = percentCompleted;
+        const files = state.files;
+        files[i] = file;
+        // this.setState({files: files});
+        console.log(file);
+        // console.log(file.percentCompleted);
+      }
+        const setState = this.setState;
+        this.setState({files: acceptedfiles});
+         this.state.files.forEach((file, i) => {
+           var data = new FormData();
+           data.append('file[]', file);
+            var config = {
+                onUploadProgress: (progressEvent, i, file) => handelProgress(progressEvent, i, file)
+            };
+            axios.post('http://6deb4c7c.ngrok.io/upload', data, config)
+            .then(res => console.log(res))
+            .catch(err => console.log(err));
+        });
     }
     span() {
         if (this.state.files.length > 0) {
@@ -36,16 +52,16 @@ class Upload extends React.Component {
     }
     uploadFile(file, i) {
       return(
-        <li className="upload-file">
-            <div className="upload-progress-bar"></div>
-            <div className="upload-file-info">
-                <div className="filename-col">
-                    <i className="flaticon-file flaticon-photo"></i>
-                    <span className="upload-filename">{file.name}</span>
-                    <span className="upload-size">- {units(file.size)}</span>
-                </div>
-                <div className="status-col"><Icon type="circle_tick_filled"/>00</div>
+        <li className="upload-file" key={i}>
+          <div className="upload-progress-bar" style={{width: file.percentCompleted + '%'}}></div>
+          <div className="upload-file-info">
+            <div className="filename-col">
+              <i className="flaticon-file flaticon-photo"></i>
+              <span className="upload-filename">{file.name}</span>
+              <span className="upload-size">- {units(file.size)}</span>
             </div>
+            <div className="status-col"><Icon type="circle_tick_filled"/>00</div>
+          </div>
         </li>
       );
     }
@@ -53,20 +69,20 @@ class Upload extends React.Component {
     render() {
         return (
             <div className="container">
-                <div className="row box-main">
-                    <div className="col-sm-5 dropzone-wrapper">
-                        <Dropzone onDrop={this.onDrop} className="dropzone" activeClassName="dropzone-active">
-                            <label>
-                                <figure><Icon type="upload"/></figure>{this.span()}</label>
-                        </Dropzone>
-                    </div>
-                    <div className="col-sm-7 box-2">
-                        <ol className="upload-file-list">
-                          {this.state.files ? this.state.files.map(this.uploadFile) : null}
-                        </ol>
-
-                    </div>
+              <div className="row box-main">
+                <div className="col-sm-5 dropzone-wrapper">
+                  <Dropzone onDrop={this.onDrop} className="dropzone" activeClassName="dropzone-active">
+                    <label>
+                      <figure><Icon type="upload"/></figure>{this.span()}</label>
+                  </Dropzone>
                 </div>
+                <div className="col-sm-7 box-2">
+                  <ol className="upload-file-list">
+                    {this.state.files ? this.state.files.map(this.uploadFile) : null}
+                  </ol>
+
+                </div>
+              </div>
             </div>
         );
     }

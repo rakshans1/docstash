@@ -69,7 +69,7 @@ class Sidebar extends React.Component {
                     <p className="usage-use">USAGE</p>
                     <progress className="progress" value="50" max="100">5%</progress>
                     <p className="usage-capacity">
-                        5GB / 10GB</p>
+                        5 GB / 10 GB</p>
                 </div>
             </div>
         );

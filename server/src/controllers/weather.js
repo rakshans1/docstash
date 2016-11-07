@@ -1,7 +1,8 @@
-import request from 'request'
+import request from 'request';
+import secret from '../config/secret';
 
 export const weather = (city, done) => {
-  const API_KEY = 'ccdc65429545e5b39a567101fb13659d'
+  const API_KEY = secret.weather_API_KEY
   const URL = `http://api.openweathermap.org/data/2.5/forecast?appid=${API_KEY}&q=${city}`;
   request.get(URL, (err, resp) => {
     if (err) return done(err);

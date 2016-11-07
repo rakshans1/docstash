@@ -4,6 +4,7 @@ import passport from 'passport';
 import * as auth from './controllers/auth';
 import passportConfig from './services/passport';
 
+import * as user from './controllers/user'
 import * as shortner from './controllers/shortner';
 import torrents from './controllers/torrent';
 import search from './controllers/search';
@@ -49,7 +50,7 @@ export default function(app, jsonParser) {
     app.get('/', requireAuth, (req, res) => {
         res.send('hi ' + req.user.name);
     });
-    
+
     app.get('/load', (req, res) => {
       let ram = Math.floor(process.memoryUsage().rss / 1000000).toString()
       let uptime = Math.floor(process.uptime() / 60).toString()
@@ -91,6 +92,9 @@ export default function(app, jsonParser) {
 
     // Upload Controllers
     app.post('/upload', upload);
+
+    //User Setting Controllers
+    app.post('/user/changepassword',jsonParser, requireAuth, user.changePassword );
 
     function api(name, module) {
         Object.keys(module).forEach((key) => {

@@ -5,7 +5,7 @@ import fs from 'fs';
 const upload = (req, res, next) => {
   const form = new formidable.IncomingForm();
   form.multiples = true;
-  form.uploadDir = path.join(__dirname, '/uploads');
+  form.uploadDir = path.join(__dirname, '/../../tmp');
 
   form.on('file', (field, file) => {
     fs.rename(file.path, path.join(form.uploadDir, file.name));
