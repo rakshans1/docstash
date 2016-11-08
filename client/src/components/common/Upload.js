@@ -13,30 +13,28 @@ class Upload extends React.Component {
         this.onDrop = this.onDrop.bind(this);
         this.span = this.span.bind(this);
         this.uploadFile = this.uploadFile.bind(this);
-        // this.handelProgress = this.handelProgress.bind(this);
+        this.handelProgress = this.handelProgress.bind(this);
     }
 
+    handelProgress(progressEvent, i, file) {
+      var percentCompleted = progressEvent.loaded / progressEvent.total;
+      file.percentCompleted = percentCompleted * 100;
+      const files = this.state.files;
+      files[i] = file;
+      this.setState({files: files});
+    }
     onDrop(acceptedfiles) {
-      const state = this.state;
-      function handelProgress(progressEvent, i, file) {
-        var percentCompleted = progressEvent.loaded / progressEvent.total;
-        // file.percentCompleted = percentCompleted;
-        const files = state.files;
-        files[i] = file;
-        // this.setState({files: files});
-        console.log(file);
-        // console.log(file.percentCompleted);
-      }
-        const setState = this.setState;
         this.setState({files: acceptedfiles});
-         this.state.files.forEach((file, i) => {
+        acceptedfiles.forEach((file, i) => {
            var data = new FormData();
            data.append('file[]', file);
             var config = {
-                onUploadProgress: (progressEvent, i, file) => handelProgress(progressEvent, i, file)
+                onUploadProgress: (progressEvent) => {
+                  this.handelProgress(progressEvent, i, file)
+                }
             };
-            axios.post('http://6deb4c7c.ngrok.io/upload', data, config)
-            .then(res => console.log(res))
+            axios.post('http://localhost:3001/upload', data, config)
+            .then(res => console.log(res.data))
             .catch(err => console.log(err));
         });
     }
@@ -60,7 +58,7 @@ class Upload extends React.Component {
               <span className="upload-filename">{file.name}</span>
               <span className="upload-size">- {units(file.size)}</span>
             </div>
-            <div className="status-col"><Icon type="circle_tick_filled"/>00</div>
+            {file.percentCompleted === 100 ? <div className="status-col"><Icon type="circle_tick_filled"/>00</div> : null}
           </div>
         </li>
       );
