@@ -67,9 +67,9 @@ class Sidebar extends React.Component {
                 </ul>
                 <div className="usage">
                     <p className="usage-use">USAGE</p>
-                    <progress className="progress" value="50" max="100">5%</progress>
+                    <progress className="progress" value="0" max="100">{(this.props.storage/10)*100}%</progress>
                     <p className="usage-capacity">
-                        5 GB / 10 GB</p>
+                        {this.props.storage} / 10 GB</p>
                 </div>
             </div>
         );
@@ -77,10 +77,11 @@ class Sidebar extends React.Component {
 }
 Sidebar.propTypes = {
     modal: PropTypes.bool,
+    storage: PropTypes.string,
     actions: PropTypes.object.isRequired
 };
 function mapStateToProps(state) {
-    return {modal: state.modal};
+    return {modal: state.modal, storage: state.user.storage};
 }
 function mapDispatchToProp(dispatch) {
     return {

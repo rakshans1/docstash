@@ -1,8 +1,10 @@
-import React from 'react'
+import React, {PropTypes} from 'react'
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 import Dropzone from 'react-dropzone';
 import Icon from '../icon';
-import axios from 'axios';
 import units from '../../utils/units';
+import * as uploadAction from '../../actions/UploadAction';
 
 class Upload extends React.Component {
     constructor(props) {
@@ -31,11 +33,12 @@ class Upload extends React.Component {
             var config = {
                 onUploadProgress: (progressEvent) => {
                   this.handelProgress(progressEvent, i, file)
+                },
+                headers: {
+                    authorization: this.props.token
                 }
             };
-            axios.post('http://localhost:3001/upload', data, config)
-            .then(res => console.log(res.data))
-            .catch(err => console.log(err));
+            this.props.actions.upload(data, config);
         });
     }
     span() {
@@ -85,4 +88,15 @@ class Upload extends React.Component {
         );
     }
 }
-export default Upload;
+Upload.propTypes = {
+    actions: PropTypes.object.isRequired,
+};
+function mapStateToProps(state) {
+    return {token: state.auth.token};
+}
+function mapDispatchToProp(dispatch) {
+    return {
+        actions: bindActionCreators(uploadAction, dispatch)
+    };
+}
+export default connect(mapStateToProps, mapDispatchToProp)(Upload);

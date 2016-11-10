@@ -12,7 +12,8 @@ export default {
     user : {
         name: '',
         email: '',
-        picture: ''
+        picture: '',
+        storage: '',
     },
     shortner : {
         shortner: null,

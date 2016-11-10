@@ -17,6 +17,7 @@ import upload from './controllers/upload';
 import twitter from './controllers/twitter';
 
 import weather from './controllers/weather';
+import units from './util/units';
 
 const requireAuth = passport.authenticate('jwt', {session: false});
 const requireSignIn = passport.authenticate('local', {session: false});
@@ -64,7 +65,8 @@ export default function(app, jsonParser) {
         const user = {
             name: req.user.name,
             email: req.user.email,
-            picture: req.user.picture
+            picture: req.user.picture,
+            storage: units(req.user.storage)
         }
         res.send(user);
     });
@@ -91,7 +93,7 @@ export default function(app, jsonParser) {
     api('search', search);
 
     // Upload Controllers
-    app.post('/upload', upload);
+    app.post('/upload', requireAuth, upload);
 
     //User Setting Controllers
     app.post('/user/changepassword',jsonParser, requireAuth, user.changePassword );
