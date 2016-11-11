@@ -9,6 +9,7 @@ import shortnerReducer from './shortnerReducer';
 import weatherReducer from './weatherReducer';
 import torrentReducer from './torrentReducer';
 import wsReducer from './wsReducer';
+import fileReducer from './fileReducer';
 
 const rootReducer = combineReducers({
     // routing: routerReducer,
@@ -20,7 +21,8 @@ const rootReducer = combineReducers({
     shortner: shortnerReducer,
     weather: weatherReducer,
     torrent: torrentReducer,
-    ws: wsReducer
+    ws: wsReducer,
+    file: fileReducer
 });
 
 export default rootReducer;

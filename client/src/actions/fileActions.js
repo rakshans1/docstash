@@ -1,21 +1,18 @@
 import axios from 'axios';
-import * as types from '../constants/actionTypes';
+import {FILE} from '../constants/actionTypes';
 import {beginAjaxCall, ajaxCallError} from './ajaxstatusActions';
-import ws from './wsAction'
-import * as file from './fileActions';
 import ROOT_URL from '../baseurl';
 
-export function userInfo(token) {
+export function files(token) {
     return function(dispatch) {
         dispatch(beginAjaxCall());
-        axios.get(`${ROOT_URL}/user`, {
+        axios.get(`${ROOT_URL}/files`, {
             headers: {
                 authorization: token
             }
         }).then(response => {
-            dispatch({type: types.USERS_INFO_SUCCESS, payload: response.data});
-            dispatch(file.files(token));
-            dispatch(ws(response.data.email));
+            dispatch(ajaxCallError());
+            dispatch({type: FILE, payload: response.data});
         }).catch(reponse => {
             dispatch(ajaxCallError());
         });

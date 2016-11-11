@@ -36,6 +36,7 @@
     "babel-preset-stage-1": "^6.13.0",
     "classnames": "^2.2.5",
     "eslint": "^3.6.1",
+    "moment": "^2.16.0",
     "nprogress": "^0.2.0",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",

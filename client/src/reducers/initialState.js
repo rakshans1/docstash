@@ -30,5 +30,6 @@ export default {
         filesDownloading: 0,
         uploads: '',
         chats: []
-    }
+    },
+    file: {}
 };
