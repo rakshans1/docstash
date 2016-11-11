@@ -4,6 +4,7 @@ import fs from 'fs';
 import File from '../models/file';
 import User from '../models/user';
 import units from '../util/units';
+import backend from '../services/backend';
 
 const upload = (req, res, next) => {
   const form = new formidable.IncomingForm();
@@ -11,7 +12,16 @@ const upload = (req, res, next) => {
   form.uploadDir = path.join(__dirname, '/../../tmp');
 
   form.on('file', (field, file) => {
-    fs.rename(file.path, path.join(form.uploadDir, file.name));
+  //upload the file to backend
+    const stream = fs.createReadStream(file.path);
+    backend.upload(stream, undefined , file.name, file.length, undefined, (err) => {
+      if(err) return console.log(err);
+      fs.unlink(file.path, err => {
+        if (err) console.log(err);
+      });
+    });
+
+    // fs.rename(file.path, path.join(form.uploadDir, file.name));
     User.findOne({_id: req.user._id}, (err, user) => {
       if (err) return next(err);
       user.storage = user.storage + file.size;

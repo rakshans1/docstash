@@ -14,42 +14,26 @@ exports.init = function(config) {
 };
 
 //upload will be called to upload a downloading torrent file
-exports.upload = function(torrentFile, done) {
-    var dirs = torrentFile.path.split("/");
+exports.upload = function(stream, parent , name, length, drive, done) {
+  var fileMetadata = {
+      'name': name,
+      parents: [parent]
+  };
 
-    var drive;
-    User.findOne({
-        email: torrentFile.email
-    }, (err, existingUser) => {
-        if (err)
-            done(err);
-        oauth2Client.setCredentials({access_token: existingUser.access_token, refresh_token: existingUser.refresh_token});
+  var media = {
+      mimeType: mime.lookup(name),
+      body: stream
+  };
 
-        drive = google.drive({version: 'v3', auth: oauth2Client});
-
-        //create root folder if it does not exist
-        if (existingUser.drive_folder === undefined) {
-            mkdirp(drive, "Docstash-files", null, (err, dir) => {
-                if (err)
-                    return done(err);
-                existingUser.drive_folder = dir.id;
-                existingUser.save();
-                var parent = dir.id;
-                mkdirp(drive, dirs, parent, (err, dir) => { //after root dir is created make dir for current torrent
-                    if (err)
-                        return done(err);
-                    upload(drive, torrentFile, dir.id, done);
-                });
-            });
-        } else {
-            var parent = existingUser.drive_folder;
-            mkdirp(drive, dirs, parent, (err, dir) => {
-                if (err)
-                    return done(err);
-                upload(drive, torrentFile, dir.id, done);
-            });
-        }
-    });
+  drive.files.create({
+      resource: fileMetadata,
+      media: media,
+      fields: 'id'
+  }, function(err, file) {
+      if (err)
+          return done(err);
+      done();
+  });
 };
 
 //list will be called to list all stored files
@@ -84,33 +68,39 @@ function mkdirp(drive, dirName, parent, done) {
     });
 }
 
-function upload(drive, torrentFile, parent, done) {
-    var dirs = torrentFile.path.split("/");
-    var name = dirs.length === 1
-        ? dirs
-        : dirs.pop();
-    name = name.length === 0
-        ? torrentFile.path
-        : name[0];
 
-    var fileMetadata = {
-        'name': name,
-        parents: [parent]
-    };
+exports.mkdir = (dirs, email, cb) => {
+  var drive;
+  User.findOne({
+      email: email
+  }, (err, existingUser) => {
+      if (err)
+          done(err);
+      oauth2Client.setCredentials({access_token: existingUser.access_token, refresh_token: existingUser.refresh_token});
 
-    var media = {
-        mimeType: mime.lookup(name),
-        body: torrentFile.createReadStream()
-    };
+      drive = google.drive({version: 'v3', auth: oauth2Client});
 
-    drive.files.create({
-        resource: fileMetadata,
-        media: media,
-        fields: 'id'
-    }, function(err, file) {
-        if (err)
-            return done(err);
-        done();
-    });
-
+      //create root folder if it does not exist
+      if (existingUser.drive_folder === undefined) {
+          mkdirp(drive, "Docstash-files", null, (err, dir) => {
+              if (err)
+                  return cb(err);
+              existingUser.drive_folder = dir.id;
+              existingUser.save();
+              var parent = dir.id;
+              mkdirp(drive, dirs, parent, (err, dir) => { //after root dir is created make dir for current torrent
+                  if (err)
+                      return cb(err);
+                  cb(null, dir.id, drive);
+              });
+          });
+      } else {
+          var parent = existingUser.drive_folder;
+          mkdirp(drive, dirs, parent, (err, dir) => {
+              if (err)
+                  return cb(err);
+              cb(null, dir.id, drive);
+          });
+      }
+  });
 }

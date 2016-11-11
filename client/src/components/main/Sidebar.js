@@ -3,6 +3,7 @@ import {IndexLink, Link} from 'react-router';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as modalActions from '../../actions/modalActions';
+import units from '../../utils/units';
 
 class Sidebar extends React.Component {
     constructor(props) {
@@ -67,9 +68,9 @@ class Sidebar extends React.Component {
                 </ul>
                 <div className="usage">
                     <p className="usage-use">USAGE</p>
-                    <progress className="progress" value="0" max="100">{(this.props.storage/10)*100}%</progress>
+                    <progress className="progress" value={((this.props.storage/1000000000)/10)*100} max="100">{(this.props.storage/10)*100}%</progress>
                     <p className="usage-capacity">
-                        {this.props.storage} / 10 GB</p>
+                        {units(this.props.storage)} / 10 GB</p>
                 </div>
             </div>
         );
@@ -77,7 +78,7 @@ class Sidebar extends React.Component {
 }
 Sidebar.propTypes = {
     modal: PropTypes.bool,
-    storage: PropTypes.string,
+    storage: PropTypes.number,
     actions: PropTypes.object.isRequired
 };
 function mapStateToProps(state) {

@@ -21,43 +21,9 @@ exports.init = function(config) {
 };
 
 //upload will be called to upload a downloading torrent file
-exports.upload = function(torrentFile, callback) {
-    if (!storage.root)
-        callback("Not ready");
-
-    var dirs = torrentFile.path.split("/");
-    var name = dirs.pop();
-    var dir = null;
-    var root = storage.root;
-
-    //call back when all dirs made
-    mkdirp(dirs, root, function(err, dir) {
-        if (err)
-            return callback(err);
-        upload(dir);
-    });
-
-    //before we can upload, we need to mkdirp
-    function mkdirp(dirs, parent, cb) {
-        var d = dirs.shift();
-        storage.mkdir({
-            name: d,
-            target: parent
-        }, function(err, dir) {
-            if (err)
-                return cb(err);
-            if (dirs.length > 0) //dont callback yet!
-                mkdirp(dirs, dir, cb);
-            else
-                cb(null, dir);
-            }
-        );
-    }
-
-    function upload(dir) {
-        var upload = storage.upload({name: name, size: torrentFile.length, target: dir});
-
-        var stream = torrentFile.createReadStream();
+exports.upload = function(stream, dir, name, length, drive, callback) {
+        if (dir === undefined) dir = storage.root;
+        var upload = storage.upload({name: name, size: length, target: dir});
 
         stream.pipe(upload);
 
@@ -70,7 +36,6 @@ exports.upload = function(torrentFile, callback) {
             console.log("uploaded", f.name);
             callback(null);
         });
-    }
 };
 
 //list will be called to list all stored files
@@ -171,4 +136,21 @@ function getPath(f) {
         f = f.parent;
     }
     return path;
+}
+
+exports.mkdir = (dirs, email, cb) => {
+    const parent = storage.root;
+    var d = dirs.shift();
+    storage.mkdir({
+        name: d,
+        target: parent
+    }, function(err, dir) {
+        if (err)
+            return cb(err);
+        if (dirs.length > 0) //dont callback yet!
+            mkdir(dirs, dir, cb);
+        else
+            cb(null, dir);
+        }
+    );
 }

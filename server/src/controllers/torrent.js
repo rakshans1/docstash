@@ -271,29 +271,47 @@ torrents.downloadFile = (data, next) => {
     file.uploading = true;
     torrents.emit("update");
 
-    //pass copy of file to backend
-    backend.upload({
-        email: torrent.email,
-        path: file.path,
-        length: file.length,
-        createReadStream: file.createReadStream.bind(file)
-    }, (err) => {
-        file.uploading = false;
-        //receive result from backend
-        if (err && err !== "cancelled") {
-            file.downloadError = "Backend Error";
-            torrents.emit("update");
-            return console.error("Backend Error: %s", err);
-        }
-        torrents.emit("update");
+    var dirs = file.path.split("/");
+    var name = dirs.length === 1
+        ? dirs
+        : dirs.pop();
+    var dir = null;
 
-        //success, now re-list
-        backend.list((err, files) => {
-            if (err)
-                return console.error("Failed to list");
-            torrents.emit("update", files);
-        });
+    //call back when all dirs made
+    backend.mkdir(dirs, torrent.email, (err, dir, drive) => {
+        if (err)
+            return console.error("Backend Error: %s", err);
+    //pass copy of file to backend
+        upload(dir, name, file, drive)
     });
+
+    function upload(dir, name, file, drive) {
+      name = name.length === 0
+          ? file.path
+          : name;
+      var createReadStream = file.createReadStream.bind(file);
+      const stream = createReadStream();
+      backend.upload(stream, dir, name, file.length, drive, (err) => {
+          file.uploading = false;
+          //receive result from backend
+          if (err && err !== "cancelled") {
+              file.downloadError = "Backend Error";
+              torrents.emit("update");
+              return console.error("Backend Error: %s", err);
+          }
+          torrents.emit("update");
+
+          //success, now re-list
+          backend.list((err, files) => {
+              if (err)
+                  return console.error("Failed to list");
+              torrents.emit("update", files);
+          });
+      });
+
+    }
+
+
 };
 
 torrents.cancelFile = (data, next) => {

@@ -66,7 +66,7 @@ export default function(app, jsonParser) {
             name: req.user.name,
             email: req.user.email,
             picture: req.user.picture,
-            storage: units(req.user.storage)
+            storage: req.user.storage
         }
         res.send(user);
     });

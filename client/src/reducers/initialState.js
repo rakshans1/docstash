@@ -13,7 +13,7 @@ export default {
         name: '',
         email: '',
         picture: '',
-        storage: '',
+        storage: 0,
     },
     shortner : {
         shortner: null,
