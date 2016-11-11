@@ -13,7 +13,7 @@ import ws from './services/ws';
 import secret from './config/secret'
 
 import upload from './controllers/upload';
-
+import * as files from './controllers/files';
 import twitter from './controllers/twitter';
 
 import weather from './controllers/weather';
@@ -97,6 +97,9 @@ export default function(app, jsonParser) {
 
     //User Setting Controllers
     app.post('/user/changepassword',jsonParser, requireAuth, user.changePassword );
+
+    //File and Folder Controllers
+    app.get('/files',requireAuth , files.file);
 
     function api(name, module) {
         Object.keys(module).forEach((key) => {

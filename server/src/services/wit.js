@@ -1,20 +1,22 @@
 import {Wit} from 'node-wit';
 import secret from '../config/secret';
 import {weather} from '../controllers/weather';
+import User from '../models/user';
+import units from '../util/units';
 
 const client = new Wit({accessToken: secret.WIT});
 
 
 
-export const message = (message,name, done) => {
+export const message = (message,name, email, done) => {
   client.message(message, {})
   .then((data) => {
-    check(data, name, done);
+    check(data, name, email, done);
   })
   .catch(console.error);
 }
 
-function check(data, name, done) {
+function check(data, name, email, done) {
   if (data.entities.intent) {
     switch(data.entities.intent[0].value) {
       case 'weather':
@@ -23,6 +25,8 @@ function check(data, name, done) {
         return about(done);
       case 'greeting':
         return greeting(name, done);
+      case 'storage':
+        return storage(name, email, done);
       default:
         return witdefault(done);
     }
@@ -49,4 +53,11 @@ function greeting(name, done) {
 
 function witdefault(done) {
   done('Sorry, I did not understand your request');
+}
+function storage(name, email, done) {
+  User.findOne({email: email}, (err, existingUser) => {
+    if (err) return done('Can\'t calculate your storage at moment.')
+    const storage = units(existingUser.storage)
+    done(`You have used ${storage} out of 10 GB`);
+  });
 }

@@ -22,7 +22,7 @@ socket.on('data', (data) => {
                     const email = data.chats[i].email;
                     const name = data.chats[i].name;
                     const message = data.chats[i].messages[chatLog[i]]['2'];
-                    wit.message(message, name, (msg) => {
+                    wit.message(message, name, email, (msg) => {
                       socket.emit('message', 'docstashcare@gmail.com', email, msg);
                     });
                 }
