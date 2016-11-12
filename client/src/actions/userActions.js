@@ -5,7 +5,7 @@ import ws from './wsAction'
 import * as file from './fileActions';
 import ROOT_URL from '../baseurl';
 
-export function userInfo(token) {
+export function userInfo(token, firstTime) {
     return function(dispatch) {
         dispatch(beginAjaxCall());
         axios.get(`${ROOT_URL}/user`, {
@@ -15,7 +15,7 @@ export function userInfo(token) {
         }).then(response => {
             dispatch({type: types.USERS_INFO_SUCCESS, payload: response.data});
             dispatch(file.files(token));
-            dispatch(ws(response.data.email));
+            if (firstTime) dispatch(ws(response.data.email));
         }).catch(reponse => {
             dispatch(ajaxCallError());
         });

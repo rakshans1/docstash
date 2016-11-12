@@ -27,7 +27,7 @@ class Root extends React.Component {
         }
         const state = this.state.store.getState();
         if (state.auth.authenticated) {
-            this.state.store.dispatch(userInfo(state.auth.token));
+            this.state.store.dispatch(userInfo(state.auth.token, "firstTime"));
         }
         // const history = syncHistoryWithStore(browserHistory, this.state.store);
         return (

@@ -20,11 +20,23 @@ exports.init = function() {
 };
 
 //upload will be called to upload file
-exports.upload = function(stream, dir, name,length, drive , done) {
+exports.upload = (stream, dir, fileName,length, drive , done) => {
     if (dir === undefined) dir =   secret.sftp.SSH_ROOT;
-    sftp.put(stream, dir + '/' + name, true).then(() => done()).catch((err) => done(err));
+    sftp.put(stream, `${dir}${fileName}`, true).then(() => done()).catch((err) => done(err));
 };
 
+//Get file from backend
+exports.get = (fileName, done) => {
+    const dir = secret.sftp.SSH_ROOT;
+    sftp.get(`${dir}${fileName}`, true, null)
+    .then((res) => {
+      // console.log(res)
+      done(null, res)
+    })
+    .catch((err) => {
+      if (err) done("File Not Found");
+    });
+}
 //list will be called to list all stored files
 exports.list = done => {
     sftp.list(secret.sftp.SSH_ROOT).then((data) => {

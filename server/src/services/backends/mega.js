@@ -37,7 +37,23 @@ exports.upload = function(stream, dir, name, length, drive, callback) {
             callback(null);
         });
 };
+//Get file from backend
+exports.get = (fileName, done) => {
+  var dir = storage.root;
+  var f = null;
+  for (var i = 0; i < dir.children.length; i++) {
+      var c = dir.children[i];
+      if (c.name === fileName) {
+          f = c;
+          break;
+      }
+  }
+  if (!f)
+      return done("Missing");
 
+  var dl = f.download()
+  done(null, dl);
+}
 //list will be called to list all stored files
 exports.list = function(callback) {
 

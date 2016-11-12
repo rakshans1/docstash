@@ -14,6 +14,7 @@ import secret from './config/secret'
 
 import upload from './controllers/upload';
 import * as files from './controllers/files';
+import * as image from './controllers/image';
 import twitter from './controllers/twitter';
 
 import weather from './controllers/weather';
@@ -45,7 +46,10 @@ const facebookCallbackMobile = passport.authenticate('facebook', {
     scope: [],
     callbackURL: "/auth/facebook/callback/mobile"
 });
-
+const handelToken = (req, res , next) => {
+  req.headers.authorization = req.query.token;
+  next();
+}
 export default function(app, jsonParser) {
     //Home Controllers
     app.get('/', requireAuth, (req, res) => {
@@ -100,6 +104,11 @@ export default function(app, jsonParser) {
 
     //File and Folder Controllers
     app.get('/files',requireAuth , files.file);
+    app.get('/file/d/:fileId', handelToken, requireAuth, files.download);
+
+    //Image Server
+    app.get('/image/:image', image.image)
+    app.get('/image/full/:image', image.imageFull)
 
     function api(name, module) {
         Object.keys(module).forEach((key) => {

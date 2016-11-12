@@ -39,6 +39,7 @@
     "moment": "^2.16.0",
     "nprogress": "^0.2.0",
     "react": "^15.3.2",
+    "react-contextmenu": "^2.0.0-alpha.2",
     "react-dom": "^15.3.2",
     "react-dropzone": "^3.5.3",
     "react-notification-system": "^0.2.7",

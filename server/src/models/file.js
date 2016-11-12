@@ -3,8 +3,7 @@ import mongoose, {Schema} from 'mongoose';
 
 const fileSchema = new Schema({
   name: String,
-  type: String, //file or folder
-  fileType: String,
+  type: String, //mime type
   size: String,
   parentNode: {type: Schema.Types.ObjectId, ref : 'Folder'},
   userId: {type: Schema.Types.ObjectId, ref : 'user'},

@@ -8,7 +8,11 @@ export default {
         authenticated: false,
         token: ''
     },
-    modal : false,
+    modal : {
+      status: false,
+      modal: 'upload',
+      payload: ''
+    },
     user : {
         name: '',
         email: '',

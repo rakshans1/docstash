@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as modalActions from '../../actions/modalActions';
 import Upload from './Upload';
+import ImageView from '../main/sections/file/ImageView';
 
 class Modal extends React.Component {
     constructor(props) {
@@ -17,20 +18,20 @@ class Modal extends React.Component {
         const node = e.target;
         if (node === this.refs.content)
             return
-        if (!this.props.modal) {
+        if (!this.props.modal.status) {
             return this.props.actions.showModal();
         }
         this.props.actions.hideModal();
     }
     render() {
-        if (!this.props.modal) {
+        if (!this.props.modal.status) {
             return null;
         }
         return (
             <div>
                 <div className="modal_overlay" ref="overlay" onClick={this.handleOverlayClick}></div>
                 <div className="modal" ref="content">
-                    <Upload/>
+                    {this.props.modal.modal === "Upload" ? <Upload />: <ImageView url={this.props.modal.payload} />}
                 </div>
             </div>
         );
@@ -38,7 +39,7 @@ class Modal extends React.Component {
 }
 Modal.propTypes = {
     children: PropTypes.object,
-    modal: PropTypes.bool,
+    modal: PropTypes.object,
     actions: PropTypes.object.isRequired
 }
 function mapStateToProps(state) {

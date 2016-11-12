@@ -68,6 +68,10 @@
     padding: 0;
     margin: 8px 0 0 30px;
     font-size: 0.8em;
+    width: 100px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .filetime {
@@ -89,7 +93,12 @@
     height: 100%;
     position: absolute;
 }
-
+.image-full {
+    width: auto;
+    height: auto;
+    max-height: 100%;
+    margin: auto;
+}
 .filename {
     .flaticon-file {
         position: absolute;

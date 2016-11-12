@@ -38,7 +38,7 @@ class Upload extends React.Component {
                     authorization: this.props.token
                 }
             };
-            this.props.actions.upload(data, config);
+            this.props.actions.upload(data, config, this.props.token);
         });
     }
     span() {

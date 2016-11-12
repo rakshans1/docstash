@@ -9,8 +9,8 @@ import secret from './config/secret';
 import http from 'http';
 // eslint-disable-next-line
 import ws from './services/ws';
-
-require("nodejs-dashboard");
+import compression from 'compression';
+// require("nodejs-dashboard");
 
 //db options
 let options = {
@@ -44,6 +44,7 @@ if (process.env.NODE_ENV !== 'test') {
 }
 
 app.use(cors());
+app.use(compression())
 const jsonParser = bodyParser.json({type: '*/*'});
 
 //app.use(bodyParser.json({type: '*/*'}));

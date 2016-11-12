@@ -5,11 +5,13 @@ import File from '../models/file';
 import User from '../models/user';
 import units from '../util/units';
 import backend from '../services/backend';
+import secret from '../config/secret';
 
 const upload = (req, res, next) => {
   const form = new formidable.IncomingForm();
+  const TMP_DIR = path.resolve(secret.TMP_DIR);
   form.multiples = true;
-  form.uploadDir = path.join(__dirname, '/../../tmp');
+  form.uploadDir = TMP_DIR;
 
   form.on('file', (field, file) => {
   //upload the file to backend

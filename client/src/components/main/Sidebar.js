@@ -15,7 +15,7 @@ class Sidebar extends React.Component {
     }
     handleClick() {
         if (!this.props.modal) {
-            return this.props.actions.showModal();
+            return this.props.actions.showModal("Upload");
         }
         this.props.actions.hideModal();
     }
@@ -82,7 +82,7 @@ Sidebar.propTypes = {
     actions: PropTypes.object.isRequired
 };
 function mapStateToProps(state) {
-    return {modal: state.modal, storage: state.user.storage};
+    return {modal: state.modal.status, storage: state.user.storage};
 }
 function mapDispatchToProp(dispatch) {
     return {

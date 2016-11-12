@@ -3,6 +3,8 @@ import * as mailer from './mail';
 import secret from '../config/secret'
 import randomstring from 'randomstring';
 import passport from 'passport';
+import {Strategy, ExtractJwt} from 'passport-jwt';
+const JwtStrategy = Strategy;
 
 function validateEmail(email) {
     let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
