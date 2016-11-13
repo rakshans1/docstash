@@ -14,7 +14,9 @@ export function userInfo(token, firstTime) {
             }
         }).then(response => {
             dispatch({type: types.USERS_INFO_SUCCESS, payload: response.data});
-            dispatch(file.files(token));
+            dispatch(file.files(token, 'FILE', null));
+            dispatch(file.folders(token, 'FOLDER', null));
+            dispatch(file.recents(token));
             if (firstTime) dispatch(ws(response.data.email));
         }).catch(reponse => {
             dispatch(ajaxCallError());

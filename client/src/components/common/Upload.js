@@ -8,7 +8,7 @@ import * as uploadAction from '../../actions/UploadAction';
 
 class Upload extends React.Component {
     constructor(props) {
-        super();
+        super(props);
         this.state = {
             files: []
         };
@@ -17,7 +17,6 @@ class Upload extends React.Component {
         this.uploadFile = this.uploadFile.bind(this);
         this.handelProgress = this.handelProgress.bind(this);
     }
-
     handelProgress(progressEvent, i, file) {
       var percentCompleted = progressEvent.loaded / progressEvent.total;
       file.percentCompleted = percentCompleted * 100;
@@ -30,12 +29,15 @@ class Upload extends React.Component {
         acceptedfiles.forEach((file, i) => {
            var data = new FormData();
            data.append('file[]', file);
+           let location = window.location.pathname.split('/');
+           location = location[location.length - 1];
             var config = {
                 onUploadProgress: (progressEvent) => {
                   this.handelProgress(progressEvent, i, file)
                 },
                 headers: {
-                    authorization: this.props.token
+                    authorization: this.props.token,
+                    location: location
                 }
             };
             this.props.actions.upload(data, config, this.props.token);

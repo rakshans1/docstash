@@ -10,6 +10,10 @@ import weatherReducer from './weatherReducer';
 import torrentReducer from './torrentReducer';
 import wsReducer from './wsReducer';
 import fileReducer from './fileReducer';
+import folderReducer from './folderReducer';
+import recentReducer from './recentReducer';
+import subfolderReducer from './subfolderReducer';
+import subfileReducer from './subfileReducer';
 
 const rootReducer = combineReducers({
     // routing: routerReducer,
@@ -22,7 +26,11 @@ const rootReducer = combineReducers({
     weather: weatherReducer,
     torrent: torrentReducer,
     ws: wsReducer,
-    file: fileReducer
+    file: fileReducer,
+    folder: folderReducer,
+    subfile: subfileReducer,
+    subfolder: subfolderReducer,
+    recent: recentReducer
 });
 
 export default rootReducer;

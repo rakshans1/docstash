@@ -15,7 +15,7 @@ export function signinUser(email, password) {
         dispatch(beginAjaxCall());
         axios.post(`${ROOT_URL}/signin`, {email, password}).then(response => {
             dispatch(authSucess(response.data.token));
-            dispatch(userInfo(response.data.token));
+            dispatch(userInfo(response.data.token, 'firstTime'));
             browserHistory.push('/');
         }).catch(() => {
             dispatch(ajaxCallError());
@@ -28,7 +28,7 @@ export function signupUser(name, email, password) {
         dispatch(beginAjaxCall());
         axios.post(`${ROOT_URL}/signup`, {name, email, password}).then(response => {
             dispatch(authSucess(response.data.token));
-            dispatch(userInfo(response.data.token));
+            dispatch(userInfo(response.data.token, 'firstTime'));
             browserHistory.push('/');
         }).catch(response => {
             dispatch(ajaxCallError());
@@ -46,7 +46,7 @@ export function signoutUser() {
 export function googleLogin(token) {
     return function(dispatch) {
         dispatch(authSucess(token));
-        dispatch(userInfo(token));
+        dispatch(userInfo(token, 'firstTime'));
         browserHistory.push('/');
     };
 }

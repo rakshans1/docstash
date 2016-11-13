@@ -35,5 +35,9 @@ export default {
         uploads: '',
         chats: []
     },
-    file: {}
+    file: [],
+    folder: [],
+    recent: [],
+    subfile: [],
+    subfolder: []
 };

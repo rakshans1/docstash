@@ -17,6 +17,14 @@ class Breadcrumb extends React.Component {
                         </li>
                     </ol>
                 );
+            case '/folder':
+                return (
+                    <ol className="breadcrumb">
+                        <li className="breadcrumb-item ">
+                            <Link to="/">Library</Link>
+                        </li>
+                    </ol>
+                );
             case '/setting':
                 return (
                     <ol className="breadcrumb">

@@ -2,12 +2,15 @@ import path from 'path';
 import formidable from 'formidable';
 import fs from 'fs';
 import File from '../models/file';
+import Folder from '../models/folder';
 import User from '../models/user';
 import units from '../util/units';
 import backend from '../services/backend';
 import secret from '../config/secret';
 
 const upload = (req, res, next) => {
+  const folderId = req.headers.location;
+
   const form = new formidable.IncomingForm();
   const TMP_DIR = path.resolve(secret.TMP_DIR);
   form.multiples = true;
@@ -36,6 +39,10 @@ const upload = (req, res, next) => {
     fileInDb.name = file.name;
     fileInDb.type = file.type;
     fileInDb.size = units(file.size);
+    fileInDb.reason = 'added';
+    if (folderId !== ''){
+      fileInDb.parentNode = folderId;
+    }
     fileInDb.save(err => {
       if (err) return next(err);
     });

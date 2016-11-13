@@ -38,8 +38,14 @@ exports.get = (fileName, done) => {
     });
 }
 //list will be called to list all stored files
-exports.list = done => {
-    sftp.list(secret.sftp.SSH_ROOT).then((data) => {
+exports.list = (torrent, done) => {
+  let parent = null;
+    if (torrent) {
+      parent = `${secret.sftp.SSH_ROOT}torrents`;
+    } else {
+      parent = secret.sftp.SSH_ROOT;
+    }
+    sftp.list(parent).then((data) => {
         var files = [];
         data.forEach(f => {
             const tmp = {
@@ -59,7 +65,12 @@ exports.remove = (path, done) => {
     sftp.rmdir(secret.sftp.SSH_ROOT + path, true).then(() => done(null)).catch((err) => done(err));
 };
 
-exports.mkdir = (dir, email, cb) => {
-  var parent = secret.sftp.SSH_ROOT;
+exports.mkdir = (dir, email, torrent, cb) => {
+  let parent = null;
+  if (torrent) {
+    parent = `${secret.sftp.SSH_ROOT}torrents`;
+  } else {
+     parent = secret.sftp.SSH_ROOT;
+  }
   sftp.mkdir(parent + dir, true).then((data) => cb(null, parent + dir)).catch((err) => cb(err));
 }

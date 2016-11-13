@@ -1,76 +1,45 @@
 import React, {PropTypes} from 'react';
-import File from './sections/File';
+import Files from './sections/File';
+import Folders from './sections/Folder';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as modalActions from '../../actions/modalActions';
+import {ContextMenuTrigger } from 'react-contextmenu';
+import {ContextMenusFolder} from '../common/ContextMenu';
 
 class Main extends React.Component {
     constructor(props) {
         super(props);
+        this.handleClick = this.handleClick.bind(this);
+    }
+    handleClick() {
+        if (!this.props.modal) {
+            return this.props.actions.showModal("File", {type: "folder"});
+        }
+        this.props.actions.hideModal();
     }
     render() {
         return (
+          <ContextMenuTrigger id="folder-context-menu" >
             <div className="container-fluid library">
-                <h2>Folders</h2>
-                <div className="row">
-
-                    <div className="col-md-2 col-xs-6 folder-div">
-                        <a href="">
-                            <div className="folder">
-                                <p className="foldername">
-                                    <i className="flaticon flaticon-folder"></i>Folder1</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div className="col-md-2 col-xs-6 folder-div">
-                        <a href="">
-                            <div className="folder">
-                                <p className="foldername">
-                                    <i className="flaticon flaticon-folder"></i>Folder1</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div className="col-md-2 col-xs-6 folder-div">
-                        <a href="">
-                            <div className="folder">
-                                <p className="foldername">
-                                    <i className="flaticon flaticon-folder"></i>Folder1</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div className="col-md-2 col-xs-6 folder-div">
-                        <a href="">
-                            <div className="folder">
-                                <p className="foldername">
-                                    <i className="flaticon flaticon-folder"></i>Folder1</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div className="col-md-2 col-xs-6 folder-div">
-                        <a href="">
-                            <div className="folder">
-                                <p className="foldername">
-                                    <i className="flaticon flaticon-folder"></i>Folder1</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div className="col-md-2 col-xs-6 folder-div">
-                        <a href="">
-                            <div className="folder">
-                                <p className="foldername">
-                                    <i className="flaticon flaticon-folder"></i>Folder1</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <h2>Files</h2>
-                    <File files={this.props.files}/>
+                <Folders folders={this.props.folders}/>
+                <Files files={this.props.files}/>
+              <ContextMenusFolder handleClick={this.handleClick}/>
             </div>
+          </ContextMenuTrigger>
         );
     }
 }
 Main.propTypes = {
-    token: PropTypes.string,
+    modal: PropTypes.bool,
+    token: PropTypes.string
 };
 function mapStateToProps(state) {
-    return { files: state.file};
+    return { modal: state.modal.status, files: state.file, folders: state.folder};
 }
-export default connect(mapStateToProps, null)(Main);
+function mapDispatchToProp(dispatch) {
+    return {
+        actions: bindActionCreators(modalActions, dispatch)
+    };
+}
+export default connect(mapStateToProps, mapDispatchToProp)(Main);

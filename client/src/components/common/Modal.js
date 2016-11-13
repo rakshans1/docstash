@@ -4,11 +4,15 @@ import {bindActionCreators} from 'redux';
 import * as modalActions from '../../actions/modalActions';
 import Upload from './Upload';
 import ImageView from '../main/sections/file/ImageView';
+import FolderandFileModal from '../main/sections/file/FolderandFileModal';
+import VideoView from '../main/sections/file/VideoView';
+
 
 class Modal extends React.Component {
     constructor(props) {
         super(props);
         this.handleOverlayClick = this.handleOverlayClick.bind(this);
+        this.renderModal = this.renderModal.bind(this);
     }
     componentWillUpdate() {
         const modalTarget = document.getElementsByClassName('modal');
@@ -23,6 +27,18 @@ class Modal extends React.Component {
         }
         this.props.actions.hideModal();
     }
+    renderModal(){
+      const modal = this.props.modal.modal;
+      if (modal === "Upload" ) {
+        return <Upload />
+      } else if (modal === "File") {
+        return <FolderandFileModal payload={this.props.modal.payload}/>
+      } else if (modal === 'FileImg'){
+        return <ImageView url={this.props.modal.payload} />
+      } else if (modal === 'FileVideo'){
+        return <VideoView payload={this.props.modal.payload}/>
+      }
+    }
     render() {
         if (!this.props.modal.status) {
             return null;
@@ -31,7 +47,7 @@ class Modal extends React.Component {
             <div>
                 <div className="modal_overlay" ref="overlay" onClick={this.handleOverlayClick}></div>
                 <div className="modal" ref="content">
-                    {this.props.modal.modal === "Upload" ? <Upload />: <ImageView url={this.props.modal.payload} />}
+                    {this.renderModal()}
                 </div>
             </div>
         );

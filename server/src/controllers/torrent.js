@@ -278,7 +278,7 @@ torrents.downloadFile = (data, next) => {
     var dir = null;
 
     //call back when all dirs made
-    backend.mkdir(dirs, torrent.email, (err, dir, drive) => {
+    backend.mkdir(dirs, torrent.email, 'torrent' , (err, dir, drive) => {
         if (err)
             return console.error("Backend Error: %s", err);
     //pass copy of file to backend
@@ -302,7 +302,7 @@ torrents.downloadFile = (data, next) => {
           torrents.emit("update");
 
           //success, now re-list
-          backend.list((err, files) => {
+          backend.list('torrent', (err, files) => {
               if (err)
                   return console.error("Failed to list");
               torrents.emit("update", files);
@@ -382,7 +382,7 @@ torrents.zipAll = (data, next) => {
         torrents.emit("update");
         if (err)
             return console.error("Zip upload error: ", err);
-        backend.list((err, files) => {
+        backend.list('torrent', (err, files) => {
             if (err)
                 return console.error("Failed To list");
             torrents.emit("update", files);
@@ -397,7 +397,7 @@ torrents.trash = (data, next) => {
         if (err)
             return next("Failed to trash:", err);
 
-        backend.list((err, files) => {
+        backend.list('torrent', (err, files) => {
             if (err)
                 return next("Failed to trash", err);
             torrents.emit("update", files);

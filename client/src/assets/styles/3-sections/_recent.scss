@@ -44,6 +44,10 @@
     margin-bottom: 0;
     font-weight: 600;
     color: darken($secondary,10%);
+    width: 150px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .rececnt-activity-time {

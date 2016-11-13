@@ -5,9 +5,10 @@ import ROOT_URL from '../../../baseurl';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as modalActions from '../../../actions/modalActions';
-import {ContextMenu, MenuItem, ContextMenuTrigger } from 'react-contextmenu';
-import ContextMenus from '../../common/ContextMenu';
+import {ContextMenuTrigger } from 'react-contextmenu';
+import {ContextMenusFile} from '../../common/ContextMenu';
 import * as fileActions from '../../../actions/fileActions';
+import FileIcon from './file/FileIcon';
 
 class Files extends React.Component {
   constructor(props) {
@@ -16,9 +17,13 @@ class Files extends React.Component {
     this.handleClick = this.handleClick.bind(this);
     this.handleClicks = this.handleClicks.bind(this);
   }
-  handleClick(url) {
+  handleClick(type, url, format) {
       if (!this.props.modal) {
+        if (type === 'img')  {
           return this.props.actions.showModal("FileImg", url);
+        } else {
+          return this.props.actions.showModal("FileVideo", {url, format});
+        }
       }
       this.props.actions.hideModal();
   }
@@ -27,37 +32,54 @@ class Files extends React.Component {
     const token = this.props.token;
     if (data.action === 'Download'){
       return this.props.actions.download(fileId, token);
-    } else {
+    } else if (data.action === 'File') {
+        return this.props.actions.showModal("File");
+    }else {
       return this.props.actions.remove(fileId, token);
     }
   }
   renderFile(file, i ) {
+    const token = this.props.token;
     const time = moment(file.date_created).fromNow()
-    const type = file.type.split('/')[1];
     const attributes = {'data-fileId': file._id};
-    if (file.type.split('/')[0] !== 'image'){
+    const type = file.type.split('/')[0]
+    if ( type !== 'image' && type !== 'video' && type !== 'audio'){
     return(
       <ContextMenuTrigger id="file-context-menu" key={i} attributes={attributes}>
       <div className={'col-md-2 col-xs-6 doc-div'} >
            <div className="image-wrapper">
-             <FileImg type={type}/>
+             <FileImg type={file.type}/>
            </div>
           <p className="filename">
-              <i className="flaticon-file flaticon-interface"></i>
+              <FileIcon type={file.type.split('/')[0]}/>
               {file.name}</p>
           <p className="filetime">{time}</p>
       </div>
       </ContextMenuTrigger>
     );
-  } else {
+  } else if (type === 'video' || type === 'audio') {
     return(
       <ContextMenuTrigger id="file-context-menu" key={i} attributes={attributes}>
-      <div className="col-md-2 col-xs-6 image-div" >
-          <div className="image-wrapper" onClick={() => this.handleClick(`${ROOT_URL}/image/full/${file.name}`)}>
-              <img src={`${ROOT_URL}/image/${file.name}`} alt="' " className="image img-fluid img-rounded"/>
+      <div className="col-md-2 col-xs-6 doc-div pointer" >
+          <div className="image-wrapper" onClick={() => this.handleClick('video', `${ROOT_URL}/video/${file.name}?token=${token}`, type)}>
+              <FileImg type={file.type}/>
           </div>
           <p className="filename">
-              <i className="flaticon-file flaticon-photo"></i>
+              <FileIcon type={file.type.split('/')[0]}/>
+              {file.name}</p>
+          <p className="filetime">{time}</p>
+      </div>
+      </ContextMenuTrigger>
+    );
+  }else {
+    return(
+      <ContextMenuTrigger id="file-context-menu" key={i} attributes={attributes}>
+      <div className="col-md-2 col-xs-6 image-div pointer" >
+          <div className="image-wrapper" onClick={() => this.handleClick('img', `${ROOT_URL}/image/full/${file.name}?token=${token}`)}>
+              <img src={`${ROOT_URL}/image/${file.name}?token=${token}`} alt="' " className="image img-fluid img-rounded"/>
+          </div>
+          <p className="filename">
+              <FileIcon type={file.type.split('/')[0]}/>
               {file.name}</p>
           <p className="filetime">{time}</p>
       </div>
@@ -67,9 +89,12 @@ class Files extends React.Component {
   }
   render() {
     return(
+      <div>
+      {this.props.files.length > 0 ? <h2>Folders</h2> : null}
       <div className="row">
         {this.props.files.map(this.renderFile)}
-        <ContextMenus handleClick={this.handleClicks}/>
+        <ContextMenusFile handleClick={this.handleClicks}/>
+    </div>
     </div>
     );
   }

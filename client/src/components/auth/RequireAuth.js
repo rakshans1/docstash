@@ -15,7 +15,7 @@ export default function(ComposedComponent) {
             }
         }
 
-        componentWillUpdate(nextProps) {
+        componentDidUpdate(nextProps) {
             if (!nextProps.authenticated) {
                 browserHistory.push('/');
                 // this.context.router.push('/');

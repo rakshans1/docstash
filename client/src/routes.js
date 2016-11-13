@@ -11,6 +11,7 @@ import SocialLogin from './components/auth/SocialLogin';
 import RequireAuth from './components/auth/RequireAuth';
 import LoggedInRedirect from './components/auth/LoggedInRedirect';
 import Main from './components/main/Main';
+import Folder from './components/main/FolderMain';
 import Setting from './containers/Setting';
 import Shortner from './containers/Shortner';
 import Twitter from './containers/Twitter';
@@ -22,6 +23,7 @@ export default(
     <Route path="/" component={App}>
         <Route component={HomePage}>
             <IndexRoute component={Main}/>
+            <Route path="/folder/:folder" component={Folder}/>
             <Route path="/short" component={Shortner}/>
             <Route path="/twitter" component={Twitter}/>
             <Route path="/torrent" component={Torrent}/>

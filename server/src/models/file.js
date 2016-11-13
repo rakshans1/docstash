@@ -7,6 +7,7 @@ const fileSchema = new Schema({
   size: String,
   parentNode: {type: Schema.Types.ObjectId, ref : 'Folder'},
   userId: {type: Schema.Types.ObjectId, ref : 'user'},
+  reason: String,
   date_created: {
       type: Date,
       default: Date.now

@@ -104,11 +104,17 @@ export default function(app, jsonParser) {
 
     //File and Folder Controllers
     app.get('/files',requireAuth , files.file);
+    app.get('/folders',requireAuth , files.folder);
     app.get('/file/d/:fileId', handelToken, requireAuth, files.download);
+    app.get('/folder/new/:folderName', handelToken, requireAuth, files.folderNew);
+    app.get('/recents', requireAuth, files.recent);
 
     //Image Server
-    app.get('/image/:image', image.image)
-    app.get('/image/full/:image', image.imageFull)
+    app.get('/image/:image', handelToken, requireAuth, image.image)
+    app.get('/image/full/:image', handelToken, requireAuth, image.imageFull)
+
+    //video and mp3 Server
+    app.get('/video/:video', handelToken, requireAuth, files.stream);
 
     function api(name, module) {
         Object.keys(module).forEach((key) => {
@@ -156,7 +162,7 @@ export default function(app, jsonParser) {
 
     //periodically scan for new stored files
     function list() {
-        backend.list(function(err, files) {
+        backend.list('torrent',function(err, files) {
             if (!err)
                 update(files);
             }

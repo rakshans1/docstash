@@ -1,37 +1,37 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
+import {connect} from 'react-redux';
+import FileIcon from './sections/file/FileIcon';
+import moment from 'moment';
 
 class Recent extends React.Component {
     constructor(props) {
         super(props);
+        this.renderRecent = this.renderRecent.bind(this);
+    }
+    renderRecent = (recent, i) => {
+      const time = moment(recent.date_created).fromNow()
+      return(
+        <div className="recent-activity" key={i}>
+            <FileIcon type={recent.reason}/>
+            <p className="recent-activity-event">You {recent.reason} the file</p>
+            <p className="recent-activity-filename">{recent.name}</p>
+            <p className="rececnt-activity-time">{time}</p>
+        </div>
+      );
     }
     render() {
         return (
             <div className="col-sm-2 recent">
                 <p className="recent-heading">RECENT ACTIVITY</p>
-                <div className="recent-activity">
-                    <i className="flaticon flaticon-draw edit"></i>
-                    <p className="recent-activity-event">You edited the file</p>
-                    <p className="recent-activity-filename">Image1.jpg</p>
-                    <p className="rececnt-activity-time">2 hours ago</p>
-                </div>
-
-                <div className="recent-activity">
-                    <i className="flaticon flaticon-file-1 delete"></i>
-                    <p className="recent-activity-event">You deleted the file</p>
-                    <p className="recent-activity-filename">Image2.jpg</p>
-                    <p className="rececnt-activity-time">6 hours ago</p>
-                </div>
-
-                <div className="recent-activity">
-                    <i className="flaticon flaticon-file added"></i>
-                    <p className="recent-activity-event">You added the file</p>
-                    <p className="recent-activity-filename">Image3.jpg</p>
-                    <p className="rececnt-activity-time">8 hours ago</p>
-                </div>
-
+                {this.props.recent.map(this.renderRecent)}
             </div>
         );
     }
 }
-
-export default Recent;
+Recent.propTypes = {
+  recent : PropTypes.array
+}
+function mapStateToProps(state) {
+    return { recent: state.recent};
+}
+export default connect(mapStateToProps, null)(Recent);

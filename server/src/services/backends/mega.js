@@ -55,43 +55,48 @@ exports.get = (fileName, done) => {
   done(null, dl);
 }
 //list will be called to list all stored files
-exports.list = function(callback) {
-
-    storage.reload(function(err) {
-        if (err)
-            return callback("Mega list-dir failed: " + err);
-
-        var fetches = [];
-        var files = [];
-
-        eachFile(function(f) {
-            if (f.directory)
-                return;
-            var path = getPath(f);
-            var tcldFile = {
-                name: path
-            };
-            fetches.push(function fetchUrl(cb) {
-                f.link(function(err, url) {
-                    if (err)
-                        return cb(err);
-                    tcldFile.url = url;
-                    cb(null);
-                });
-            });
-            //url is null until it is fetched
-            files.push(tcldFile);
-        });
-
-        //fetch all links, 6 at a time
-        async.parallelLimit(fetches, 6, function(err) {
-            if (err)
-                return callback("Mega fetch-url failed: " + err);
-
-            // console.log("list success", files);
-            callback(null, files);
-        });
-    });
+exports.list = function(torrent, callback) {
+    // storage.reload(function(err) {
+    //     if (err)
+    //         return callback("Mega list-dir failed: " + err);
+    //
+    //     var fetches = [];
+    //     var files = [];
+    //
+    //     eachFile(done);
+    //
+    //     function done(f) {
+    //         if (torrent && f.nodeId === 'Fg9HiKiQ'){
+    //           return eachFile(done)
+    //         }
+    //         if (f.directory){
+    //           return;
+    //         }
+    //         var path = getPath(f);
+    //         var tcldFile = {
+    //             name: path
+    //         };
+    //         fetches.push(function fetchUrl(cb) {
+    //             f.link(function(err, url) {
+    //                 if (err)
+    //                     return cb(err);
+    //                 tcldFile.url = url;
+    //                 cb(null);
+    //             });
+    //         });
+    //         //url is null until it is fetched
+    //         files.push(tcldFile);
+    //     }
+    //
+    //     //fetch all links, 6 at a time
+    //     async.parallelLimit(fetches, 6, function(err) {
+    //         if (err)
+    //             return callback("Mega fetch-url failed: " + err);
+    //
+    //         // console.log("list success", files);
+    //         callback(null, files);
+    //     });
+    // });
 };
 
 //removes a file at the given path (torrentFile.path)
@@ -154,8 +159,13 @@ function getPath(f) {
     return path;
 }
 
-exports.mkdir = (dirs, email, cb) => {
-    const parent = storage.root;
+exports.mkdir = (dirs, email, torrent, cb) => {
+    let parent = null;
+    if (torrent) {
+      parent = '"Fg9HiKiQ"';
+    } else {
+      parent = storage.root;
+    }
     var d = dirs.shift();
     storage.mkdir({
         name: d,
