@@ -2,6 +2,9 @@ import Files from '../models/file';
 import Folders from '../models/folder';
 import backend from '../services/backend';
 import User from '../models/user';
+import secret from '../config/secret';
+import crypto from 'crypto';
+const algorithm = 'aes-256-ctr';
 
 export const file = (req, res, next) => {
     let parentNode = null
@@ -48,14 +51,14 @@ export const download = (req, res, next) => {
   Files.findById(fileId, (err, file) => {
     if (err) return res.status(404);
     if (file.userId == user){
-      backend.get(file._id, (err,  stream) => {
-        if (err) res.status(404).send({error: err});
+      backend.get(file._id.toString(), (err,  stream) => {
+        if (err) return res.status(404).send({error: err});
         stream.on('error', (err) => {
           return res.status(404).send({error: 'File Not Found'});
         })
         res.setHeader('Content-disposition', 'attachment; filename=' + file.name);
         res.setHeader('Content-Type', file.type);
-        stream.pipe(res)
+        stream.pipe(crypto.createDecipher(algorithm, secret.secret)).pipe(res)
       });
     } else {
       res.status(404).send({error: 'File Not Found'});
@@ -95,7 +98,7 @@ export const stream =  (req, res, next) => {
   backend.get(video, (err,  stream) => {
     if (err) console.log(err);
 
-    stream.pipe(res)
+    stream.pipe(crypto.createDecipher(algorithm, secret.secret)).pipe(res)
   });
 }
 

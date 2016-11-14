@@ -39,6 +39,9 @@ exports.upload = function(stream, dir, name, length, drive, callback) {
 };
 //Get file from backend
 exports.get = (fileName, done) => {
+  storage.reload(err => {
+    if (err) done(err);
+  debugger;
   var dir = storage.root;
   var f = null;
   for (var i = 0; i < dir.children.length; i++) {
@@ -53,6 +56,7 @@ exports.get = (fileName, done) => {
 
   var dl = f.download()
   done(null, dl);
+});
 }
 //list will be called to list all stored files
 exports.list = function(torrent, callback) {

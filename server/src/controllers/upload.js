@@ -7,6 +7,10 @@ import User from '../models/user';
 import units from '../util/units';
 import backend from '../services/backend';
 import secret from '../config/secret';
+import crypto from 'crypto';
+const algorithm = 'aes-256-ctr';
+
+const encrypt = crypto.createCipher(algorithm, secret.secret);
 
 const upload = (req, res, next) => {
   const folderId = req.headers.location;
@@ -42,7 +46,7 @@ const upload = (req, res, next) => {
     //upload the file to backend
     function uploadTOBackend(file, fileSaved){
       const stream = fs.createReadStream(file.path);
-      backend.upload(stream, undefined , fileSaved._id, file.length, undefined, (err) => {
+      backend.upload(stream.pipe(crypto.createCipher(algorithm, secret.secret)), undefined , fileSaved._id, file.length, undefined, (err) => {
         if(err) return console.log(err);
         fs.unlink(file.path, err => {
           if (err) console.log(err);
