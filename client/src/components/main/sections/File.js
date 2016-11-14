@@ -32,16 +32,22 @@ class Files extends React.Component {
     const token = this.props.token;
     if (data.action === 'Download'){
       return this.props.actions.download(fileId, token);
-    } else if (data.action === 'File') {
-        return this.props.actions.showModal("File");
-    }else {
-      return this.props.actions.remove(fileId, token);
+    } else if (data.action === 'Rename') {
+        const fileName = target.getAttribute('data-fileName');
+        return this.props.actions.showModal("File" , {type: "rename",renameType:  'file', fileId: fileId, fileName: fileName});
+    } else {
+      var location = window.location.pathname.split('/');
+      location = location[location.length - 1]
+        if (location === ''){
+          location = null;
+        }
+      return this.props.actions.remove(fileId, token, 'file', location);
     }
   }
   renderFile(file, i ) {
     const token = this.props.token;
-    const time = moment(file.date_created).fromNow()
-    const attributes = {'data-fileId': file._id};
+    const time = moment(file.createdAt).fromNow()
+    const attributes = {'data-fileId': file._id, 'data-fileName': file.name};
     const type = file.type.split('/')[0]
     if ( type !== 'image' && type !== 'video' && type !== 'audio'){
     return(
@@ -61,7 +67,7 @@ class Files extends React.Component {
     return(
       <ContextMenuTrigger id="file-context-menu" key={i} attributes={attributes}>
       <div className="col-md-2 col-xs-6 doc-div pointer" >
-          <div className="image-wrapper" onClick={() => this.handleClick('video', `${ROOT_URL}/video/${file.name}?token=${token}`, type)}>
+          <div className="image-wrapper" onClick={() => this.handleClick('video', `${ROOT_URL}/video/${file._id}?token=${token}`, type)}>
               <FileImg type={file.type}/>
           </div>
           <p className="filename">
@@ -75,8 +81,8 @@ class Files extends React.Component {
     return(
       <ContextMenuTrigger id="file-context-menu" key={i} attributes={attributes}>
       <div className="col-md-2 col-xs-6 image-div pointer" >
-          <div className="image-wrapper" onClick={() => this.handleClick('img', `${ROOT_URL}/image/full/${file.name}?token=${token}`)}>
-              <img src={`${ROOT_URL}/image/${file.name}?token=${token}`} alt="' " className="image img-fluid img-rounded"/>
+          <div className="image-wrapper" onClick={() => this.handleClick('img', `${ROOT_URL}/image/full/${file._id}?token=${token}`)}>
+              <img src={`${ROOT_URL}/image/${file._id}?token=${token}`} alt="' " className="image img-fluid img-rounded"/>
           </div>
           <p className="filename">
               <FileIcon type={file.type.split('/')[0]}/>
@@ -90,9 +96,9 @@ class Files extends React.Component {
   render() {
     return(
       <div>
-      {this.props.files.length > 0 ? <h2>Folders</h2> : null}
+      {this.props.files.length > 0 ? <h2>Files</h2> : null}
       <div className="row">
-        {this.props.files.map(this.renderFile)}
+        {this.props.files.slice(0).reverse().map(this.renderFile)}
         <ContextMenusFile handleClick={this.handleClicks}/>
     </div>
     </div>

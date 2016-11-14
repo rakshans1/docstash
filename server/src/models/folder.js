@@ -5,14 +5,8 @@ var folderSchema = new Schema({
   name: String,
   userId: {type: Schema.Types.ObjectId, ref : 'user'},
   parentNode: {type: Schema.Types.ObjectId, ref : 'Folder'},
-  date_created: {
-      type: Date,
-      default: Date.now
-  },
-  last_updated: {
-      type: Date,
-      default: Date.now()
-  }
+},{
+    timestamps: true
 });
 
 module.exports = mongoose.model('Folder', folderSchema);

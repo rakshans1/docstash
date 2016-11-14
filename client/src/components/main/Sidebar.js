@@ -30,22 +30,22 @@ class Sidebar extends React.Component {
                         <IndexLink className="sidebar-a" activeClassName="active" to="/"><i className="flaticon-folder-2"/>Library</IndexLink>
                     </li>
                     <li className="sidebar-li">
-                        <a className="sidebar-a" href="recent.html"><i className="flaticon-square"/>Recent</a>
+                        <Link className="sidebar-a" to="/recents"><i className="flaticon-square"/>Recent</Link>
                     </li>
                 </ul>
                 <p className="sidebar-text">FILTER BY</p>
                 <ul className="nav nav-sidebar sidebar-ul">
                     <li className="sidebar-li">
-                        <a className="sidebar-a" href="documents.html"><i className="flaticon-interface"/>Documents</a>
+                        <Link className="sidebar-a" to="/documents"><i className="flaticon-interface"/>Documents</Link>
                     </li>
                     <li className="sidebar-li">
-                        <a className="sidebar-a" href="videos.html"><i className="flaticon-multimedia"/>Videos</a>
+                        <Link className="sidebar-a" to="/videos"><i className="flaticon-multimedia"/>Videos</Link>
                     </li>
                     <li className="sidebar-li">
-                        <a className="sidebar-a" href="music.html"><i className="flaticon-music"/>Music</a>
+                        <Link className="sidebar-a" to="/musics"><i className="flaticon-music"/>Music</Link>
                     </li>
                     <li className="sidebar-li">
-                        <a className="sidebar-a" href="images.html"><i className="flaticon-photo"/>Images</a>
+                        <Link className="sidebar-a" to="/images"><i className="flaticon-photo"/>Images</Link>
                     </li>
                 </ul>
                 <p className="sidebar-text">Extra</p>

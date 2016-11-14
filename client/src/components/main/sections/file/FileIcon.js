@@ -16,7 +16,7 @@ class FileIcon extends React.Component {
                 return (
                   <i className="flaticon-file flaticon-photo"></i>
                 );
-            case 'edit':
+            case 'edited':
                 return (
                   <i className="flaticon flaticon-draw edit"></i>
                 );

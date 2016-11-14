@@ -7,6 +7,7 @@ export const image = (req, res, next) => {
   const image = req.params.image;
   backend.get(image, (err,  stream) => {
     if (err) console.log(err);
+    if (!stream) return res.status(404).send({error: 'File Not Found'});
     stream.on('error', (err) => {
       return res.status(404).send({error: 'File Not Found'});
     })

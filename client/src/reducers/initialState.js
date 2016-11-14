@@ -39,5 +39,6 @@ export default {
     folder: [],
     recent: [],
     subfile: [],
-    subfolder: []
+    subfolder: [],
+    filefilter: []
 };

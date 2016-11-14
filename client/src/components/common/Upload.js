@@ -4,7 +4,7 @@ import {bindActionCreators} from 'redux';
 import Dropzone from 'react-dropzone';
 import Icon from '../icon';
 import units from '../../utils/units';
-import * as uploadAction from '../../actions/UploadAction';
+import * as uploadAction from '../../actions/uploadAction';
 
 class Upload extends React.Component {
     constructor(props) {
@@ -29,8 +29,11 @@ class Upload extends React.Component {
         acceptedfiles.forEach((file, i) => {
            var data = new FormData();
            data.append('file[]', file);
-           let location = window.location.pathname.split('/');
+           var location = window.location.pathname.split('/');
            location = location[location.length - 1];
+           if (!/^\d/.test(location)) {
+              location = '';
+           }
             var config = {
                 onUploadProgress: (progressEvent) => {
                   this.handelProgress(progressEvent, i, file)

@@ -34,7 +34,7 @@ class Breadcrumb extends React.Component {
                         </li>
                     </ol>
                 );
-            case '/recent':
+            case '/recents':
                 return (
                     <ol className="breadcrumb">
                         <li className="breadcrumb-item ">
@@ -67,7 +67,7 @@ class Breadcrumb extends React.Component {
                         </li>
                     </ol>
                 );
-            case '/music':
+            case '/musics':
                 return (
                     <ol className="breadcrumb">
                         <li className="breadcrumb-item ">

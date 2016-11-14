@@ -17,17 +17,7 @@ const upload = (req, res, next) => {
   form.uploadDir = TMP_DIR;
 
   form.on('file', (field, file) => {
-  //upload the file to backend
-    const stream = fs.createReadStream(file.path);
-    backend.upload(stream, undefined , file.name, file.length, undefined, (err) => {
-      if(err) return console.log(err);
-      fs.unlink(file.path, err => {
-        if (err) console.log(err);
-      });
-    });
-
-    // fs.rename(file.path, path.join(form.uploadDir, file.name));
-    User.findOne({_id: req.user._id}, (err, user) => {
+    User.findById(req.user._id, (err, user) => {
       if (err) return next(err);
       user.storage = user.storage + file.size;
       user.save(err => {
@@ -39,14 +29,32 @@ const upload = (req, res, next) => {
     fileInDb.name = file.name;
     fileInDb.type = file.type;
     fileInDb.size = units(file.size);
+    fileInDb.bytes = file.size;
     fileInDb.reason = 'added';
     if (folderId !== ''){
       fileInDb.parentNode = folderId;
     }
-    fileInDb.save(err => {
+    fileInDb.save((err, fileSaved) => {
       if (err) return next(err);
+      uploadTOBackend(file, fileSaved);
     });
+
+    //upload the file to backend
+    function uploadTOBackend(file, fileSaved){
+      const stream = fs.createReadStream(file.path);
+      backend.upload(stream, undefined , fileSaved._id, file.length, undefined, (err) => {
+        if(err) return console.log(err);
+        fs.unlink(file.path, err => {
+          if (err) console.log(err);
+        });
+      });
+    }
+
   });
+
+    // fs.rename(file.path, path.join(form.uploadDir, file.name));
+
+
 
   form.on('error', (err) => {
     console.log('An error has occured: \n' + err);

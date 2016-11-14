@@ -12,7 +12,7 @@ export class ContextMenusFile extends React.Component {
           <img src={require('../../assets/icon/downloading.svg')} className="download-icon" alt=""/>
           Download
         </MenuItem>
-        <MenuItem  data={{action: 'File'}} onClick={this.props.handleClick}>
+        <MenuItem  data={{action: 'Rename'}} onClick={this.props.handleClick}>
           <img src={require('../../assets/icon/draw.svg')} className="download-icon" alt=""/>
           Rename
         </MenuItem>
@@ -31,7 +31,7 @@ export class ContextMenusFolders extends React.Component {
   render() {
     return(
       <ContextMenu id="folders-context-menu">
-        <MenuItem  data={{action: 'File'}} onClick={this.props.handleClick}>
+        <MenuItem  data={{action: 'Rename'}} onClick={this.props.handleClick}>
           <img src={require('../../assets/icon/draw.svg')} className="download-icon" alt=""/>
           Rename
         </MenuItem>
@@ -54,10 +54,10 @@ export class ContextMenusFolder extends React.Component {
           <img src={require('../../assets/icon/new-add-folder.svg')} className="download-icon" alt=""/>
           New Folder
         </MenuItem>
-        <MenuItem  data={{action: 'Remove'}} onClick={this.props.handleClick}>
+        {/* <MenuItem  data={{action: 'Remove'}} onClick={this.props.handleClick}>
           <img src={require('../../assets/icon/bin.svg')} className="download-icon" alt=""/>
           Remove
-        </MenuItem>
+        </MenuItem> */}
       </ContextMenu>
     );
   }

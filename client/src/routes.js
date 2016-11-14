@@ -12,6 +12,7 @@ import RequireAuth from './components/auth/RequireAuth';
 import LoggedInRedirect from './components/auth/LoggedInRedirect';
 import Main from './components/main/Main';
 import Folder from './components/main/FolderMain';
+import MainFilter from './components/main/MainFilter';
 import Setting from './containers/Setting';
 import Shortner from './containers/Shortner';
 import Twitter from './containers/Twitter';
@@ -24,6 +25,11 @@ export default(
         <Route component={HomePage}>
             <IndexRoute component={Main}/>
             <Route path="/folder/:folder" component={Folder}/>
+            <Route path="/recents" component={MainFilter}/>
+            <Route path="/documents" component={MainFilter}/>
+            <Route path="/videos" component={MainFilter}/>
+            <Route path="/musics" component={MainFilter}/>
+            <Route path="/images" component={MainFilter}/>
             <Route path="/short" component={Shortner}/>
             <Route path="/twitter" component={Twitter}/>
             <Route path="/torrent" component={Torrent}/>

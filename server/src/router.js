@@ -19,6 +19,7 @@ import twitter from './controllers/twitter';
 
 import weather from './controllers/weather';
 import units from './util/units';
+import apilist from './util/apilist';
 
 const requireAuth = passport.authenticate('jwt', {session: false});
 const requireSignIn = passport.authenticate('local', {session: false});
@@ -108,6 +109,9 @@ export default function(app, jsonParser) {
     app.get('/file/d/:fileId', handelToken, requireAuth, files.download);
     app.get('/folder/new/:folderName', handelToken, requireAuth, files.folderNew);
     app.get('/recents', requireAuth, files.recent);
+    app.get('/files/:fileFilter', requireAuth, files.fileFilter);
+    app.post('/rename', jsonParser, requireAuth, files.rename);
+    app.post('/remove/', jsonParser, requireAuth, files.remove);
 
     //Image Server
     app.get('/image/:image', handelToken, requireAuth, image.image)
@@ -176,7 +180,6 @@ export default function(app, jsonParser) {
     app.post('/twitter',jsonParser, twitter.watchTwitter);
 
     if (process.env.NODE_ENV === "undefined") {
-        const apilist = require('./util/apilist');
         apilist(app._router.stack);
     }
 } //main function end

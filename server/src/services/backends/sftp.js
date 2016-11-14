@@ -62,7 +62,7 @@ exports.list = (torrent, done) => {
 };
 
 exports.remove = (path, done) => {
-    sftp.rmdir(secret.sftp.SSH_ROOT + path, true).then(() => done(null)).catch((err) => done(err));
+    sftp.delete(secret.sftp.SSH_ROOT + path).then(() => done(null)).catch((err) => done(err));
 };
 
 exports.mkdir = (dir, email, torrent, cb) => {

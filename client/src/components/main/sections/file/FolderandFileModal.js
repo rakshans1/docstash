@@ -17,16 +17,22 @@ class FolderandFileModal extends React.Component {
     handleFileInput(event) {
         this.setState({file: event.target.value});
     }
+    componentDidMount() {
+      this.setState({file: this.props.payload.fileName});
+    }
     saveAndContinue(e) {
         let canProceed = this.validateFile(this.state.file);
+        var location = window.location.pathname.split('/');
+        location = location[location.length - 1]
+          if (location === ''){
+            location = null;
+          }
         if (this.props.payload.type === "folder" && canProceed ) {
-            let location = window.location.pathname.split('/');
-            location = location[location.length - 1]
-            if (location === ''){
-              location = null;
-            }
+
             this.props.actions.folderNew(this.state.file, this.props.token, location);
-        } else {
+        } else if (this.props.payload.type === "rename" && canProceed ) {
+            this.props.actions.rename(this.props.payload.fileId, this.state.file, this.props.token, this.props.payload.renameType, location);
+        }else {
             this.refs.file.isValid();
         }
     }
@@ -39,7 +45,7 @@ class FolderandFileModal extends React.Component {
 
     render() {
         return (
-          <div className="main-bg container">
+          <div className="rename container">
               <h2>{this.props.payload.type === "folder" ? 'Folder Name' : 'Rename'}</h2>
               <p>Please enter new name for the item:</p>
               <Input text="Enter Name For Item" ref="file" type="text" validate={this.validateFile} value={this.state.file} emptyMessage="Cant Be Empty" onChange={this.handleFileInput}/>

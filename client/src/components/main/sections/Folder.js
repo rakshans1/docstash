@@ -23,19 +23,25 @@ class Folders extends React.Component {
       this.props.actions.hideModal();
   }
   handleClicks(e, data, target) {
-    const fileId = target.getAttribute('data-fileId');
+    const fileId = target.getAttribute('data-folderId');
     const token = this.props.token;
     if (data.action === 'Download'){
       return this.props.actions.download(fileId, token);
-    } else if (data.action === 'File') {
-        return this.props.actions.showModal("File");
+    } else if (data.action === 'Rename') {
+        const fileName = target.getAttribute('data-folderName');
+        return this.props.actions.showModal("File",{type: "rename",renameType:  'folder',fileId: fileId, fileName: fileName});
     }else {
-      return this.props.actions.remove(fileId, token);
+      var location = window.location.pathname.split('/');
+      location = location[location.length - 1]
+        if (location === ''){
+          location = null;
+        }
+      return this.props.actions.remove(fileId, token, 'folder', location);
     }
   }
   renderFolder(folder, i ) {
     const token = this.props.token;
-    const attributes = {'data-folderId': folder._id};
+    const attributes = {'data-folderId': folder._id, 'data-folderName': folder.name};
     return(
       <div className="col-md-2 col-xs-6 folder-div" key={i}>
       <ContextMenuTrigger id="folders-context-menu"  attributes={attributes}>

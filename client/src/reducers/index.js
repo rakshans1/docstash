@@ -14,6 +14,7 @@ import folderReducer from './folderReducer';
 import recentReducer from './recentReducer';
 import subfolderReducer from './subfolderReducer';
 import subfileReducer from './subfileReducer';
+import fileFilterReducer from './fileFilterReducer';
 
 const rootReducer = combineReducers({
     // routing: routerReducer,
@@ -30,7 +31,8 @@ const rootReducer = combineReducers({
     folder: folderReducer,
     subfile: subfileReducer,
     subfolder: subfolderReducer,
-    recent: recentReducer
+    recent: recentReducer,
+    filefilter: fileFilterReducer
 });
 
 export default rootReducer;

@@ -10,7 +10,7 @@ export function upload(data, config, token) {
     axios.post(`${ROOT_URL}/upload`, data, config)
     .then(res => {
       dispatch(ajaxCallError());
-      dispatch(updateInfo(token));
+      dispatch(updateInfo(token, config.headers.location));
     })
     .catch(err => {
       dispatch(ajaxCallError());

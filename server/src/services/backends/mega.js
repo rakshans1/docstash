@@ -101,36 +101,26 @@ exports.list = function(torrent, callback) {
 
 //removes a file at the given path (torrentFile.path)
 exports.remove = function(path, callback) {
-
-    var parts = path.split("/");
-    var file = null;
+  storage.reload(err => {
+    if(err) callback('Cant delete file')
     var dir = storage.root;
-
-    while (parts.length) {
-        var p = parts.shift();
-        if (!dir.directory)
-            return callback("Missing");
-
-        var f = null;
-        for (var i = 0; i < dir.children.length; i++) {
-            var c = dir.children[i];
-            if (c.name === p) {
-                f = c;
-                break;
-            }
+    var f = null;
+    for (var i = 0; i < dir.children.length; i++) {
+        var c = dir.children[i];
+        if (c.name === path) {
+            f = c;
+            break;
         }
-
-        if (!f)
-            return callback("Missing");
-        dir = file = f;
     }
 
-    f.delete(function(err) {
-        if (err)
-            return callback(err);
-        console.log("deleted", path);
-        setTimeout(callback, 5000);
-    });
+  if (!f)
+      return callback("Missing");
+  f.delete(function(err) {
+      if (err)
+          return callback(err);
+      callback(null);
+  });
+});
 };
 
 //========

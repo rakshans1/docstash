@@ -9,7 +9,7 @@ class Recent extends React.Component {
         this.renderRecent = this.renderRecent.bind(this);
     }
     renderRecent = (recent, i) => {
-      const time = moment(recent.date_created).fromNow()
+      const time = moment(recent.updatedAt).fromNow()
       return(
         <div className="recent-activity" key={i}>
             <FileIcon type={recent.reason}/>
