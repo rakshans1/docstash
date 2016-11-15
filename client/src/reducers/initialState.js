@@ -40,5 +40,9 @@ export default {
     recent: [],
     subfile: [],
     subfolder: [],
-    filefilter: []
+    filefilter: [],
+    search: {
+      status: false,
+      payload: []
+    }
 };

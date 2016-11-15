@@ -13,7 +13,8 @@ class Youtube extends React.Component {
         this.state = {
             term: 'casey neistat',
             videos: [],
-            selectedVideo: null
+            selectedVideo: null,
+            time: 0
         };
         this.handleUrlInput = this.handleUrlInput.bind(this);
         this.yts = this.yts.bind(this);
@@ -22,8 +23,11 @@ class Youtube extends React.Component {
     }
     handleUrlInput(event) {
         this.setState({term: event.target.value});
-        // this.videoSearch(this.state.term);
-        _.debounce(this.videoSearch(this.state.term), 300);
+        var d = new Date();
+        if (d.getTime() - this.state.time > 500){
+          this.videoSearch(this.state.term);
+        }
+        this.setState({time: d.getTime()});
     }
     videoSearch(term) {
         this.yts(term, (videos) => this.setState({videos:videos , selectedVideo: videos[0] }));

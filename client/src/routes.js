@@ -10,7 +10,7 @@ import Signout from './components/auth/Signout';
 import SocialLogin from './components/auth/SocialLogin';
 import RequireAuth from './components/auth/RequireAuth';
 import LoggedInRedirect from './components/auth/LoggedInRedirect';
-import Main from './components/main/Main';
+import Main from './containers/Main';
 import Folder from './components/main/FolderMain';
 import MainFilter from './components/main/MainFilter';
 import Setting from './containers/Setting';

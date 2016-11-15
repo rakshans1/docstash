@@ -1,25 +1,53 @@
 import React, {PropTypes} from 'react';
 import {Link, IndexLink} from 'react-router';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as searchActions from '../../actions/searchActions';
+import _ from '../../utils/lobash';
 
 class Header extends React.Component {
-    // constructor(props) {
-    //   super(props);
-    // }
+    constructor(props) {
+      super(props);
+      this.state = {
+        time : 0
+      }
+      this.handleSearchInput = this.handleSearchInput.bind(this);
+      this.saveAndContinue = this.saveAndContinue.bind(this);
+      this.handelLogoClick = this.handelLogoClick.bind(this);
+    }
+    handleSearchInput(e) {
+      if (e.target.value.length === 0){
+        this.props.actions.searchClose();
+      } else {
+        var d = new Date();
+        if (d.getTime() - this.state.time > 500){
+        this.props.actions.searchOpen(e.target.value, this.props.token);
+        }
+        this.setState({time: d.getTime()});
+      }
+    }
+    handelLogoClick(){
+      if (this.props.search){
+        this.props.actions.searchClose();
+      }
+    }
+    saveAndContinue(e) {
+        e.preventDefault();
+    }
     render() {
         let picture = this.props.user.picture;
         return (
             <div>
                 <nav className="navbar nav-shadow navbar-light">
                     {/* <div className="brand-img"></div> */}
-                    <IndexLink className="navbar-brand brand" to="/">Docstash
+                    <IndexLink className="navbar-brand brand" to="/" onClick={this.handelLogoClick}>Docstash
                         <span className="onlineUsers indicator">{this.props.onlineUsers}</span>
                     </IndexLink>
-                    <form className="form-inline pull-xs-center search-form">
+                    <form className="form-inline pull-xs-center search-form " onSubmit={this.saveAndContinue}>
                         <div className="form-group search">
                             <img src={require('../../assets/icon/search.svg')} className="search-icon" alt=""/>
                             <i className="fa fa-search search-icon"/>
-                            <input type="text" className="form-control search-input"/>
+                            <input type="text" className="form-control search-input" onChange={this.handleSearchInput} />
                         </div>
                     </form>
                     <div className="avatar">
@@ -102,9 +130,15 @@ Header.defaultProps = {
 }
 Header.propTypes = {
     user: PropTypes.object.isRequired,
-    onlineUsers: PropTypes.number
+    onlineUsers: PropTypes.number,
+    actions: PropTypes.object.isRequired,
 };
 function mapStateToProps(state) {
-    return {user: state.user};
+    return {user: state.user, token: state.auth.token, search: state.search.status};
 }
-export default connect(mapStateToProps)(Header);
+function mapDispatchToProp(dispatch) {
+    return {
+        actions: bindActionCreators(searchActions, dispatch)
+    };
+}
+export default connect(mapStateToProps, mapDispatchToProp)(Header);

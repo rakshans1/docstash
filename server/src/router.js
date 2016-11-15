@@ -14,6 +14,7 @@ import secret from './config/secret'
 
 import upload from './controllers/upload';
 import * as files from './controllers/files';
+import searchFile from './controllers/searchFile';
 import * as image from './controllers/image';
 import twitter from './controllers/twitter';
 
@@ -112,6 +113,7 @@ export default function(app, jsonParser) {
     app.get('/files/:fileFilter', requireAuth, files.fileFilter);
     app.post('/rename', jsonParser, requireAuth, files.rename);
     app.post('/remove/', jsonParser, requireAuth, files.remove);
+    app.get('/searchFile/:query', requireAuth, searchFile);
 
     //Image Server
     app.get('/image/:image', handelToken, requireAuth, image.image)

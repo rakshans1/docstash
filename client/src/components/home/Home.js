@@ -3,6 +3,7 @@ import Sidebar from '../main/Sidebar';
 import Recent from '../main/Recent';
 import Breadcrumb from '../main/Breadcrumb';
 import Chat from '../../containers/Chat';
+import Search from '../../containers/Search';
 
 class Home extends React.Component {
     constructor(props) {
@@ -15,7 +16,8 @@ class Home extends React.Component {
                 <div className="row">
                     <Sidebar {...this.props}/>
                     <div className="col-sm-8 col-xs-12 main">
-                        <Breadcrumb {...this.props}/> {this.props.children}
+                        {this.props.search ? null : <Breadcrumb {...this.props}/>}
+                        {this.props.search ? <Search/> : this.props.children}
                     </div>
                     <Recent {...this.props}/>
                     <Chat />
