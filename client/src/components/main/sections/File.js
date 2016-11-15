@@ -56,10 +56,13 @@ class Files extends React.Component {
            <div className="image-wrapper">
              <FileImg type={file.type}/>
            </div>
-          <p className="filename">
-              <FileIcon type={file.type.split('/')[0]}/>
-              {file.name}</p>
-          <p className="filetime">{time}</p>
+           <div className="tooltip">
+           <p className="filename">
+             <FileIcon type={file.type.split('/')[0]}/>
+                {file.name}</p>
+             <span className="tooltiptext">{file.name}</span>
+           </div>
+          <p className="filetime">{file.size} {time}</p>
       </div>
       </ContextMenuTrigger>
     );
@@ -70,10 +73,13 @@ class Files extends React.Component {
           <div className="image-wrapper" onClick={() => this.handleClick('video', `${ROOT_URL}/video/${file._id}?token=${token}`, type)}>
               <FileImg type={file.type}/>
           </div>
+          <div className="tooltip">
           <p className="filename">
-              <FileIcon type={file.type.split('/')[0]}/>
-              {file.name}</p>
-          <p className="filetime">{time}</p>
+            <FileIcon type={file.type.split('/')[0]}/>
+               {file.name}</p>
+            <span className="tooltiptext">{file.name}</span>
+          </div>
+          <p className="filetime">{file.size} {time}</p>
       </div>
       </ContextMenuTrigger>
     );
@@ -84,10 +90,13 @@ class Files extends React.Component {
           <div className="image-wrapper" onClick={() => this.handleClick('img', `${ROOT_URL}/image/full/${file._id}?token=${token}`)}>
               <img src={`${ROOT_URL}/image/${file._id}?token=${token}`} alt="' " className="image img-fluid img-rounded"/>
           </div>
+          <div className="tooltip">
           <p className="filename">
-              <FileIcon type={file.type.split('/')[0]}/>
-              {file.name}</p>
-          <p className="filetime">{time}</p>
+            <FileIcon type={file.type.split('/')[0]}/>
+               {file.name}</p>
+            <span className="tooltiptext">{file.name}</span>
+          </div>
+          <p className="filetime">{file.size} {time}</p>
       </div>
       </ContextMenuTrigger>
     );

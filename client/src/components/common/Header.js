@@ -3,7 +3,7 @@ import {Link, IndexLink} from 'react-router';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as searchActions from '../../actions/searchActions';
-import _ from '../../utils/lobash';
+import {browserHistory} from 'react-router';
 
 class Header extends React.Component {
     constructor(props) {
@@ -18,7 +18,9 @@ class Header extends React.Component {
     handleSearchInput(e) {
       if (e.target.value.length === 0){
         this.props.actions.searchClose();
+        browserHistory.push('/');
       } else {
+        browserHistory.push('/search');
         var d = new Date();
         if (d.getTime() - this.state.time > 500){
         this.props.actions.searchOpen(e.target.value, this.props.token);

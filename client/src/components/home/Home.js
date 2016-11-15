@@ -16,8 +16,8 @@ class Home extends React.Component {
                 <div className="row">
                     <Sidebar {...this.props}/>
                     <div className="col-sm-8 col-xs-12 main">
-                        {this.props.search ? null : <Breadcrumb {...this.props}/>}
-                        {this.props.search ? <Search/> : this.props.children}
+                        <Breadcrumb {...this.props}/>
+                        {this.props.children}
                     </div>
                     <Recent {...this.props}/>
                     <Chat />

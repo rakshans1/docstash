@@ -43,6 +43,6 @@ export default {
     filefilter: [],
     search: {
       status: false,
-      payload: []
+      payload: {files: [], folders:[]}
     }
 };

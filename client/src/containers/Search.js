@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import Folders from '../components/main/sections/Folder';
 import Files from '../components/main/sections/File';
 import * as modalActions from '../actions/modalActions';
 import {ContextMenuTrigger } from 'react-contextmenu';
@@ -22,7 +23,8 @@ class SearchContainer extends React.Component {
           <ContextMenuTrigger id="folder-context-menu" >
             <div className="container-fluid library">
                 <h1 className="text-sm-center shortner_h1">Search Result</h1>
-                <Files files={this.props.files}/>
+                <Folders folders={this.props.payload.folders}/>
+                <Files files={this.props.payload.files}/>
               <ContextMenusFolder handleClick={this.handleClick}/>
             </div>
           </ContextMenuTrigger>
@@ -30,7 +32,7 @@ class SearchContainer extends React.Component {
     }
 }
 function mapStateToProps(state) {
-    return {files: state.search.payload};
+    return {payload: state.search.payload};
 }
 function mapDispatchToProp(dispatch) {
     return {

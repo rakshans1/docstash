@@ -12,7 +12,7 @@ export default function searchReducer(state = initialState.search, action) {
     } else if (action.type === types.SEARCHCLOSE) {
         return state = Object.assign({}, state, {
                             status: false,
-                            payload: [],
+                            // payload: [],
                         });
     }
     return state;

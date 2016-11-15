@@ -82,6 +82,10 @@
     color: darken($gray-lighter, 25);
     margin: 0 0 0 30px;
     font-size: 0.6em;
+    width: 100px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .image-wrapper {

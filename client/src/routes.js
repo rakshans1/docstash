@@ -13,6 +13,7 @@ import LoggedInRedirect from './components/auth/LoggedInRedirect';
 import Main from './containers/Main';
 import Folder from './components/main/FolderMain';
 import MainFilter from './components/main/MainFilter';
+import Search from './containers/Search';
 import Setting from './containers/Setting';
 import Shortner from './containers/Shortner';
 import Twitter from './containers/Twitter';
@@ -24,6 +25,7 @@ export default(
     <Route path="/" component={App}>
         <Route component={HomePage}>
             <IndexRoute component={Main}/>
+            <Route path="/search" component={Search}/>
             <Route path="/folder/:folder" component={Folder}/>
             <Route path="/recents" component={MainFilter}/>
             <Route path="/documents" component={MainFilter}/>
