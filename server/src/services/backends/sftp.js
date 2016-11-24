@@ -68,7 +68,7 @@ exports.remove = (path, done) => {
 exports.mkdir = (dir, email, torrent, cb) => {
   let parent = null;
   if (torrent) {
-    parent = `${secret.sftp.SSH_ROOT}torrents`;
+    parent = `${secret.sftp.SSH_ROOT}torrents/`;
   } else {
      parent = secret.sftp.SSH_ROOT;
   }

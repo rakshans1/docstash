@@ -73,6 +73,7 @@ export function rename(fileId, newName, token, type, location) {
           dispatch(ajaxCallError());
           dispatch(modalActions.hideModal());
           dispatch(addNotification(response.data.message, 'success'));
+          if (location === 'search') return;
           if (location === 'recents' || location === 'documents' || location === 'videos' || location === 'musics' || location === 'images') {
             dispatch(filefilter(token, location));
             dispatch(recents(token));
