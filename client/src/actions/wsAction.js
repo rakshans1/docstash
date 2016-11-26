@@ -1,7 +1,7 @@
 import * as types from '../constants/actionTypes';
-import ROOT_URL from '../baseurl';
+import {WS_URL} from '../baseurl';
 import io from 'socket.io-client';
-const socket = io(ROOT_URL);
+const socket = io(WS_URL);
 
 export function wsSuccess(data) {
     return {type: types.WEBSOCKET_SUCCESS, payload: data};

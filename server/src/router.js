@@ -29,24 +29,24 @@ const googleCallbackWeb = passport.authenticate('google', {
     scope: ['openid profile email https://www.googleapis.com/auth/drive'],
     accessType: 'offline',
     approvalPrompt: 'force',
-    callbackURL: "/auth/google/callback/web"
+    callbackURL: secret.domain + "/auth/google/callback/web"
 });
 const googleCallbackMobile = passport.authenticate('google', {
     session: false,
     scope: ['openid profile email https://www.googleapis.com/auth/drive'],
     accessType: 'offline',
     approvalPrompt: 'force',
-    callbackURL: "/auth/google/callback/mobile"
+    callbackURL: secret.domain + "/auth/google/callback/mobile"
 });
 const facebookCallbackWeb = passport.authenticate('facebook', {
     session: false,
     scope: [],
-    callbackURL: "/auth/facebook/callback/web"
+    callbackURL: secret.domain + "/auth/facebook/callback/web"
 });
 const facebookCallbackMobile = passport.authenticate('facebook', {
     session: false,
     scope: [],
-    callbackURL: "/auth/facebook/callback/mobile"
+    callbackURL: secret.domain + "/auth/facebook/callback/mobile"
 });
 const handelToken = (req, res , next) => {
   req.headers.authorization = req.query.token;
@@ -54,20 +54,20 @@ const handelToken = (req, res , next) => {
 }
 export default function(app, jsonParser) {
     //Home Controllers
-    app.get('/', requireAuth, (req, res) => {
-        res.send('hi ' + req.user.name);
-    });
+    // app.get('/', requireAuth, (req, res) => {
+    //     res.send('hi ' + req.user.name);
+    // });
 
-    app.get('/load', (req, res) => {
+    app.get('/api/load', (req, res) => {
       let ram = Math.floor(process.memoryUsage().rss / 1000000).toString()
       let uptime = Math.floor(process.uptime() / 60).toString()
         res.send('Ram Used : ' + ram + ' MB Uptime: ' + uptime + ' min');
     });
 
-    app.post('/weather', jsonParser, weather);
+    app.post('/api/weather', jsonParser, weather);
 
     //User info Controllers
-    app.get('/user', requireAuth, (req, res) => {
+    app.get('/api/user', requireAuth, (req, res) => {
         const user = {
             name: req.user.name,
             email: req.user.email,
@@ -78,19 +78,19 @@ export default function(app, jsonParser) {
     });
 
     //Auth Controllers
-    app.post('/signin', jsonParser, requireSignIn, auth.signin);
-    app.post('/signup', jsonParser, auth.signup);
-    app.post('/resetpassword', jsonParser, auth.resetPassword);
-    app.get('/auth/google/:id', auth.googleSignIn);
+    app.post('/api/signin', jsonParser, requireSignIn, auth.signin);
+    app.post('/api/signup', jsonParser, auth.signup);
+    app.post('/api/resetpassword', jsonParser, auth.resetPassword);
+    app.get('/api/auth/google/:id', auth.googleSignIn);
     app.get('/auth/google/callback/web', googleCallbackWeb, auth.CallbackWeb);
     app.get('/auth/google/callback/mobile', googleCallbackMobile, auth.CallbackMobile);
-    app.get('/auth/facebook/:id', auth.facebookSignIn);
+    app.get('/api/auth/facebook/:id', auth.facebookSignIn);
     app.get('/auth/facebook/callback/web', facebookCallbackWeb, auth.CallbackWeb);
     app.get('/auth/facebook/callback/mobile', facebookCallbackMobile, auth.CallbackMobile);
 
     //Shortner Controllers
-    app.post('/short',jsonParser, shortner.post);
-    app.get('/s/:hash',jsonParser, shortner.get);
+    app.post('/api/short',jsonParser, shortner.post);
+    app.get('/api/s/:hash',jsonParser, shortner.get);
 
     //Torrent Controllers
     api('torrents', torrents);
@@ -99,28 +99,28 @@ export default function(app, jsonParser) {
     api('search', search);
 
     // Upload Controllers
-    app.post('/upload', requireAuth, upload);
+    app.post('/api/upload', requireAuth, upload);
 
     //User Setting Controllers
-    app.post('/user/changepassword',jsonParser, requireAuth, user.changePassword );
+    app.post('/api/user/changepassword',jsonParser, requireAuth, user.changePassword );
 
     //File and Folder Controllers
-    app.get('/files',requireAuth , files.file);
-    app.get('/folders',requireAuth , files.folder);
-    app.get('/file/d/:fileId', handelToken, requireAuth, files.download);
-    app.get('/folder/new/:folderName', handelToken, requireAuth, files.folderNew);
-    app.get('/recents', requireAuth, files.recent);
-    app.get('/files/:fileFilter', requireAuth, files.fileFilter);
-    app.post('/rename', jsonParser, requireAuth, files.rename);
-    app.post('/remove/', jsonParser, requireAuth, files.remove);
-    app.get('/searchFile/:query', requireAuth, searchFile);
+    app.get('/api/files',requireAuth , files.file);
+    app.get('/api/folders',requireAuth , files.folder);
+    app.get('/api/file/d/:fileId', handelToken, requireAuth, files.download);
+    app.get('/api/folder/new/:folderName', handelToken, requireAuth, files.folderNew);
+    app.get('/api/recents', requireAuth, files.recent);
+    app.get('/api/files/:fileFilter', requireAuth, files.fileFilter);
+    app.post('/api/rename', jsonParser, requireAuth, files.rename);
+    app.post('/api/remove/', jsonParser, requireAuth, files.remove);
+    app.get('/api/searchFile/:query', requireAuth, searchFile);
 
     //Image Server
-    app.get('/image/:image', handelToken, requireAuth, image.image)
-    app.get('/image/full/:image', handelToken, requireAuth, image.imageFull)
+    app.get('/api/image/:image', handelToken, requireAuth, image.image)
+    app.get('/api/image/full/:image', handelToken, requireAuth, image.imageFull)
 
     //video and mp3 Server
-    app.get('/video/:video', handelToken, requireAuth, files.stream);
+    app.get('/api/video/:video', handelToken, requireAuth, files.stream);
 
     function api(name, module) {
         Object.keys(module).forEach((key) => {
@@ -179,9 +179,14 @@ export default function(app, jsonParser) {
 
     //Twitter Sentiment  { tweet: hi}
     // app.post('/sentiment', twitter.sentimentTwitter);
-    app.post('/twitter',jsonParser, twitter.watchTwitter);
+    app.post('/api/twitter',jsonParser, twitter.watchTwitter);
 
     if (process.env.NODE_ENV === "undefined") {
         apilist(app._router.stack);
     }
+
+    //Client file Server
+    app.use((req, res) => {
+      res.sendFile(__dirname + '/views/index.html');
+    });
 } //main function end

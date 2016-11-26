@@ -6,9 +6,9 @@ function node() {
     }
 }
 const ROOT_URL = node()
-    ? 'https://docstash-server.herokuapp.com'
-    : 'http://localhost:3001';
+    ? '/api'
+    : 'http://localhost:3001/api';
 export const WS_URL = node()
-    ? 'ws://docstash-server.herokuapp.com'
-    : 'http://localhost:3001';
+    ? '/'
+    : 'ws://localhost:3001';
 export default ROOT_URL;

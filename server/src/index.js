@@ -44,7 +44,9 @@ if (process.env.NODE_ENV !== 'test') {
 }
 
 app.use(cors());
-app.use(compression())
+app.use(compression());
+app.use(express.static(__dirname +'/views/'));
+
 const jsonParser = bodyParser.json({type: '*/*'});
 
 //app.use(bodyParser.json({type: '*/*'}));
