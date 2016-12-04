@@ -44,5 +44,9 @@ export default {
     search: {
       status: false,
       payload: {files: [], folders:[]}
+    },
+    music: {
+      url: "",
+      status: "pause"
     }
 };

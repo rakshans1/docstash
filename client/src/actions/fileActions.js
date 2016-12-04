@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {FILE, FOLDER, RECENT, FILEFILTER } from '../constants/actionTypes';
+import {FILE, FOLDER, RECENT, FILEFILTER, MUSIC } from '../constants/actionTypes';
 import {beginAjaxCall, ajaxCallError} from './ajaxstatusActions';
 import {addNotification} from './notificationActions';
 import * as modalActions from './modalActions';
@@ -163,4 +163,8 @@ export function filefilter(token, filefilter) {
             dispatch(ajaxCallError());
         });
     }
+}
+
+export function music(url) {
+  return {type: MUSIC, payload: url};
 }

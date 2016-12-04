@@ -28,7 +28,7 @@ exports.upload = (stream, dir, fileName,length, drive , done) => {
 //Get file from backend
 exports.get = (fileName, done) => {
     const dir = secret.sftp.SSH_ROOT;
-    sftp.get(`${dir}${fileName}`, true, null)
+    sftp.get(`${dir}${fileName}`,{encoding: null})
     .then((res) => {
       // console.log(res)
       done(null, res)

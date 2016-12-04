@@ -68,7 +68,7 @@ class Sidebar extends React.Component {
                 </ul>
                 <div className="usage">
                     <p className="usage-use">USAGE</p>
-                    <progress className="progress" value={((this.props.storage/1000000000)/10)*100} max="100">{(this.props.storage/10)*100}%</progress>
+                    <progress className="progress" value={(this.props.storage/1000000000)*100} max="100">{(this.props.storage/10)*100}%</progress>
                     <p className="usage-capacity">
                         {units(this.props.storage)} / 10 GB</p>
                 </div>

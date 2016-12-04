@@ -1,0 +1,41 @@
+.play-btn {
+    display: inline-block;
+    position: relative;
+    border: 1px solid currentcolor;
+    background-color: transparent;
+    color: $main;
+    font-size: 1em;
+    padding: 16px;
+    padding: 1.25rem;
+    margin: 0;
+    height: auto;
+    vertical-align: middle;
+    border-radius: 3px;
+    text-decoration: none;
+    border-radius: 3px;
+    outline: none;
+    cursor: pointer;
+    transition: transform, box-shadow, .05s ease;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+}
+.play-btn:hover {
+            transform: scale(1.0625);
+}
+.play-btn:focus {
+            transform: scale(.9375);
+}
+.play-btn:active {
+    box-shadow: inset 0 0 0 2px $main;
+}
+.play-btn:hover,
+.play-btn:focus {
+    box-shadow: none;
+}
+
+.play-icon {
+    width: 1em;
+    height: 1em;
+    position: relative;
+    vertical-align: middle;
+}

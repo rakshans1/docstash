@@ -2,6 +2,7 @@ import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import FileIcon from './sections/file/FileIcon';
 import moment from 'moment';
+import Music from './sections/Music';
 
 class Recent extends React.Component {
     constructor(props) {
@@ -24,7 +25,8 @@ class Recent extends React.Component {
             <div className="col-sm-2 recent">
                 <p className="recent-heading">RECENT ACTIVITY</p>
                 {this.props.recent.map(this.renderRecent)}
-            </div>
+            <Music music={this.props.music}/>
+          </div>
         );
     }
 }
@@ -32,6 +34,6 @@ Recent.propTypes = {
   recent : PropTypes.array
 }
 function mapStateToProps(state) {
-    return { recent: state.recent};
+    return { recent: state.recent, music: state.music};
 }
 export default connect(mapStateToProps, null)(Recent);

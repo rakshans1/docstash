@@ -21,8 +21,10 @@ class Files extends React.Component {
       if (!this.props.modal) {
         if (type === 'img')  {
           return this.props.actions.showModal("FileImg", url);
-        } else {
+        } else if (type === 'video'){
           return this.props.actions.showModal("FileVideo", {url, format});
+        } else {
+          return this.props.actions.music(url);
         }
       }
       this.props.actions.hideModal();
@@ -70,7 +72,7 @@ class Files extends React.Component {
     return(
       <ContextMenuTrigger id="file-context-menu" key={i} attributes={attributes}>
       <div className="col-md-2 col-xs-6 doc-div pointer" >
-          <div className="image-wrapper" onClick={() => this.handleClick('video', `${ROOT_URL}/video/${file._id}?token=${token}`, type)}>
+          <div className="image-wrapper" onClick={() => this.handleClick(type, `${ROOT_URL}/video/${file._id}?token=${token}`, type)}>
               <FileImg type={file.type}/>
           </div>
           <div className="tooltip">
