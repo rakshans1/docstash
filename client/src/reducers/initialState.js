@@ -47,6 +47,7 @@ export default {
     },
     music: {
       url: "",
-      status: "pause"
+      status: "pause",
+      name: ''
     }
 };

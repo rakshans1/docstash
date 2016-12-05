@@ -165,6 +165,6 @@ export function filefilter(token, filefilter) {
     }
 }
 
-export function music(url) {
-  return {type: MUSIC, payload: url};
+export function music(payload) {
+  return {type: MUSIC, payload};
 }

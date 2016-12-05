@@ -40,13 +40,13 @@ class Icon extends React.Component {
               c0.1-0.1,0.4-0.1,0.5,0c0.1,0.2,0.1,0.4,0,0.5L9,12.8C9,12.8,8.9,12.9,8.7,12.9C8.8,12.9,8.8,12.9,8.7,12.9z"/>
                     </svg>
                 );
-            case 'play':
+            case 'pause':
                 return (
                   <svg className="play-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
                       <path d="M0 0 L32 16 L0 32 z" />
                   </svg>
                 );
-          case 'pause':
+          case 'play':
               return (
                 <svg className="play-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
                     <path d="M0 0 H12 V32 H0 z M20 0 H32 V32 H20 z" />

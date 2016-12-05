@@ -25,7 +25,7 @@ class Recent extends React.Component {
             <div className="col-sm-2 recent">
                 <p className="recent-heading">RECENT ACTIVITY</p>
                 {this.props.recent.map(this.renderRecent)}
-            <Music music={this.props.music}/>
+            <Music />
           </div>
         );
     }
@@ -34,6 +34,6 @@ Recent.propTypes = {
   recent : PropTypes.array
 }
 function mapStateToProps(state) {
-    return { recent: state.recent, music: state.music};
+    return { recent: state.recent};
 }
 export default connect(mapStateToProps, null)(Recent);
