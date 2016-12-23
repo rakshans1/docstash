@@ -1,10 +1,17 @@
 import React, {PropTypes} from 'react';
 import {Link} from 'react-router';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as viewAction from '../../actions/viewAction';
 
 class Breadcrumb extends React.Component {
     constructor(props) {
         super(props);
         this.renderBreadcrumb = this.renderBreadcrumb.bind(this);
+        this.handleClick = this.handleClick.bind(this);
+    }
+    handleClick(){
+        this.props.actions.viewAction();
     }
     renderBreadcrumb() {
         const location = this.props.location.pathname;
@@ -141,13 +148,30 @@ class Breadcrumb extends React.Component {
     }
     render() {
         return (
-            <div>
+            <div className="row">
+              <div className="col-md-11">
                 {this.renderBreadcrumb()}
+              </div>
+              <div className="col-md-1">
+                {this.props.view === "grid" ?
+                <img src={require('../../assets/icon/grid.svg')} className="view" onClick={() => this.handleClick()} alt=""/>
+                :
+                <img src={require('../../assets/icon/list.svg')} className="view" onClick={() => this.handleClick()} alt=""/> }
+              </div>
             </div>
         );
     }
 }
 Breadcrumb.propTypes = {
-    location: PropTypes.object
+    location: PropTypes.object,
+    actions: PropTypes.object.isRequired,
 }
-export default Breadcrumb;
+function mapStateToProps(state) {
+    return {view: state.view};
+}
+function mapDispatchToProp(dispatch) {
+    return {
+        actions: bindActionCreators(viewAction, dispatch)
+    };
+}
+export default connect(mapStateToProps, mapDispatchToProp)(Breadcrumb);

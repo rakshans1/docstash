@@ -35,6 +35,7 @@ export default {
         uploads: '',
         chats: []
     },
+    view: "grid",
     file: [],
     folder: [],
     recent: [],

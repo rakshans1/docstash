@@ -9,6 +9,7 @@ import {ContextMenuTrigger } from 'react-contextmenu';
 import {ContextMenusFile} from '../../common/ContextMenu';
 import * as fileActions from '../../../actions/fileActions';
 import FileIcon from './file/FileIcon';
+import FilesView from './file/FilesView';
 
 class Files extends React.Component {
   constructor(props) {
@@ -47,71 +48,27 @@ class Files extends React.Component {
     }
   }
   renderFile(file, i ) {
-    const token = this.props.token;
-    const time = moment(file.createdAt).fromNow()
-    const attributes = {'data-fileId': file._id, 'data-fileName': file.name};
-    const type = file.type.split('/')[0]
-    if ( type !== 'image' && type !== 'video' && type !== 'audio'){
-    return(
-      <ContextMenuTrigger id="file-context-menu" key={i} attributes={attributes}>
-      <div className={'col-md-2 col-xs-6 doc-div'} >
-           <div className="image-wrapper">
-             <FileImg type={file.type}/>
-           </div>
-           <div className="tooltip">
-           <p className="filename">
-             <FileIcon type={file.type.split('/')[0]}/>
-                {file.name}</p>
-             <span className="tooltiptext">{file.name}</span>
-           </div>
-          <p className="filetime">{file.size} {time}</p>
-      </div>
-      </ContextMenuTrigger>
-    );
-  } else if (type === 'video' || type === 'audio') {
-    return(
-      <ContextMenuTrigger id="file-context-menu" key={i} attributes={attributes}>
-      <div className="col-md-2 col-xs-6 doc-div pointer" >
-          <div className="image-wrapper" onClick={() => this.handleClick(type, `${ROOT_URL}/video/${file._id}?token=${token}`, file.name)}>
-              <FileImg type={file.type}/>
-          </div>
-          <div className="tooltip">
-          <p className="filename">
-            <FileIcon type={file.type.split('/')[0]}/>
-               {file.name}</p>
-            <span className="tooltiptext">{file.name}</span>
-          </div>
-          <p className="filetime">{file.size} {time}</p>
-      </div>
-      </ContextMenuTrigger>
-    );
-  }else {
-    return(
-      <ContextMenuTrigger id="file-context-menu" key={i} attributes={attributes}>
-      <div className="col-md-2 col-xs-6 image-div pointer" >
-          <div className="image-wrapper" onClick={() => this.handleClick('img', `${ROOT_URL}/image/full/${file._id}?token=${token}`)}>
-              <img src={`${ROOT_URL}/image/${file._id}?token=${token}`} alt="' " className="image img-fluid img-rounded"/>
-          </div>
-          <div className="tooltip">
-          <p className="filename">
-            <FileIcon type={file.type.split('/')[0]}/>
-               {file.name}</p>
-            <span className="tooltiptext">{file.name}</span>
-          </div>
-          <p className="filetime">{file.size} {time}</p>
-      </div>
-      </ContextMenuTrigger>
-    );
-  }
+    return <FilesView file={file} key={i} handleClick={this.handleClick} token={this.props.token} view={this.props.view}/>
   }
   render() {
     return(
       <div>
       {this.props.files.length > 0 ? <h2>Files</h2> : null}
+      {this.props.view ==="grid" ?
       <div className="row">
         {this.props.files.slice(0).reverse().map(this.renderFile)}
         <ContextMenusFile handleClick={this.handleClicks}/>
-    </div>
+      </div>
+      :
+      <div className="card">
+      <table className="table table-bordered table-hover"><thead ><tr><th>Name</th><th>Last modified</th><th>File size</th></tr></thead>
+      <tbody>
+        {this.props.files.slice(0).reverse().map(this.renderFile)}
+        <ContextMenusFile handleClick={this.handleClicks}/>
+      </tbody>
+      </table>
+      </div>
+      }
     </div>
     );
   }
@@ -123,7 +80,7 @@ Files.propTypes = {
     token: PropTypes.string
 };
 function mapStateToProps(state) {
-    return {modal: state.modal.status, token: state.auth.token};
+    return {modal: state.modal.status, token: state.auth.token, view: state.view};
 }
 function mapDispatchToProp(dispatch) {
     return {

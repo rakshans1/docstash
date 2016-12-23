@@ -23,7 +23,7 @@ class Main extends React.Component {
           <ContextMenuTrigger id="folder-context-menu" >
             <div className="container-fluid library">
                 <Folders folders={this.props.folders}/>
-                <Files files={this.props.files}/>
+                <Files files={this.props.files} />
               <ContextMenusFolder handleClick={this.handleClick}/>
             </div>
           </ContextMenuTrigger>

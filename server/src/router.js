@@ -90,7 +90,7 @@ export default function(app, jsonParser) {
 
     //Shortner Controllers
     app.post('/api/short',jsonParser, shortner.post);
-    app.get('/api/s/:hash',jsonParser, shortner.get);
+    app.get('/s/:hash',jsonParser, shortner.get);
 
     //Torrent Controllers
     api('torrents', torrents);

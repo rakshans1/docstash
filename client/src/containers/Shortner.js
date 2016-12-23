@@ -41,8 +41,7 @@ class Shortner extends React.Component {
             return (
                 <div className="card card-inverse card-outline-success text-xs-center shortner-link">
                     <div className="card-block">
-                        <p>{input}
-                            has been Shortned to</p>
+                        <p>{input} has been Shortned to</p>
                         <a target="_blank" href={shortner}>{shortner}</a>
                     </div>
                 </div>

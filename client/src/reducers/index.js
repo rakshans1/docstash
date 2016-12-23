@@ -9,6 +9,7 @@ import shortnerReducer from './shortnerReducer';
 import weatherReducer from './weatherReducer';
 import torrentReducer from './torrentReducer';
 import wsReducer from './wsReducer';
+import viewReducer from './viewReducer';
 import fileReducer from './fileReducer';
 import folderReducer from './folderReducer';
 import recentReducer from './recentReducer';
@@ -29,6 +30,7 @@ const rootReducer = combineReducers({
     weather: weatherReducer,
     torrent: torrentReducer,
     ws: wsReducer,
+    view: viewReducer,
     file: fileReducer,
     folder: folderReducer,
     subfile: subfileReducer,
