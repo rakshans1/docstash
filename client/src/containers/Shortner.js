@@ -64,18 +64,6 @@ class Shortner extends React.Component {
                     </div>
                 </div>
                 {this.renderShortnerMessage()}
-                <h1 className="text-sm-center shortner_h1">File Downloader</h1>
-                <div className="row">
-                    <div className="col-sm-12">
-                        <form onSubmit={this.saveAndContinue}>
-                            <Input text="Enter Url to shorten" ref="url" type="text" validate={this.validateUrl} value={this.state.url} onChange={this.handleUrlInput} errorMessage="Url is invalid" emptyMessage="Url can't be empty" errorVisible={this.state.showUrlError}/>
-                            <button type="submit" className="button button_center">
-                              Download File            
-                            </button>
-                        </form>
-                    </div>
-                </div>
-                {this.renderShortnerMessage()}
             </div>
 
         );

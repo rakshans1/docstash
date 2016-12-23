@@ -1,6 +1,3 @@
-.music-player{
-  padding-top: 20px;
-}
 .play-btn {
     display: inline-block;
     position: relative;
@@ -8,14 +5,12 @@
     background-color: transparent;
     color: $main;
     font-size: 1em;
-    padding: 16px;
-    padding: 1.25rem;
-    margin: 0;
+    padding: .75rem;
+    margin-left: 30%;
     height: auto;
     vertical-align: middle;
     border-radius: 3px;
     text-decoration: none;
-    border-radius: 3px;
     outline: none;
     cursor: pointer;
     transition: transform, box-shadow, .05s ease;
@@ -41,4 +36,7 @@
     height: 1em;
     position: relative;
     vertical-align: middle;
+}
+.player-name{
+  font-size: 0.9em;
 }

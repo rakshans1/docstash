@@ -26,7 +26,9 @@ export function userInfo(token, firstTime, location, storageOnly) {
             if (firstTime) dispatch(ws(response.data.email));
         }).catch(response => {
             dispatch(ajaxCallError());
-            // dispatch(signoutUser());
+            if(response.response.data === "Unauthorized"){
+              dispatch(signoutUser());
+            }
         });
     }
 }

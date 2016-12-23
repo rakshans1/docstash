@@ -47,12 +47,12 @@ class HomeWithoutLogin extends React.Component {
                 <div className="row">
                     <div className="col-sm-12">
                         <img className="img-fluid hp-img-f" src={require('../../assets/img/home/crypto.png')} alt=""/>
-                        <h2 className="hp-features">Get Top Level Cloud Encryption with Docstash Crypto</h2>
+                        <h2 className="hp-features">Get Cloud Encryption with Docstash Crypto</h2>
                     </div>
                 </div>
 
                 <footer>
-                    <p className="foot-text">© DocStash 2016 All rights reserved.</p>
+                    <p className="foot-text">© Docstash 2016 - 2017 All rights reserved.</p>
                 </footer>
             </div>
         );

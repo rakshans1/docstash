@@ -40,10 +40,10 @@ class Music extends React.Component{
     var iconNode = <Icon type={this.props.music.status}/>;
     return(
       <div className="music-player">
-      <button type="button"  className="play-btn" onClick={this.handleClick}>
-        {iconNode}
-      </button>
-      <p>{this.props.music.name}</p>
+        <p className="player-name">{this.props.music.name}</p>
+        <button type="button"  className="play-btn text-center" onClick={this.handleClick}>
+          {iconNode}
+        </button>
       </div>
     )
   }
