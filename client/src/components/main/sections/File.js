@@ -59,7 +59,8 @@ class Files extends React.Component {
         {this.props.files.slice(0).reverse().map(this.renderFile)}
         <ContextMenusFile handleClick={this.handleClicks}/>
       </div>
-      :
+      : <div>
+      {this.props.files.length > 0 ?
       <div className="card">
       <table className="table table-bordered table-hover"><thead ><tr><th>Name</th><th>Last modified</th><th>File size</th></tr></thead>
       <tbody>
@@ -67,7 +68,7 @@ class Files extends React.Component {
         <ContextMenusFile handleClick={this.handleClicks}/>
       </tbody>
       </table>
-      </div>
+      </div>: null}</div>
       }
     </div>
     );

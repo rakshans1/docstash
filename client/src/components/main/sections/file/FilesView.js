@@ -60,7 +60,7 @@ class FilesView extends React.Component {
     return(
       <ContextMenuTrigger id="file-context-menu" attributes={attributes}>
       <div className="col-md-2 col-xs-6 image-div pointer" >
-          <div className="image-wrapper" onClick={() => this.handleClick('img', `${ROOT_URL}/image/full/${file._id}?token=${token}`)}>
+          <div className="image-wrapper" onClick={() => this.props.handleClick('img', `${ROOT_URL}/image/full/${file._id}?token=${token}`)}>
               <img src={`${ROOT_URL}/image/${file._id}?token=${token}`} alt="' " className="image img-fluid img-rounded"/>
           </div>
           <div className="tooltip">

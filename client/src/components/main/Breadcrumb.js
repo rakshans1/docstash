@@ -153,7 +153,7 @@ class Breadcrumb extends React.Component {
                 {this.renderBreadcrumb()}
               </div>
               <div className="col-md-1">
-                {this.props.view === "grid" ?
+                {this.props.view === "list" ?
                 <img src={require('../../assets/icon/grid.svg')} className="view" onClick={() => this.handleClick()} alt=""/>
                 :
                 <img src={require('../../assets/icon/list.svg')} className="view" onClick={() => this.handleClick()} alt=""/> }

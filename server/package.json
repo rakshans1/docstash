@@ -31,10 +31,6 @@
   "homepage": "https://github.com/rakshans1/docstash#readme",
   "dependencies": {
     "async": "^2.1.4",
-    "babel-cli": "^6.18.0",
-    "babel-preset-es2015": "^6.18.0",
-    "babel-preset-stage-2": "^6.18.0",
-    "babel-register": "^6.18.0",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.15.2",
     "cheerio": "^0.22.0",
@@ -55,7 +51,6 @@
     "mongoose": "^4.7.4",
     "morgan": "^1.7.0",
     "node-wit": "^4.2.0",
-    "nodejs-dashboard": "^0.1.2",
     "nodemailer": "^2.7.0",
     "parse-torrent": "^5.8.1",
     "passport": "^0.3.2",
