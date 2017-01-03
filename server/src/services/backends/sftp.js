@@ -49,7 +49,8 @@ exports.list = (torrent, done) => {
         var files = [];
         data.forEach(f => {
             const tmp = {
-                name: f.name
+                name: f.name,
+                size: f.size
             }
             files.push(tmp);
         });

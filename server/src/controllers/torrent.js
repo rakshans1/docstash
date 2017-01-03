@@ -70,7 +70,7 @@ setInterval(() => {
     if (changed) {
         torrents.emit("update");
     }
-}, 1000);
+}, 5000);
 //==============
 
 const TMP_DIR = path.resolve(secret.TMP_DIR);
@@ -276,14 +276,14 @@ torrents.downloadFile = (data, next) => {
         ? dirs
         : dirs.pop();
     var dir = null;
-
+    dir = `${secret.sftp.SSH_ROOT}torrents/`;
     //call back when all dirs made
-    backend.mkdir(dirs, torrent.email, 'torrent' , (err, dir, drive) => {
-        if (err)
-            return console.error("Backend Error: %s", err);
+    // backend.mkdir(dirs, torrent.email, true , (err, dir, drive) => {
+        // if (err)
+            // return console.error("Backend Error: %s", err);
     //pass copy of file to backend
-        upload(dir, name, file, drive)
-    });
+        upload(dir, name, file, null)
+    // });
 
     function upload(dir, name, file, drive) {
       name = name.length === 0

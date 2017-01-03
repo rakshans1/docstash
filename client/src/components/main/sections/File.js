@@ -38,6 +38,8 @@ class Files extends React.Component {
     } else if (data.action === 'Rename') {
         const fileName = target.getAttribute('data-fileName');
         return this.props.actions.showModal("File" , {type: "rename",renameType:  'file', fileId: fileId, fileName: fileName});
+    } else if (data.action === 'Move') {
+      this.props.actions.showModal('FileMove');
     } else {
       var location = window.location.pathname.split('/');
       location = location[location.length - 1]

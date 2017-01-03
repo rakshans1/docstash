@@ -174,3 +174,18 @@ function updateStorage(userId, bytes) {
     user.save();
   });
 }
+
+
+
+export const torrent = (req, res, next) => {
+  const fileId = req.params.fileId.toString();
+  backend.get(`torrents/${fileId}`, (err,  stream) => {
+    if (err) return res.status(404).send({error: err});
+    stream.on('error', (err) => {
+      return res.status(404).send({error: 'File Not Found'});
+    })
+    res.setHeader('Content-disposition', 'attachment; filename=' + fileId);
+    // res.setHeader('Content-Type', file.type);
+    stream.pipe(res)
+  });
+}

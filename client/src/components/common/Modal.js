@@ -6,7 +6,7 @@ import Upload from './Upload';
 import ImageView from '../main/sections/file/ImageView';
 import FolderandFileModal from '../main/sections/file/FolderandFileModal';
 import VideoView from '../main/sections/file/VideoView';
-
+import FileMove from '../main/sections/file/FileMove';
 
 class Modal extends React.Component {
     constructor(props) {
@@ -37,6 +37,8 @@ class Modal extends React.Component {
         return <ImageView url={this.props.modal.payload} />
       } else if (modal === 'FileVideo'){
         return <VideoView payload={this.props.modal.payload}/>
+      } else if (modal === 'FileMove'){
+        return <FileMove />
       }
     }
     render() {

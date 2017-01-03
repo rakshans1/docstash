@@ -122,6 +122,9 @@ export default function(app, jsonParser) {
     //video and mp3 Server
     app.get('/api/video/:video', handelToken, requireAuth, files.stream);
 
+    //torrent file download
+    app.get('/api/torrent/d/:fileId', files.torrent);
+
     function api(name, module) {
         Object.keys(module).forEach((key) => {
             const fn = module[key];

@@ -1,5 +1,5 @@
 import React from 'react';
-import {ContextMenu, MenuItem, ContextMenuTrigger } from 'react-contextmenu';
+import {ContextMenu, MenuItem, ContextMenuTrigger , SubMenu} from 'react-contextmenu';
 
 export class ContextMenusFile extends React.Component {
   constructor(props){
@@ -15,6 +15,10 @@ export class ContextMenusFile extends React.Component {
         <MenuItem  data={{action: 'Rename'}} onClick={this.props.handleClick}>
           <img src={require('../../assets/icon/draw.svg')} className="download-icon" alt=""/>
           Rename
+        </MenuItem>
+        <MenuItem  data={{action: 'Move'}} onClick={this.props.handleClick}>
+          <img src={require('../../assets/icon/move.svg')} className="download-icon" alt=""/>
+          Move
         </MenuItem>
         <MenuItem  data={{action: 'Remove'}} onClick={this.props.handleClick}>
           <img src={require('../../assets/icon/bin.svg')} className="download-icon" alt=""/>
