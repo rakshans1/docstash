@@ -123,7 +123,6 @@ export const rename = (req, res, next) => {
 }
 
 export const remove = (req, res, next) => {
-  debugger;
   const fileId = req.body.fileId;
   const type = req.body.type;
   if (type === 'file'){
@@ -189,3 +188,15 @@ export const torrent = (req, res, next) => {
     stream.pipe(res)
   });
 }
+
+
+export const move = (req, res, next) => {
+  debugger;
+  const fileId = req.body.fileId;
+  const folderId = req.body.folderId;
+  Files.findById(fileId, (err, file) => {
+    file.parentNode = folderId;
+    file.save();
+    res.status(200).send({message: 'File moved'})
+  })
+} 

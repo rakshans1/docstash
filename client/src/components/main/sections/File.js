@@ -39,7 +39,12 @@ class Files extends React.Component {
         const fileName = target.getAttribute('data-fileName');
         return this.props.actions.showModal("File" , {type: "rename",renameType:  'file', fileId: fileId, fileName: fileName});
     } else if (data.action === 'Move') {
-      this.props.actions.showModal('FileMove');
+      var location = window.location.pathname.split('/');
+      location = location[location.length - 1]
+        if (location === ''){
+          location = null;
+        }
+      this.props.actions.showModal('FileMove', {fileId: fileId, folderId: null, token: this.props.token, action: this.props.actions.move, location: location});
     } else {
       var location = window.location.pathname.split('/');
       location = location[location.length - 1]

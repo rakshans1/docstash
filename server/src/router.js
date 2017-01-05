@@ -113,6 +113,7 @@ export default function(app, jsonParser) {
     app.get('/api/files/:fileFilter', requireAuth, files.fileFilter);
     app.post('/api/rename', jsonParser, requireAuth, files.rename);
     app.post('/api/remove/', jsonParser, requireAuth, files.remove);
+    app.post('/api/move/', jsonParser, requireAuth, files.move);
     app.get('/api/searchFile/:query', requireAuth, searchFile);
 
     //Image Server
