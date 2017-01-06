@@ -1,0 +1,20 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Method</th>
+      <th>Endpoint</th>
+    </tr>
+  </thead>
+  <tbody>
+<% for(var i=0; i<routes.length ; i++) {%>
+  <tr>
+    <th scope="row"><%= i + 1 %> </th>
+    <td><%= routes[i].route.stack[0].method.toUpperCase() %></td>
+    <td><%= routes[i].route.path %></td>
+  </tr>
+<% } %>
+</tbody>
+</table>

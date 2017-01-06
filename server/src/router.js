@@ -58,6 +58,14 @@ export default function(app, jsonParser) {
     //     res.send('hi ' + req.user.name);
     // });
 
+    app.get('/api', (req, res) => {
+      const route = app._router.stack.filter(route => {
+        if (route.route) return route;
+      })
+      res.render('api', {routes: route});
+      // res.json(route);
+    });
+
     app.get('/api/load', (req, res) => {
       let ram = Math.floor(process.memoryUsage().rss / 1000000).toString()
       let uptime = Math.floor(process.uptime() / 60).toString()

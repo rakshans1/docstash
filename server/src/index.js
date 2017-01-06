@@ -47,6 +47,10 @@ app.use(cors());
 app.use(compression());
 app.use(express.static(__dirname +'/views/'));
 
+// view engine setup
+app.set('views', __dirname +'/views/');
+app.set('view engine', 'ejs');
+
 const jsonParser = bodyParser.json({type: '*/*'});
 
 //app.use(bodyParser.json({type: '*/*'}));
