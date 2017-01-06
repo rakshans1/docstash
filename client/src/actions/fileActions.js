@@ -169,7 +169,7 @@ export function music(payload) {
   return {type: MUSIC, payload};
 }
 
-export function move(fileId, folderId, token, location) {
+export function move(fileId, folderId, token, location, updateMainPage) {
   return function(dispatch) {
       dispatch(beginAjaxCall());
       axios.post(`${ROOT_URL}/move`, {fileId , folderId},{
@@ -183,13 +183,13 @@ export function move(fileId, folderId, token, location) {
           if (location === 'search') return;
           if (location === 'recents' || location === 'documents' || location === 'videos' || location === 'musics' || location === 'images') {
             dispatch(filefilter(token, location));
-            dispatch(recents(token));
           } else if (location === null) {
             dispatch(files(token, 'FILE', null));
-            dispatch(recents(token));
           } else if (location != null){
             dispatch(files(token, 'SUBFILE', location));
-            dispatch(recents(token));
+          }
+          if (updateMainPage) {
+            dispatch(files(token, 'FILE', null));
           }
       }).catch(response => {
           dispatch(ajaxCallError());

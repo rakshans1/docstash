@@ -24,13 +24,13 @@ class FileMove extends React.Component {
           .catch(err => console.log(err));
 
     }
-    handleClick (fileId, folderId) {
-      this.props.move(fileId, folderId, this.props.token ,this.props.location);
+    handleClick (fileId, folderId, updateMainPage) {
+      this.props.move(fileId, folderId, this.props.token ,this.props.location, updateMainPage);
     }
     renderFolder(folder, i) {
       return (
         <li key={i} style={{'list-style-type': 'none'}}>
-          <div onClick={() => this.handleClick(this.props.fileId, folder._id)}>{folder.name}</div>
+          <div className="pointer" onClick={() => this.handleClick(this.props.fileId, folder._id)}>{folder.name}</div>
           <FileMove folderId={folder._id} token={this.props.token} fileId={this.props.fileId} move={this.props.move} location={this.props.location}/>
         </li>
       );
@@ -38,6 +38,7 @@ class FileMove extends React.Component {
     render() {
         return (
             <ul>
+            {this.props.first ?<li key={100} style={{'list-style-type': 'none'}}><div className="pointer" onClick={() => this.handleClick(this.props.fileId, null, true)}>/</div></li>:null}
             {this.state.folders.map(this.renderFolder)}
             </ul>
         );

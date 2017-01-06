@@ -38,7 +38,7 @@ class Modal extends React.Component {
       } else if (modal === 'FileVideo'){
         return <VideoView payload={this.props.modal.payload}/>
       } else if (modal === 'FileMove'){
-        return <FileMove folderId={this.props.modal.payload.folderId} token={this.props.modal.payload.token} location={this.props.modal.payload.location} fileId={this.props.modal.payload.fileId} move={this.props.modal.payload.action}/>
+        return <FileMove first={true} folderId={this.props.modal.payload.folderId} token={this.props.modal.payload.token} location={this.props.modal.payload.location} fileId={this.props.modal.payload.fileId} move={this.props.modal.payload.action}/>
       }
     }
     render() {
