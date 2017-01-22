@@ -196,7 +196,8 @@ export const move = (req, res, next) => {
   const folderId = req.body.folderId;
   Files.findById(fileId, (err, file) => {
     file.parentNode = folderId;
+    file.reason = 'edited';
     file.save();
     res.status(200).send({message: 'File moved'})
   })
-} 
+}

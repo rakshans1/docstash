@@ -29,7 +29,7 @@ class FileMove extends React.Component {
     }
     renderFolder(folder, i) {
       return (
-        <li key={i} style={{'list-style-type': 'none'}}>
+        <li className="list-group-item" key={i} style={{'list-style-type': 'none'}}>
           <div className="pointer" onClick={() => this.handleClick(this.props.fileId, folder._id)}>{folder.name}</div>
           <FileMove folderId={folder._id} token={this.props.token} fileId={this.props.fileId} move={this.props.move} location={this.props.location}/>
         </li>
@@ -37,8 +37,8 @@ class FileMove extends React.Component {
     }
     render() {
         return (
-            <ul>
-            {this.props.first ?<li key={100} style={{'list-style-type': 'none'}}><div className="pointer" onClick={() => this.handleClick(this.props.fileId, null, true)}>/</div></li>:null}
+            <ul className="list-group">
+            {this.props.first ?<li className="list-group-item" key={100} style={{'list-style-type': 'none'}}><div className="pointer" onClick={() => this.handleClick(this.props.fileId, null, true)}>/</div></li>:null}
             {this.state.folders.map(this.renderFolder)}
             </ul>
         );

@@ -42,8 +42,7 @@ class PasswordValidator extends React.Component {
         } else {
             validatorTitle = (
                 <h4 className="validator_title invalid">
-                    {this.props.name}
-                    RULES
+                    {this.props.name} RULES
                 </h4>
             );
         }
@@ -60,8 +59,7 @@ class PasswordValidator extends React.Component {
                             <i className="icon_invalid">
                                 <Icon type="circle_error"/>
                             </i>
-                            <span className="error_message">{this.state.minCharacters}
-                                characters minimum</span>
+                            <span className="error_message">{this.state.minCharacters} characters minimum</span>
                         </li>
 
                         <li className={classNames({'valid': this.props.validData.capitalLetters})}>
@@ -71,8 +69,7 @@ class PasswordValidator extends React.Component {
                             <i className="icon_invalid">
                                 <Icon type="circle_error"/>
                             </i>
-                            <span className="error_message">Contains at least {this.state.requireCapitals}
-                                capital letter</span>
+                            <span className="error_message">Contains at least {this.state.requireCapitals} capital letter</span>
                         </li>
 
                         <li className={classNames({'valid': this.props.validData.numbers})}>
@@ -82,8 +79,7 @@ class PasswordValidator extends React.Component {
                             <i className="icon_invalid">
                                 <Icon type="circle_error"/>
                             </i>
-                            <span className="error_message">Contains at least {this.state.requireNumbers}
-                                number</span>
+                            <span className="error_message">Contains at least {this.state.requireNumbers} number</span>
                         </li>
 
                         <li className={classNames({'valid': this.props.validData.words})}>

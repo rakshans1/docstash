@@ -9,6 +9,7 @@
     "start": "nodemon --inspect --exec babel-node src/index.js",
     "break": "nodemon --inspect --debug-brk  --exec babel-node src/index.js",
     "build": "babel src -d dist",
+    "postbuild": "cp -r ./src/views/ ./dist/",
     "pack": "babel src --out-file index.js",
     "db": "mongod --dbpath ../data",
     "serve": "node dist/index.js",

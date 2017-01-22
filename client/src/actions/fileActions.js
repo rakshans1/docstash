@@ -185,8 +185,10 @@ export function move(fileId, folderId, token, location, updateMainPage) {
             dispatch(filefilter(token, location));
           } else if (location === null) {
             dispatch(files(token, 'FILE', null));
+            dispatch(recents(token));
           } else if (location != null){
             dispatch(files(token, 'SUBFILE', location));
+            dispatch(recents(token));
           }
           if (updateMainPage) {
             dispatch(files(token, 'FILE', null));

@@ -57,7 +57,7 @@ class Weather extends React.Component {
             </form>
         </div>
         </div>
-        <WeatherList weather={this.props.weather}/>
+        {this.props.weather.length > 0 ? <WeatherList weather={this.props.weather}/> : null}
       </div>
 
 
