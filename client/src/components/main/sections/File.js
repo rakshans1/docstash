@@ -18,12 +18,14 @@ class Files extends React.Component {
     this.handleClick = this.handleClick.bind(this);
     this.handleClicks = this.handleClicks.bind(this);
   }
-  handleClick(type, url, name) {
+  handleClick(type, url, name, type1) {
       if (!this.props.modal) {
         if (type === 'img')  {
           return this.props.actions.showModal("FileImg", url);
         } else if (type === 'video'){
           return this.props.actions.showModal("FileVideo", {url, format: 'video'});
+        } else if (type1 === 'pdf'){
+          return this.props.actions.showModal("FilePdf", {url, format: 'pdf'});
         } else {
           return this.props.actions.music({url, status: 'play', name});
         }

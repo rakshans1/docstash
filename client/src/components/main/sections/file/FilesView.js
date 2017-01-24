@@ -21,8 +21,9 @@ class FilesView extends React.Component {
     const token = this.props.token;
     const time = moment(file.createdAt).fromNow()
     const attributes = {'data-fileId': file._id, 'data-fileName': file.name};
-    const type = file.type.split('/')[0]
-    if ( type !== 'image' && type !== 'video' && type !== 'audio'){
+    const type = file.type.split('/')[0];
+    const type1 = file.type.split('/')[1];
+    if ( type !== 'image' && type !== 'video' && type !== 'audio' && type1 !== 'pdf'){
     return(
       <ContextMenuTrigger id="file-context-menu"  attributes={attributes}>
       <div className={'col-md-2 col-xs-6 doc-div'} >
@@ -39,11 +40,11 @@ class FilesView extends React.Component {
       </div>
       </ContextMenuTrigger>
     );
-  } else if (type === 'video' || type === 'audio') {
+  } else if (type === 'video' || type === 'audio' || type1 == 'pdf') {
     return(
       <ContextMenuTrigger id="file-context-menu" attributes={attributes}>
       <div className="col-md-2 col-xs-6 doc-div pointer" >
-          <div className="image-wrapper" onClick={() => this.props.handleClick(type, `${ROOT_URL}/video/${file._id}?token=${token}`, file.name)}>
+          <div className="image-wrapper" onClick={() => this.props.handleClick(type, `${ROOT_URL}/video/${file._id}?token=${token}`, file.name, type1)}>
               <FileImg type={file.type}/>
           </div>
           <div className="tooltip">
@@ -81,7 +82,7 @@ class FilesView extends React.Component {
     const time = moment(file.createdAt).fromNow()
     const attributes = {'data-fileId': file._id, 'data-fileName': file.name};
     const type = file.type.split('/')[0]
-    if ( type !== 'image' && type !== 'video' && type !== 'audio'){
+    if ( type !== 'image' && type !== 'video' && type !== 'audio' && type1 !== 'pdf'){
     return(
       <tr >
           <td><ContextMenuTrigger id="file-context-menu" attributes={attributes}><FileIcon type={file.type.split('/')[0]}/> {file.name}</ContextMenuTrigger></td>
@@ -89,7 +90,7 @@ class FilesView extends React.Component {
           <td><ContextMenuTrigger id="file-context-menu" attributes={attributes}>{file.size}</ContextMenuTrigger></td>
       </tr>
     );
-  } else if (type === 'video' || type === 'audio') {
+  } else if (type === 'video' || type === 'audio' || type1 === 'pdf') {
     return(
       <tr onClick={() => this.props.handleClick(type, `${ROOT_URL}/video/${file._id}?token=${token}`, file.name)}>
           <td><ContextMenuTrigger id="file-context-menu" attributes={attributes}><FileIcon type={file.type.split('/')[0]}/> {file.name}</ContextMenuTrigger></td>

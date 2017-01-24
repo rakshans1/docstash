@@ -6,6 +6,7 @@ import Upload from './Upload';
 import ImageView from '../main/sections/file/ImageView';
 import FolderandFileModal from '../main/sections/file/FolderandFileModal';
 import VideoView from '../main/sections/file/VideoView';
+import PdfView from '../main/sections/file/PdfView';
 import FileMove from '../main/sections/file/FileMove';
 
 class Modal extends React.Component {
@@ -39,6 +40,8 @@ class Modal extends React.Component {
         return <VideoView payload={this.props.modal.payload}/>
       } else if (modal === 'FileMove'){
         return <FileMove first={true} folderId={this.props.modal.payload.folderId} token={this.props.modal.payload.token} location={this.props.modal.payload.location} fileId={this.props.modal.payload.fileId} move={this.props.modal.payload.action}/>
+      } else if (modal === 'FilePdf'){
+        return <PdfView payload={this.props.modal.payload}/>
       }
     }
     render() {
