@@ -68,7 +68,8 @@ export default {
             handler: 'cacheFirst',
             urlPattern: /[.]png$/,
           }],
-    })
+    }),
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
   ],
   module: {
     loaders: [

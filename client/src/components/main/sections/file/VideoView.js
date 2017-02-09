@@ -8,7 +8,7 @@ class VideoView extends React.Component {
         return (
           <div>
             {this.props.payload.format === 'video'  ?
-            <video width="750" height="450" autoPlay controls>
+            <video width="1050" height="580" autoPlay controls>
               <source src={this.props.payload.url} type="video/mp4" />
             </video>
             : <audio autoPlay controls>

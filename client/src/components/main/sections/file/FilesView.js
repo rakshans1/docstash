@@ -82,6 +82,7 @@ class FilesView extends React.Component {
     const time = moment(file.createdAt).fromNow()
     const attributes = {'data-fileId': file._id, 'data-fileName': file.name};
     const type = file.type.split('/')[0]
+    const type1 = file.type.split('/')[1];
     if ( type !== 'image' && type !== 'video' && type !== 'audio' && type1 !== 'pdf'){
     return(
       <tr >
@@ -92,7 +93,7 @@ class FilesView extends React.Component {
     );
   } else if (type === 'video' || type === 'audio' || type1 === 'pdf') {
     return(
-      <tr onClick={() => this.props.handleClick(type, `${ROOT_URL}/video/${file._id}?token=${token}`, file.name)}>
+      <tr onClick={() => this.props.handleClick(type, `${ROOT_URL}/video/${file._id}?token=${token}`, file.name, type1)}>
           <td><ContextMenuTrigger id="file-context-menu" attributes={attributes}><FileIcon type={file.type.split('/')[0]}/> {file.name}</ContextMenuTrigger></td>
           <td><ContextMenuTrigger id="file-context-menu" attributes={attributes}>{time}</ContextMenuTrigger></td>
           <td><ContextMenuTrigger id="file-context-menu" attributes={attributes}>{file.size}</ContextMenuTrigger></td>

@@ -48,10 +48,15 @@ class Modal extends React.Component {
         if (!this.props.modal.status) {
             return null;
         }
+        var style = {
+            top: this.props.modal.modal !== 'Upload'  ? '5%': '20%', 
+            right: this.props.modal.modal !== 'Upload' ? '10%': '20%', 
+            left: this.props.modal.modal !== 'Upload' ? '10%' : '20%',
+        }
         return (
             <div>
                 <div className="modal_overlay" ref="overlay" onClick={this.handleOverlayClick}></div>
-                <div className="modal" ref="content">
+                <div className="modal" ref="content" style={style}>
                     {this.renderModal()}
                 </div>
             </div>

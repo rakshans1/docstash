@@ -30,22 +30,22 @@ class Sidebar extends React.Component {
                         <IndexLink className="sidebar-a" activeClassName="active" to="/"><i className="flaticon-folder-2"/>Library</IndexLink>
                     </li>
                     <li className="sidebar-li">
-                        <Link className="sidebar-a" to="/recents"><i className="flaticon-square"/>Recent</Link>
+                        <Link className="sidebar-a" activeClassName="active" to="/recents"><i className="flaticon-square"/>Recents</Link>
                     </li>
                 </ul>
                 <p className="sidebar-text">FILTER BY</p>
                 <ul className="nav nav-sidebar sidebar-ul">
                     <li className="sidebar-li">
-                        <Link className="sidebar-a" to="/documents"><i className="flaticon-interface"/>Documents</Link>
+                        <Link className="sidebar-a" activeClassName="active" to="/documents"><i className="flaticon-interface"/>Documents</Link>
                     </li>
                     <li className="sidebar-li">
-                        <Link className="sidebar-a" to="/videos"><i className="flaticon-multimedia"/>Videos</Link>
+                        <Link className="sidebar-a" activeClassName="active" to="/videos"><i className="flaticon-multimedia"/>Videos</Link>
                     </li>
                     <li className="sidebar-li">
-                        <Link className="sidebar-a" to="/musics"><i className="flaticon-music"/>Music</Link>
+                        <Link className="sidebar-a" activeClassName="active" to="/musics"><i className="flaticon-music"/>Musics</Link>
                     </li>
                     <li className="sidebar-li">
-                        <Link className="sidebar-a" to="/images"><i className="flaticon-photo"/>Images</Link>
+                        <Link className="sidebar-a" activeClassName="active" to="/images"><i className="flaticon-photo"/>Images</Link>
                     </li>
                 </ul>
                 <p className="sidebar-text">Extra</p>

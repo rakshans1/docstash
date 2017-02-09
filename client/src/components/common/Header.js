@@ -22,7 +22,7 @@ class Header extends React.Component {
       } else {
         browserHistory.push('/search');
         var d = new Date();
-        if (d.getTime() - this.state.time > 500){
+        if (d.getTime() - this.state.time > 50){
         this.props.actions.searchOpen(e.target.value, this.props.token);
         }
         this.setState({time: d.getTime()});

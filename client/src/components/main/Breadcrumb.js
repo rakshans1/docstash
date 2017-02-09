@@ -48,7 +48,7 @@ class Breadcrumb extends React.Component {
                             <Link to="/">Library</Link>
                         </li>
                         <li className="breadcrumb-item ">
-                            <Link to="/recent">Recent</Link>
+                            <Link to="/recents">Recents</Link>
                         </li>
                     </ol>
                 );

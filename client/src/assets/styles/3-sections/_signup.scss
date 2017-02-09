@@ -275,7 +275,7 @@
     position: absolute;
     opacity: 0;
     top: 0;
-    left: 100%;
+    left: 82.5%;
     white-space: nowrap;
     line-height: 70px;
     width: auto;
@@ -289,6 +289,7 @@
     letter-spacing: 0.6px;
     user-select: none;
     transition: all 0.2s ease-in-out;
+    z-index: 1;
 }
 @media only screen and (min-width : 0px) and (max-width : 870px) {
     .error_container {

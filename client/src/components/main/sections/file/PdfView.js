@@ -7,7 +7,7 @@ class PdfView extends React.Component {
     render() {
         return (
           <div>
-            <embed src={this.props.payload.url} width="780" height="400" type='application/pdf'/>
+            <embed src={this.props.payload.url} width="1050" height="580" type='application/pdf'/>
           </div>
         );
     }
