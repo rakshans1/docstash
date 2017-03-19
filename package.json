@@ -6,9 +6,9 @@
   "scripts": {
     "test": "cd server && npm test",
     "client": "cd client && npm start",
-	  "server": "cd server && npm start",
-	  "db": "cd data && mongod --dbpath ./",
-	  "visualize" : "gource .git/"
+    "server": "cd server && npm start",
+    "db": "cd data && mongod --dbpath ./",
+    "visualize": "gource .git/"
   },
   "repository": {
     "type": "git",
@@ -19,5 +19,6 @@
   "bugs": {
     "url": "https://github.com/rakshans1/docstash/issues"
   },
-  "homepage": "https://github.com/rakshans1/docstash#readme"
+  "homepage": "https://github.com/rakshans1/docstash#readme",
+  "dependencies": {}
 }

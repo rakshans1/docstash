@@ -6,10 +6,10 @@ chai.use(chaiHttp);
 
 describe('Shortner', () => {
     var url = {
-        url: "http://google.com"
+        url: "https://google.com"
     }
     it('it should not POST a url without url field', (done) => {
-        chai.request(server).post('/short').end((err, res) => {
+        chai.request(server).post('/api/short').end((err, res) => {
             res.should.have.status(422);
             res.body.should.be.a('object');
             res.body.should.have.property('error');
@@ -19,7 +19,7 @@ describe('Shortner', () => {
     });
 
     it('it should post', (done) => {
-        chai.request(server).post('/short').send(url).end((err, res) => {
+        chai.request(server).post('/api/short').send(url).end((err, res) => {
             const id = res.body.shortner
             url.url = id.substr(id.length - 8)
             res.should.have.status(200);
