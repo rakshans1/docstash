@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\documentclass[12pt]{report}
+\documentclass[12pt, a4paper]{report}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \setlength{\textwidth}{6.25in} % original 6.25
 \setlength{\textheight}{8in}
@@ -14,7 +14,7 @@
 \pagestyle{fancy}
 \lhead{}
 \chead{}
-\rhead{Society Scoop}
+\rhead{Docstash - Personal Cloud Storage}
 \lfoot{Ramrao Adik Institute of Technology}
 \cfoot{}
 \rfoot{\thepage}
@@ -39,19 +39,20 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 \pagenumbering{roman}
+\input{abstract}
+\tableofcontents
 \addcontentsline{toc}{chapter}{Abstract}
-% \input{abstract}%\thispagestyle{plain}\setcounter{page}{1}
-\tableofcontents%\thispagestyle{plain}
-\listoffigures%\thispagestyle{plain}
+\listoffigures
 \addcontentsline{toc}{chapter}{List of Figures}
+\listoftables
 \addcontentsline{toc}{chapter}{List of Tables}
 
-%\listofalgorithms%\thispagestyle{plain}
-%\addcontentsline{toc}{chapter}{List of Algorithms}
-%\newpage
+
+
+\newpage
 \pagenumbering{arabic}
-% \input{Chapter1}
-% \input{Chapter2}
+\input{introduction}
+\input{literature}
 % \input{Chapter3}
 % \input{Chapter4}
 % \input{Chapter5}
@@ -63,7 +64,7 @@
 % \input{Bibliography}
 % \input{acknowledgement}\thispagestyle{empty}
 
-\end{document}}
+\end{document}
 
 
 
