@@ -1,0 +1,43 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[12pt]{report}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\setlength{\textwidth}{160mm} % original 6.25
+%\setlength{\textheight}{245mm}
+%\setlength{\topmargin}{15mm}
+\setlength{\headheight}{3mm}
+\setlength{\headsep}{12mm}
+\setlength{\footskip}{10mm}
+\renewcommand{\baselinestretch}{1.5}
+
+%\oddsidemargin 20pt    %  Left margin on odd-numbered pages.
+%\evensidemargin 20pt   %  Note that \oddsidemargin = \evensidemargin
+%\topmargin 0pt
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage {graphics}
+%\usepackage {algorithm}
+%\usepackage {algorithmic}
+\usepackage {epsfig}
+\usepackage{epstopdf}
+\usepackage {graphicx}
+\usepackage{amsmath}
+% \usepackage{slashbox}
+\usepackage{rotating}
+\usepackage{lscape}
+\usepackage{pdflscape}
+\usepackage{subfig}
+\usepackage{times}
+\usepackage{ulem}
+\usepackage{geometry}
+%\usepackage{ifmtarg}
+\geometry{a4paper,total={245mm,160mm},left=30mm,right=20mm,top=30mm,bottom=22mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\begin{titlepage}
+\input{Cover}
+\end{titlepage}
+\pagenumbering{gobble}
+\input{certificate}\thispagestyle{empty}
+\input{declaration}\thispagestyle{empty}
+\input{coa_examiner}\thispagestyle{empty}
+\end{document}
