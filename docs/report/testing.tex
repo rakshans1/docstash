@@ -1,6 +1,42 @@
 \chapter{Testing}
 \newpage
 
+
+\begin{tabular}{ ||p{1cm}|p{3cm}|p{4cm}|p{4cm}|p{2cm}|| }
+ \hline
+ \multicolumn{5}{|c|}{Android Test Cases} \\
+ \hline
+Sr. No.& Test Case Description &Expected Result &Actual Result &Remark\\
+\hline
+ & Google and Facebook Integration and Login &	The user is prompted to select a Google account to sign in with. If you requested scopes beyond profile, email, and openid, the user is also prompted to grant access to the requested resources. &	Get users into your apps quickly and securely, using a registration system they already use and trust—their Google account. &	PASSED\\
+ \hline
+ 2 & Link shortner  & Link should be shortened and if user visits the link he should be redirected to the original link.&	User gets the working shortened link.&	PASSED\\
+ \hline
+ 3 &File upload and retrieval	& Server should accept various kinds of file being uploaded &	User is able to upload file and gets relevant information.&	PASSED\\
+ \hline
+ 4 & File encryption &File should be encrypted before storing to storage. & File is getting encrypted with AES-256 algorithm and saved to the storage. &	PASSED\\
+\hline
+\end{tabular}
+
+\newpage
+
+\begin{figure}[h]
+\begin{center}
+    \psfig{figure=./img/test1.png,height=2.3in}
+    \caption{Test Execution}
+    \label{1}
+\end{center}
+\end{figure}
+
+\begin{figure}[h]
+\begin{center}
+    \psfig{figure=./img/test2.png,height=2.3in}
+    \caption{Form Validation Test}
+    \label{1}
+\end{center}
+\end{figure}
+
+\newpage
 The various testing methodologies implemented are, 
 
 \section{Unit And Integration Testing}

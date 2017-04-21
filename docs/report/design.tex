@@ -10,28 +10,27 @@
 \end{center}
 \end{figure}
 
-\vspace{0.2cm} The user logs in into the app. New users need to sign up before they can log in. The login details are stored in a database. The administrator manages the users and content of the application.
+\vspace{0.2cm} User data files is backed up in multiple storage location. The integrity of user's data is checked and accordingly data consistency is maintained in the file storage while taking backup and metadata is updated by setting up redundant file server for recovery and these data is store in file storage.
 
 \begin{figure}[h]
 \begin{center}
-  \psfig{figure=./img/level2.eps,width=6.5in,height=4in}
+  \psfig{figure=./img/level2.eps,width=6.5in,height=3.5in}
     \caption{DFD –level 1 for Docstash Application }
     \label{8}
 \end{center}
 \end{figure}
 
-       \vspace{0.2cm}The user uses username and password to login into the application. If the user is a new user, he is first required to sign up. The login details are stored in the login database. When a user tries to log in, the credentials entered are compared with the credentials stored in the database. If the user is a valid user he is allowed to access the application.
-The applications database contains events and notices that are displayed in the Society Scoop application. The system administrator can update the events and notices.
+       \vspace{0.2cm}User's uploading data is handled by the server through scaling up and down and database is updated simultaneously. Further this uploaded data file is encrypted using AES-256 encryption algorithm and compressed. While streaming
+           this data is decrypted in real time and displayed to the user.
+
 
 
 \begin{figure}[h]
     \begin{center}
-  \psfig{figure=./img/activity.eps,width=6in,height=4.5in}
+  \psfig{figure=./img/activity.eps,width=6in,height=4in}
     \caption{Activity Diagram for Docstash }
     \label{9}
-    \end{center}
-    \end{figure}
+\end{center}
+\end{figure}
 
-\vspace{0.2cm}In the figure above we can see the user first login to the application through the login credentials which he gets during the signup process. Once the user is authenticated, he successfully can avail the benefits of the application. The administrator plays the vital role by updating various things like Events and notices which are to be held in the society.
-The polling feature helps the residents to take a decision on the particular society issue/ matters etc. all the reviews of the residents are stored in the application database which is handled by the administrator. The admin also makes sure that the recent updates in the restaurant menu is being reflected to the user immediately for efficient service. All these updating is done by the web application which is handled by the administrator.
-
+\vspace{0.2cm}Above figure explains the activity of user on Docstash. User uploads file and that file is divided into chunks and every chunk searched for duplicate copies. If duplicate copies are not found then that chunk is uploaded to the server and if chunk is already present in the database then that chunk is not uploaded again. While chunks are being uploaded, parallelly metadata is extracted from user file and metadata database is updated and creates hash for every file to check data integrity.          
