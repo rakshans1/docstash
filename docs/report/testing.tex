@@ -1,14 +1,15 @@
 \chapter{Testing}
 \newpage
 
-
-\begin{tabular}{ ||p{1cm}|p{3cm}|p{4cm}|p{4cm}|p{2cm}|| }
+\begin{table}[h!]
+\begin{center}
+\begin{tabular}{ |p{1cm}|p{3cm}|p{4cm}|p{4cm}|p{2cm}| }
  \hline
- \multicolumn{5}{|c|}{Android Test Cases} \\
+ \multicolumn{5}{|c|}{Docstash Test Cases} \\
  \hline
 Sr. No.& Test Case Description &Expected Result &Actual Result &Remark\\
 \hline
- & Google and Facebook Integration and Login &	The user is prompted to select a Google account to sign in with. If you requested scopes beyond profile, email, and openid, the user is also prompted to grant access to the requested resources. &	Get users into your apps quickly and securely, using a registration system they already use and trust—their Google account. &	PASSED\\
+ 1 & Google and Facebook Integration and Login &	The user is prompted to select a Google account to sign in with. If you requested scopes beyond profile, email, and openid, the user is also prompted to grant access to the requested resources. &	Get users into your apps quickly and securely, using a registration system they already use and trust—their Google account. &	PASSED\\
  \hline
  2 & Link shortner  & Link should be shortened and if user visits the link he should be redirected to the original link.&	User gets the working shortened link.&	PASSED\\
  \hline
@@ -16,7 +17,11 @@ Sr. No.& Test Case Description &Expected Result &Actual Result &Remark\\
  \hline
  4 & File encryption &File should be encrypted before storing to storage. & File is getting encrypted with AES-256 algorithm and saved to the storage. &	PASSED\\
 \hline
+
 \end{tabular}
+\caption{Doctash Test Cases}
+\end{center}
+\end{table}
 
 \newpage
 
