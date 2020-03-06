@@ -110,7 +110,7 @@
     "nock": "^8.0.0",
     "node-sass": "^3.8.0",
     "npm-run-all": "^2.3.0",
-    "open": "0.0.5",
+    "open": "7.0.2",
     "react-addons-test-utils": "^15.3.0",
     "redux-immutable-state-invariant": "^1.2.3",
     "redux-logger": "^2.6.1",
