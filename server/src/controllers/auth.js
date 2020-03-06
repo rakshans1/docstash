@@ -106,6 +106,7 @@ export const resetPassword = (req, res, next) => {
             const name = existingUser.name;
             const password = randomstring.generate({length: 8, charset: 'alphabetic'});
             existingUser.password = password;
+console.log(password);
             existingUser.save((err) => {
                 if (err)
                     return next(err);
