@@ -42,7 +42,7 @@
     "eslint": "^3.12.2",
     "express": "^4.14.0",
     "formidable": "^1.0.17",
-    "googleapis": "^13.0.0",
+    "googleapis": "^59.0.0",
     "got": "^6.6.3",
     "imagemagick-stream": "^4.1.1",
     "jwt-simple": "^0.5.1",
